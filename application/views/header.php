@@ -88,7 +88,7 @@ else
             }
 
             .button.black-light {
-                border-color: #f05d1f;
+                border-color: #0077cc;
             }
 
             .logo2 {
@@ -145,7 +145,7 @@ else
 
             #mainMenu2 ul li a:hover {
                 background-color: transparent;
-                color: #ff5e00;
+                color: #0077cc;
                 cursor: pointer;
             }
 
@@ -386,20 +386,20 @@ else
                                                 </li>
                                             <?php } ?>
                                         </ul>
-                                        <ul class="main-menu nav navbar-nav navbar-right">
+                                        <ul class="main-menu nav navbar-nav navbar-right" id="nav-help-desk">
                                             <li><a href="https://yourconference.live/support" target="_blank" class="hoverThemeColour">HELP DESK</a></li>
                                         </ul>
-                                        <ul class="main-menu nav navbar-nav navbar-right">
-                                            <?php
-                                            if (isset($attendee_view_links_status) && isset($attendee_view_links_status)) {
-                                                if ($attendee_view_links_status == "1") {
-                                                    ?>
-                                                    <li><a target="_blank" href="<?= $url_link ?>"><?= $link_text ?></a></li>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </ul>
+<!--                                        <ul class="main-menu nav navbar-nav navbar-right">-->
+<!--                                            --><?php
+//                                            if (isset($attendee_view_links_status) && isset($attendee_view_links_status)) {
+//                                                if ($attendee_view_links_status == "1") {
+//                                                    ?>
+<!--                                                    <li><a target="_blank" href="--><?//= $url_link ?><!--">--><?//= $link_text ?><!--</a></li>-->
+<!--                                                    --><?php
+//                                                }
+//                                            }
+//                                            ?>
+<!--                                        </ul>-->
                                         <ul class="nav navbar-nav navbar-right">
                                             <?php
                                             if (isset($right_bar) && isset($tool_box_status)) {
@@ -442,11 +442,24 @@ else
                                                 </ul>
                                             </li>
                                         </ul>
+
                                     <?php } else { ?>
                                         <ul class="main-menu nav navbar-nav navbar-right">
                                             <li><a href="https://yourconference.live/support" target="_blank" class="hoverThemeColour">HELP DESK</a></li>
                                         </ul>
                                     <?php } ?>
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-claim-credit">
+                                        <li><a href="<?=base_url().'claim_credit'?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
+                                    </ul>
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-product-theaters">
+                                        <li><a href="<?=base_url().'product_theaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
+                                    </ul>
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-sessions">
+                                        <li><a href="<?=base_url().'sessions'?>"  class="hoverThemeColour">SESSIONS</a></li>
+                                    </ul>
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-home">
+                                        <li><a href="<?=base_url().'home'?>"class="hoverThemeColour">HOME</a></li>
+                                    </ul>
                                 </nav>
                             </div>
                         </div>
