@@ -112,5 +112,9 @@
         });
 
         $('#toolbox').hide();
+        $('#nav-home').hide();
+        $('#nav-sessions').hide();
+        $('#nav-product-theaters').hide();
+        $('#nav-claim-credit').hide();
     });
 </script>
