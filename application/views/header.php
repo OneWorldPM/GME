@@ -35,7 +35,7 @@ else
 
         <!-- Responsive classes -->
         <link href="<?= base_url() ?>front_assets/css/responsive.css" rel="stylesheet">
-
+        <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet">
         <!-- [if lt IE 9]>
         <script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
         <![endif] -->
@@ -277,13 +277,15 @@ else
                 color: #<?=$themeColour?> !important;
             }
             /****** Theme based colours ****/
-
+            .dropdown-backdrop{
+                position: static;
+            }
         </style>
 
     </head>
     <body class="wide">
         <!-- WRAPPER -->
-        <div class="wrapper">
+        <div class="wrapper ">
             <!-- HEADER -->
             <header id="header" class="header-transparent header-sticky">
                 <div id="header-wrap" <?=((isset($sesions_logo_height) && !empty($sesions_logo_height)) && isset($sesions_logo) && !empty($sesions_logo))?($sesions_logo_height > 80)?'style="height:'.$sesions_logo_height.'px"':'style="height:115px"':'';?>>
@@ -340,66 +342,38 @@ else
                         <!--END: SHOPPING CART -->
 
                         <!--NAVIGATION-->
-                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap">
+                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap" style="margin-right: 30px">
                             <div class="container" style="text-transform: uppercase;">
-                                <nav id="mainMenu2" class="main-menu mega-menu" style="margin-top: 10px;">
+                                <nav id="" class="main-menu mega-menu" style="margin-top: 10px;">
                                     <?php
                                     if ($this->session->userdata('cid') != "") {
                                         $profile_data = $this->common->get_user_details($this->session->userdata('cid'));
                                         ?>
                                         <ul class="main-menu nav navbar-nav navbar-right">
-                                            <?php if (1 == 2) { ?>
-                                                <li class="dropdown" style="margin-top: -9px;">
-                                                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <li class="dropdown" style="margin-top: 0px;">
+                                                    <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
                                                         <?php if ($profile_data->profile != "") { ?>
-                                                            <span class="glyphicon glyphicon-user"></span> Profile
-
-                                                                                                                                                                       <!-- <img src="<?/*= base_url() */?>uploads/customer_profile/<?/*= $profile_data->profile */?>"style="height: 50px; width: 50px;;">-->
-
+                                                            <img src="<?= base_url() ?>uploads/customer_profile/<?= $profile_data->profile ?>"style="height: 50px; width: 50px; margin-top: -10px">
+                                                            <b style="padding: 10px 20px 10px 18px;color:#585858;"><?= $profile_data->first_name?> <span class="fa fa-caret-down"></span></b>
                                                         <?php } else { ?>
                                                             <span class="glyphicon glyphicon-user"></span> Profile
+                                                            <span style="color:#161817;"class="glyphicon glyphicon-user"></span>
                                                         <?php } ?>
                                                     </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li>
-                                                            <b style="padding: 10px 20px 10px 18px; color:#A9A9A9;"><?= $profile_data->first_name . ' ' . $profile_data->last_name ?></b>
-                                                        </li>
-                                                        <li>
-                                                            <b style="padding: 10px 20px 10px 18px; color:#A9A9A9;"><?= $profile_data->email ?></b>
-                                                        </li>
-                                                        <li>
-                                                            <a href="<?= base_url() ?>register/user_profile/<?= $profile_data->cust_id ?>">
-                                                                EDIT PROFILE
+                                                    <ul class="dropdown-menu " >
+                                           <!--             <li>
+                                                            <a href="<?/*= base_url() */?>register/user_profile/<?/*= $profile_data->cust_id */?>">
+                                                               <span style="color:black">EDIT PROFILE</span>
                                                             </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="<?= base_url() ?>home/notes">
-                                                                My Briefcase
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="<?= base_url() ?>login/logout">
-                                                                Log Out
+                                                        </li>-->
+                                                        <li style="padding: 8px 8px">
+                                                            <a href="<?= base_url() ?>login/logout" >
+                                                                <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#0077cc;" >Log Out</b>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </li>
-                                            <?php } ?>
                                         </ul>
-                                        <ul class="main-menu nav navbar-nav navbar-right" id="nav-help-desk">
-                                            <li><a href="https://yourconference.live/support" target="_blank" class="hoverThemeColour">HELP DESK</a></li>
-                                        </ul>
-<!--                                        <ul class="main-menu nav navbar-nav navbar-right">-->
-<!--                                            --><?php
-//                                            if (isset($attendee_view_links_status) && isset($attendee_view_links_status)) {
-//                                                if ($attendee_view_links_status == "1") {
-//                                                    ?>
-<!--                                                    <li><a target="_blank" href="--><?//= $url_link ?><!--">--><?//= $link_text ?><!--</a></li>-->
-<!--                                                    --><?php
-//                                                }
-//                                            }
-//                                            ?>
-<!--                                        </ul>-->
                                         <ul class="nav navbar-nav navbar-right">
                                             <?php
                                             if (isset($right_bar) && isset($tool_box_status)) {
@@ -443,16 +417,16 @@ else
                                             </li>
                                         </ul>
 
-                                    <?php } else { ?>
-                                        <ul class="main-menu nav navbar-nav navbar-right">
-                                            <li><a href="https://yourconference.live/support" target="_blank" class="hoverThemeColour">HELP DESK</a></li>
-                                        </ul>
                                     <?php } ?>
+
+                                    <ul class="main-menu nav navbar-nav navbar-right">
+                                        <li><a href="https://yourconference.live/support" target="_blank" class="hoverThemeColour">HELP DESK</a></li>
+                                    </ul>
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-claim-credit">
-                                        <li><a href="<?=base_url().'claim_credit'?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
+                                        <li><a href="<?=base_url().'claimCredit'?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
                                     </ul>
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-product-theaters">
-                                        <li><a href="<?=base_url().'product_theaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
+                                        <li><a href="<?=base_url().'productTheaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
                                     </ul>
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-sessions">
                                         <li><a href="<?=base_url().'sessions'?>"  class="hoverThemeColour">SESSIONS</a></li>

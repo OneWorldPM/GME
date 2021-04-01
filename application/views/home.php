@@ -98,6 +98,7 @@
         }
     }
 </style>
+
 <section class="parallax" style="background-color: #0077cc">
     <div class="container container-fullscreen" id="home_first_section">
         <div class="text-middle">
@@ -106,35 +107,35 @@
                     <div class="text-center m-t-0">
                         <h1 style="color: #FFFFFF; font-family: 'Architects Daughter', cursive; margin-bottom: 0px; font-weight: 700; font-size: 40px;">Welcome, <?= $this->session->userdata('cname') ?></h1>
                     </div>
-                </div>
-                <!--  <div class="jumbotron" style="background-image: url(<?=base_url()?>front_assets/images/Header_Logos_GME.png);height:300px;background-repeat: no-repeat;   background-size: cont;"></div>-->
-                <div class="col-md-12 m-t-30" style="text-align: -webkit-center;">
-                    <div class="col-md-2 col-sm-12">
-                    </div>
-                    <div class="col-md-3 col-sm-12">
+<!--                    <div class="col-md-10 col-md-offset-1">
+                  <div class="jumbotron" style="background-image: url(<?/*=base_url()*/?>front_assets/images/Header_Logos_GME.png);height:300px; background-repeat: no-repeat;   background-size: contain;"></div>
+                    </div>-->
+                <div class="row justify-content-center " style="text-align: -webkit-center;">
+                    <div class="col-md-4 col-sm-12 ">
+                        <div style="text-align: center !important;">
                         <a class="icon-home" href="<?= base_url() ?>sessions"> 
-                            <div class="col-lg box-home p-5 text-center">
+                            <div class="col-lg box-home p-5 text-center col-md-offset-4">
                                 <img src="<?= base_url() ?>front_assets/images/Session.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
                                 <br>
                                 <br>
                                 <span>SESSIONS</span>
                             </div>
                         </a>
+                        </div>
                     </div> 
-                     <div class="col-md-3 col-sm-12">
-                        <a class="icon-home" href="product_theaters">
-                            <div class="col-lg box-home p-5 text-center">
+                     <div class="col-md-4 col-sm-12" style="text-align: center">
+                        <a class="icon-home" href="<?= base_url().'productTheaters'?>"">
+                            <div class="col-lg box-home p-5 text-center col-md-offset-3">
                                 <span class="fa fa-desktop"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>
                                 <br>
                                 <br>
                                 <span>PRODUCT THEATERS</span>
-
                             </div>
                         </a>
                     </div> 
-                    <div class="col-md-3  col-sm-12">
-                        <a class="icon-home" href="claimcredit">
-                            <div class="col-lg box-home ml-5 mr-5 p-5 text-center">
+                    <div class="col-md-4  col-sm-12">
+                        <a class="icon-home" href="<?= base_url().'claimCredit'?>">
+                            <div class="col-lg box-home ml-5 mr-5 p-5 text-center col-md-offset-2">
                                 <span class="fa fa-clipboard-check"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>
                                 <br>
                                 <br>

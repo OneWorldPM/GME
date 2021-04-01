@@ -26,27 +26,6 @@ class Home extends CI_Controller {
         $this->load->view('footer');
     }
 
-    public function notes() {
-        $data["briefcase_list"] = $this->getNote();
-
-        $this->load->view('header');
-        $this->load->view('notes', $data);
-        $this->load->view('footer');
-    }
-
-    function getNote() {
-        $this->db->select('*');
-        $this->db->from('sessions_cust_briefcase b');
-        $this->db->join('sessions s', 's.sessions_id=b.sessions_id');
-        $this->db->where(array("cust_id" => $this->session->userdata("cid")));
-        $sessions_cust_briefcase = $this->db->get();
-        if ($sessions_cust_briefcase->num_rows() > 0) {
-            return $sessions_cust_briefcase->result();
-        } else {
-            return '';
-        }
-    }
-
     function add_user_activity() {
         $post = $this->input->post();
         $int_array = array(
@@ -59,9 +38,5 @@ class Home extends CI_Controller {
         return TRUE;
     }
 
-    function delete_note($sessions_cust_briefcase_id) {
-        $this->db->delete("sessions_cust_briefcase", array("sessions_cust_briefcase_id" => $sessions_cust_briefcase_id));
-        header('location:' . base_url() . 'home/notes');
-    }
 
 }
