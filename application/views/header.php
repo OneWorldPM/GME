@@ -354,9 +354,9 @@ else
                                                     <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
                                                         <?php if ($profile_data->profile != "") { ?>
                                                             <img src="<?= base_url() ?>uploads/customer_profile/<?= $profile_data->profile ?>"style="height: 50px; width: 50px; margin-top: -10px">
-                                                            <b style="padding: 10px 20px 10px 18px;color:#585858;"><?= $profile_data->first_name?> <span class="fa fa-caret-down"></span></b>
+                                                            <b style="padding: 10px 20px 10px 18px;color:#585858;"><?= $this->session->userdata('cname') ?> <span class="fa fa-caret-down"></span></b>
                                                         <?php } else { ?>
-                                                            <span class="glyphicon glyphicon-user"></span><b style="color:black">Profile</b>
+                                                            <span class="glyphicon glyphicon-user"></span><b style="color:black"><?=$this->session->userdata('cname')?></b>
                                                         <?php } ?>
                                                     </a>
                                                     <ul class="dropdown-menu " >
