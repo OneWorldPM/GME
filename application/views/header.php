@@ -216,7 +216,12 @@ else
             @media screen and (max-width: 992px) {
                 .parallax {
                     margin-top: 0;
+
                 }
+                .dropdown-backdrop {
+                    z-index:0;
+                }
+
 
                 #mainMenu2 .nav {
                     background-color: white;
@@ -280,6 +285,24 @@ else
             .dropdown-backdrop{
                 position: static;
             }
+
+            ul{
+                border-top-color: #2B72D5 !important;
+                border-radius: 10px !important;
+                border-bottom: 1px !important;
+                border-color: #2B72D5 !important;
+            }
+
+            li{
+                border-bottom: 0px !important;
+            }
+            .photo-dropdown {
+                background-color:;
+                border-radius: 10px;
+            }
+
+
+
         </style>
 
     </head>
@@ -342,30 +365,27 @@ else
                         <!--END: SHOPPING CART -->
 
                         <!--NAVIGATION-->
-                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap" style="margin-right: 30px">
+                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap" id="nav-drop"style="margin-right: 10px">
                             <div class="container" style="text-transform: uppercase;">
-                                <nav id="" class="main-menu mega-menu" style="margin-top: 10px;">
+                                <nav id="mainMenu2" class="main-menu mega-menu" style="margin-top: 10px;">
                                     <?php
                                     if ($this->session->userdata('cid') != "") {
                                         $profile_data = $this->common->get_user_details($this->session->userdata('cid'));
                                         ?>
-                                        <ul class="main-menu nav navbar-nav navbar-right">
-                                                <li class="dropdown" style="margin-top: 0px;">
+                                        <ul class="main-menu nav navbar-nav navbar-right" id="ul-drop">
+                                                <li class="dropdown" style="margin-top: 0px;margin-left: 30px">
+                                                    <div class="photo-dropdown ">
                                                     <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
                                                         <?php if ($profile_data->profile != "") { ?>
-                                                            <img src="<?= base_url() ?>uploads/customer_profile/<?= $profile_data->profile ?>"style="height: 50px; width: 50px; margin-top: -10px">
-                                                            <b style="padding: 10px 20px 10px 18px;color:#585858;"><?= $this->session->userdata('cname')?> <span class="fa fa-caret-down"></span></b>
+                                                            <img src="<?= base_url() ?>uploads/customer_profile/<?= $profile_data->profile ?>"style="height: 50px; width: 60px; margin-top: -10px;border-radius: 5px">
+                                                            <h7 style="padding: 5px 10px 10px 0px; color:#1F1F1F;"><?= $this->session->userdata('cname')?> <span class="fa fa-caret-down"></span></h7>
                                                         <?php } else { ?>
                                                             <span style="color: #1b1e21" class="glyphicon glyphicon-user"></span><b style="color:#1b1e21"> <?=$this->session->userdata('cname')?></b>
                                                         <?php } ?>
                                                     </a>
-                                                    <ul class="dropdown-menu " >
-                                           <!--             <li>
-                                                            <a href="<?/*= base_url() */?>register/user_profile/<?/*= $profile_data->cust_id */?>">
-                                                               <span style="color:black">EDIT PROFILE</span>
-                                                            </a>
-                                                        </li>-->
-                                                        <li style="padding: 8px 8px">
+                                                    </div>
+                                                    <ul class="dropdown-menu" >
+                                                        <li style="padding: 8px 8px;">
                                                             <a href="<?= base_url() ?>login/logout" >
                                                                 <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#0077cc;" >Log Out</b>
                                                             </a>
