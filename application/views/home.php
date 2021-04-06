@@ -111,11 +111,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-center m-t-0">
-                        <h1 style="color: #0077cc; font-family: 'Architects Daughter', cursive; margin-bottom: 0px; font-weight: 700; font-size: 40px;">Welcome, <?= $this->session->userdata('cname') ?></h1>
                     </div>
-<!--                    <div class="col-md-10 col-md-offset-1">
-                  <div class="jumbotron" style="background-image: url(<?/*=base_url()*/?>front_assets/images/Header_Logos_GME.png);height:300px; background-repeat: no-repeat;   background-size: contain;"></div>
-                    </div>-->
                 <div class="row justify-content-center " style="text-align: -webkit-center;">
                     <div class="col-md-4 col-sm-12 ">
                         <div style="text-align: center !important;">
@@ -124,7 +120,6 @@
                                 <img src="<?= base_url() ?>front_assets/images/button_sessions-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
                                 <br>
                                 <br>
-                                <span>SESSIONS</span>
                             </div>
                         </a>
                         </div>
@@ -136,7 +131,6 @@
                                 <img src="<?= base_url() ?>front_assets/images/button_product-theaters-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
                                 <br>
                                 <br>
-                                <span>PRODUCT THEATERS</span>
                             </div>
                         </a>
                     </div> 
@@ -147,7 +141,6 @@
                                 <img src="<?= base_url() ?>front_assets/images/button_claim-credit-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
                                 <br>
                                 <br>
-                                <span>CLAIM CREDIT</span>
                             </div>
                         </a>
                     </div>
