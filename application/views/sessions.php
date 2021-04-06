@@ -53,17 +53,16 @@
         color: #fff !important;
     }
     body{
-        background-image:url(<?= base_url() ?>front_assets/images/attend_background.png) ;
-        top: 0;
-        height: 100%;
-        padding-top: 0px;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+        /*background-image:url(*/<?//= base_url() ?>/*front_assets/images/attend_background.png) ;*/
 
+    }
+    .parallax{
+        background-attachment:fixed !important;
+        background-size: 110% auto !important;
+    }
 </style>
-<section class="parallax">
-<!--<section class="parallax" style="background-image: url(<?= base_url() ?>front_assets/images/Sessions_BG_screened.jpg); top: 0; padding-top: 0px;">-->
+
+<section class="parallax" style="background-image: url(<?= base_url() ?>front_assets/images/attend_background.png); top: 0; padding-top: 0px; background-size: cover">
     <div class="container container-fullscreen" style="min-height: 700px;">
         <div class="">
             <div class="row">
