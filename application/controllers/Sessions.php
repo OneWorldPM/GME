@@ -73,10 +73,14 @@ class Sessions extends CI_Controller {
         $header_data["sponsor_type"] = $sesions->sponsor_type;
       $header_data["right_bar"] = $sesions->right_bar;
         $header_data["tool_box_status"] = $sesions->tool_box_status;
-		
+
+        $sesions->subsequent_session_1_name = $this->objsessions->sessionNameById($sesions->subsequent_session_1);
+        $sesions->subsequent_session_2_name = $this->objsessions->sessionNameById($sesions->subsequent_session_2);
+
         $data["sessions"] = $sesions;
         $data["session_resource"] = $this->objsessions->get_session_resource($sessions_id);
         $data['music_setting'] = $this->objsessions->get_music_setting();
+
 
         $header_data["attendee_view_links_status"] = $sesions->attendee_view_links_status;
         $header_data["url_link"] = $sesions->url_link;

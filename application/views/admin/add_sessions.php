@@ -4,9 +4,9 @@
         height:30px;
         line-height:30px;
         background:#f4f4f4;
-    } 
+    }
 }
-select::-moz-focus-inner { /*Remove button padding in FF*/ 
+select::-moz-focus-inner { /*Remove button padding in FF*/
     border: 0;
     padding: 0;
 }
@@ -14,12 +14,12 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
     select {
         padding: 15px 0!important;
     }
-}        
-@media screen\0 { /* IE Hacks: targets IE 8, 9 and 10 */        
+}
+@media screen\0 { /* IE Hacks: targets IE 8, 9 and 10 */
     select {
         height:30px;
         line-height:30px;
-    }     
+    }
 }
 </style>
 
@@ -198,6 +198,52 @@ $user_role = $this->session->userdata('role');
                                         }
                                         ?>
                                     </div>
+
+                                <hr style="border: 2px solid;"/>
+
+                                <div class="row" <?=($user_role != 'super_admin')?'style="display:none"':''?>>
+                                    <label class="col-md-12 text-large text-bold">
+                                        Redirect On Button Click <span class="badge badge-success">new</span>
+                                        <br><small style="color: red;font-size: 12px;">Regardless the session is over or not, this feature will redirect the user on a button click.</small>
+                                        <br><small style="color: red;font-size: 12px;">This will have no effect unless configured before attendees loading their page.</small>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="text-large" style="color: #05969d;">Subsequent Session 1</label>
+                                            <select class="form-control" id="subsequent_session_1" name="subsequent_session_1" <?=($user_role != 'super_admin')?"style='pointer-events:none;' readonly":''?>>
+                                                <option value="null">Unset</option>
+                                                <?php foreach ($all_sessions as $session): ?>
+                                                    <option value="<?=$session['sessions_id']?>" <?=(isset($sessions_edit->subsequent_session_1) && $sessions_edit->subsequent_session_1 == $session['sessions_id'])?'selected':''?>><?=$session['session_title']?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+
+                                            <small style="color: darkred;">If this is <span style="color: blue;">Unset</span>, nothing will happen once the <span style="color: green;">Redirect</span> button is clicked (Even if the <span style="color: #05969d;">Subsequent Session 2</span> is set!).</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="text-large" style="color: #05969d;">Subsequent Session 2</label>
+                                            <select class="form-control" id="subsequent_session_2" name="subsequent_session_2" <?=($user_role != 'super_admin')?"style='pointer-events:none;' readonly":''?>>
+                                                <option value="null">Unset</option>
+                                                <?php foreach ($all_sessions as $session): ?>
+                                                    <option value="<?=$session['sessions_id']?>" <?=(isset($sessions_edit->subsequent_session_2) && $sessions_edit->subsequent_session_2 == $session['sessions_id'])?'selected':''?>><?=$session['session_title']?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <small style="color: darkred;">If this is <span style="color: blue;">Unset</span>, attendee will be automatically redirected to the <span style="color: #05969d;">Subsequent Session 1</span> once the <span style="color: green;">Redirect</span> button is clicked. Otherwise a window will pop-up asking the attendee where to go.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="text-large">Text in the pop-up</label>
+                                            <textarea class="form-control" id="subsequent_session_popup_text" name="subsequent_session_popup_text" maxlength="255" style="color: black;"><?=(isset($sessions_edit->subsequent_session_popup_text))?$sessions_edit->subsequent_session_popup_text:'This session is over. Click on the following buttons to attend one of the next sessions.'?></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <hr style="border: 2px solid;"/>
 
                                     <div class="row" <?=($user_role != 'super_admin')?'style="display:none"':''?>>
                                         <label class="col-md-12 text-large text-bold">Select Sessions Tracks</label>
@@ -637,6 +683,14 @@ $user_role = $this->session->userdata('role');
             });
         });
 
+
+        $('#subsequent_session_popup_text').on('keypress', function (e) {
+            var ingnore_key_codes = [34, 39];
+            if ($.inArray(e.which, ingnore_key_codes) >= 0) {
+                e.preventDefault();
+                alertify.error('No single quotes or double quotes allowed!');
+            }
+        });
 
     });
 </script>

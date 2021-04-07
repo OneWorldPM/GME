@@ -7,6 +7,50 @@ socket.on('reload-attendee-signal', function (app_name_to_relaod) {
 });
 
 
+
+/*** Subsequent redirection feature ***/
+socket.on('subsequent-session-redirect-signal', function (app_name_to_reload) {
+    if (app_name_to_reload == app_name)
+    {
+        fireSubsequentRedirection();
+    }
+});
+
+function fireSubsequentRedirection()
+{
+    if (subsequent_session_1 != 'null')
+    {
+        if (subsequent_session_2 != 'null')
+        {
+            Swal.fire({
+                title: subsequent_session_popup_text,
+                icon: 'info',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: subsequent_session_1_name,
+                confirmButtonColor: '#3079d6',
+                denyButtonText: subsequent_session_2_name,
+                denyButtonColor: '#3079d6',
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Redirecting you to '+subsequent_session_1_name, '', 'success');
+                    window.open(base_url+'sessions/attend/'+subsequent_session_1, "_self");
+                } else if (result.isDenied) {
+                    Swal.fire('Redirecting you to '+subsequent_session_2_name, '', 'success');
+                    window.open(base_url+'sessions/attend/'+subsequent_session_2, "_self");
+                }
+            })
+        }else{
+            toastr.info('Redirecting to the next session ('+subsequent_session_1_name+').');
+            window.open(base_url+'sessions/attend/'+subsequent_session_1, "_self");
+        }
+    }else{
+        console.log("Subsequent session 1 is unset!");
+    }
+}
+/*** End of subsequent redirection feature ***/
+
 /******* Saving time spent on session - by Athul ************/
 var timeSpentOnSessionFromDb;
 var timeSpentUntilNow;

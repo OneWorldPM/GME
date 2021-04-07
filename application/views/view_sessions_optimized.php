@@ -1,3 +1,13 @@
+<?php
+if (isset($_GET['testing']))
+{
+    echo"<pre>";
+    print_r($sessions);
+    echo"</pre>";
+    exit;
+}
+?>
+
 <link href="<?= base_url() ?>assets/css/attendee-session-view.css?v=200" rel="stylesheet">
 
 <!-- Please add styles only in this CSS file, NOT directly on this HTML file -->
@@ -445,10 +455,16 @@ if (isset($sessions)) {
     var session_end_datetime =  new Date("<?= date('M d, Y', strtotime($sessions->sessions_date)) . ' ' . $sessions->end_time ?>");
 
     var socket_session_name = "<?=getAppName('_admin-to-attendee-chat')?>";
+
+    var subsequent_session_1 = "<?=($sessions->subsequent_session_1 && $sessions->subsequent_session_1 != null)?$sessions->subsequent_session_1:'null'?>";
+    var subsequent_session_1_name = "<?=$sessions->subsequent_session_1_name?>";
+    var subsequent_session_2 = "<?=($sessions->subsequent_session_2 && $sessions->subsequent_session_2 != null)?$sessions->subsequent_session_2:'null'?>";
+    var subsequent_session_2_name = "<?=$sessions->subsequent_session_2_name?>";
+    var subsequent_session_popup_text = "<?=$sessions->subsequent_session_popup_text?>";
 </script>
 <?= getSocketScript()?>
 <script src="<?= base_url() ?>front_assets/js/custom-fullscreen.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@9.17.0/dist/sweetalert2.all.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10.3.3/dist/sweetalert2.all.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
