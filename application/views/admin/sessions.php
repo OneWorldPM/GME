@@ -31,11 +31,11 @@ $user_role = $this->session->userdata('role');
                                         <label>Date Range:</label>
                                          <div class="input-group input-daterange datepicker">
                                             <input type="text" placeholder="Start Date" name="start_date" value="<?= ($this->session->userdata('start_date') != "") ? date("m/d/Y",strtotime($this->session->userdata('start_date'))) : ""  ?>" id="from_date" class="form-control">
-                                            <span class="input-group-addon bg-primary">to</span>
+                                            <span class="input-group-addon bg-blue">to</span>
                                             <input type="text" placeholder="End Date" name="end_date" value="<?= ($this->session->userdata('end_date') != "") ? date("m/d/Y",strtotime($this->session->userdata('end_date'))) : ""  ?>" id="to_date" class="form-control">
                                         </div>
-                                        <input type="submit" name="btn_today" class="btn btn-primary" style="margin-top: 22px;" id="filter_btn" value="Today">
-                                        <input type="submit" name="btn_tomorrow" class="btn btn-primary" style="margin-top: 22px;" id="filter_btn" value="Tomorrow">
+                                        <input type="submit" name="btn_today" class="btn btn-info" style="margin-top: 22px;" id="filter_btn" value="Today">
+                                        <input type="submit" name="btn_tomorrow" class="btn btn-info" style="margin-top: 22px;" id="filter_btn" value="Tomorrow">
                                         
                            
                                     </div>
@@ -63,7 +63,7 @@ $user_role = $this->session->userdata('role');
                                       </div>
                                       
                                 <div class="col-md-1">
-                                    <input type="submit" name="filter_btn" class="btn btn-primary" style="margin-top: 22px;" id="filter_btn" value="Submit">
+                                    <input type="submit" name="filter_btn" class="btn btn-info" style="margin-top: 22px;" id="filter_btn" value="Submit">
                                 </div>
                                 <div class="col-md-2">
                                     <a href="<?= base_url() ?>admin/sessions/filter_clear" class="btn btn-danger" style="margin-top: 22px;">Clear</a>

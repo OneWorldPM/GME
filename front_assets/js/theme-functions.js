@@ -1,6 +1,6 @@
 //Global var
 var INSPIRO = {};
-var loader_url = "https://yourconference.live/CCO/";
+var loader_url = "https://yourconference.live/GME/";
 (function ($) {
 
     // USE STRICT

@@ -175,6 +175,6 @@ $presenter_details = $this->common->get_presenter_data($this->session->userdata(
                         </ul>
                     </li>
                 </ul>
-                <label class="wallet-balance"  style="font-size: 22px; margin-top: 20px; font-weight: 700; margin-right: 20px; color: red;">Presenter </label>
+                <label class="wallet-balance"  style="font-size: 22px; margin-top: 20px; font-weight: 700; margin-right: 20px; color: #0077cc;">Presenter </label>
             </div>
         </header>

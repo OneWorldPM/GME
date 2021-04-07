@@ -80,7 +80,7 @@
                     <form class="form-login" id="frm_login" name="frm_login" method="post" action="<?= base_url() ?>admin/alogin/authentication">
                         <div class="row">
                             <div style="text-align: center">                           
-                                <img src="<?= base_url() ?>assets/images/logo.png" alt="admin" >
+                                <img src="<?= base_url() ?>assets/images/Header_Logos_GME.png" alt="admin" >
                             </div>
                         </div>
                         <fieldset>
@@ -91,17 +91,17 @@
                             <div class="form-group">
                                 <span class="input-icon">
                                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter Username">
-                                    <i class="fa fa-user"></i> 
+                                    <i class="fa fa-user"  style="color: #0077cc "></i>
                                 </span></span><span id="erroremail" style="color:red;"></span>
                             </div>
                             <div class="form-group form-actions">
                                 <span class="input-icon">
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
-                                    <i class="fa fa-lock"></i>
+                                    <i class="fa fa-lock" style="color: #0077cc "></i>
                                 </span></span><span id="errorpassword" style="color:red;"></span>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-primary form-control" id="btn_login">
+                                <button type="submit" class="btn form-control" id="btn_login" style="background-color: #0077cc ">
                                     Log In
                                 </button>
                             </div>

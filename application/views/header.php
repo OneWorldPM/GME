@@ -8,7 +8,7 @@ if (isset($_GET['testing']))
 if(isset($session_id))
     $themeColour = themeColour($session_id);
 else
-    $themeColour = 'EF5D21';
+    $themeColour = '0077cc';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,7 @@ else
 
         <!-- Responsive classes -->
         <link href="<?= base_url() ?>front_assets/css/responsive.css" rel="stylesheet">
-
+        <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet">
         <!-- [if lt IE 9]>
         <script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
         <![endif] -->
@@ -88,7 +88,7 @@ else
             }
 
             .button.black-light {
-                border-color: #f05d1f;
+                border-color: #0077cc;
             }
 
             .logo2 {
@@ -145,7 +145,7 @@ else
 
             #mainMenu2 ul li a:hover {
                 background-color: transparent;
-                color: #ff5e00;
+                color: #0077cc;
                 cursor: pointer;
             }
 
@@ -216,7 +216,12 @@ else
             @media screen and (max-width: 992px) {
                 .parallax {
                     margin-top: 0;
+
                 }
+                .dropdown-backdrop {
+                    z-index:0;
+                }
+
 
                 #mainMenu2 .nav {
                     background-color: white;
@@ -277,13 +282,33 @@ else
                 color: #<?=$themeColour?> !important;
             }
             /****** Theme based colours ****/
+            .dropdown-backdrop{
+                position: static;
+            }
+
+            ul{
+                border-top-color: #2B72D5 !important;
+                border-radius: 10px !important;
+                border-bottom: 1px !important;
+                border-color: #2B72D5 !important;
+            }
+
+            li{
+                border-bottom: 0px !important;
+            }
+            .photo-dropdown {
+                background-color:;
+                border-radius: 10px;
+            }
+
+
 
         </style>
 
     </head>
     <body class="wide">
         <!-- WRAPPER -->
-        <div class="wrapper">
+        <div class="wrapper ">
             <!-- HEADER -->
             <header id="header" class="header-transparent header-sticky">
                 <div id="header-wrap" <?=((isset($sesions_logo_height) && !empty($sesions_logo_height)) && isset($sesions_logo) && !empty($sesions_logo))?($sesions_logo_height > 80)?'style="height:'.$sesions_logo_height.'px"':'style="height:115px"':'';?>>
@@ -306,13 +331,13 @@ else
                             ?>
                             <div id="logo" style="margin-right: 7px;">
                                 <a href="#" class="logo" data-dark-logo="<?= base_url() ?>front_assets/images/logo_new.png" style="margin-top: 12px; cursor: auto">
-                                    <img src="<?= base_url() ?>front_assets/images/CCO_CORP_Logo_310wide.png" alt="CCO Logo">
+                                    <img src="<?= base_url() ?>front_assets/images/cco-gme-logo.png" alt="GME Logo">
                                 </a>
                             </div>
                         <?php } else { ?>
                             <div id="logo">
                                 <a href="#" class="logo" data-dark-logo="<?= base_url() ?>front_assets/images/logo_new.png">
-                                    <img src="<?= base_url() ?>front_assets/images/CCO_CORP_Logo_310wide.png" alt="CCO Logo">
+                                    <img src="<?= base_url() ?>front_assets/images/cco-gme-logo.png" alt="GME Logo">
                                 </a>
                             </div>
                         <?php } ?>
@@ -340,65 +365,33 @@ else
                         <!--END: SHOPPING CART -->
 
                         <!--NAVIGATION-->
-                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap">
+                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap" id="nav-drop"style="margin-right: 10px">
                             <div class="container" style="text-transform: uppercase;">
                                 <nav id="mainMenu2" class="main-menu mega-menu" style="margin-top: 10px;">
                                     <?php
                                     if ($this->session->userdata('cid') != "") {
                                         $profile_data = $this->common->get_user_details($this->session->userdata('cid'));
                                         ?>
-                                        <ul class="main-menu nav navbar-nav navbar-right">
-                                            <?php if (1 == 2) { ?>
-                                                <li class="dropdown" style="margin-top: -9px;">
-                                                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <ul class="main-menu nav navbar-nav navbar-right" id="ul-drop">
+                                                <li class="dropdown" style="margin-top: 0px;margin-left: 30px">
+                                                    <div class="photo-dropdown ">
+                                                    <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
                                                         <?php if ($profile_data->profile != "") { ?>
-                                                            <span class="glyphicon glyphicon-user"></span> Profile
-
-                                                                                                                                                                       <!-- <img src="<?/*= base_url() */?>uploads/customer_profile/<?/*= $profile_data->profile */?>"style="height: 50px; width: 50px;;">-->
-
+                                                            <img src="<?= base_url() ?>uploads/customer_profile/<?= $profile_data->profile ?>"style="height: 50px; width: 60px; margin-top: -10px;border-radius: 5px">
+                                                            <h7 style="padding: 5px 10px 10px 0px; color:#1F1F1F;"><?= $this->session->userdata('cname')?> <span class="fa fa-caret-down"></span></h7>
                                                         <?php } else { ?>
-                                                            <span class="glyphicon glyphicon-user"></span> Profile
+                                                            <span style="color: #1b1e21" class="glyphicon glyphicon-user"></span><b style="color:#1b1e21"> <?=$this->session->userdata('cname')?></b>
                                                         <?php } ?>
                                                     </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li>
-                                                            <b style="padding: 10px 20px 10px 18px; color:#A9A9A9;"><?= $profile_data->first_name . ' ' . $profile_data->last_name ?></b>
-                                                        </li>
-                                                        <li>
-                                                            <b style="padding: 10px 20px 10px 18px; color:#A9A9A9;"><?= $profile_data->email ?></b>
-                                                        </li>
-                                                        <li>
-                                                            <a href="<?= base_url() ?>register/user_profile/<?= $profile_data->cust_id ?>">
-                                                                EDIT PROFILE
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="<?= base_url() ?>home/notes">
-                                                                My Briefcase
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="<?= base_url() ?>login/logout">
-                                                                Log Out
+                                                    </div>
+                                                    <ul class="dropdown-menu" >
+                                                        <li style="padding: 8px 8px;">
+                                                            <a href="<?= base_url() ?>login/logout" >
+                                                                <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#0077cc;" >Log Out</b>
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </li>
-                                            <?php } ?>
-                                        </ul>
-                                        <ul class="main-menu nav navbar-nav navbar-right">
-                                            <li><a href="https://yourconference.live/support" target="_blank" class="hoverThemeColour">HELP DESK</a></li>
-                                        </ul>
-                                        <ul class="main-menu nav navbar-nav navbar-right">
-                                            <?php
-                                            if (isset($attendee_view_links_status) && isset($attendee_view_links_status)) {
-                                                if ($attendee_view_links_status == "1") {
-                                                    ?>
-                                                    <li><a target="_blank" href="<?= $url_link ?>"><?= $link_text ?></a></li>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
                                         </ul>
                                         <ul class="nav navbar-nav navbar-right">
                                             <?php
@@ -442,11 +435,24 @@ else
                                                 </ul>
                                             </li>
                                         </ul>
-                                    <?php } else { ?>
-                                        <ul class="main-menu nav navbar-nav navbar-right">
-                                            <li><a href="https://yourconference.live/support" target="_blank" class="hoverThemeColour">HELP DESK</a></li>
-                                        </ul>
+
                                     <?php } ?>
+
+                                    <ul class="main-menu nav navbar-nav navbar-right">
+                                        <li><a href="https://yourconference.live/support" target="_blank" class="hoverThemeColour">HELP DESK</a></li>
+                                    </ul>
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-claim-credit">
+                                        <li><a href="<?=base_url().'claimCredit'?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
+                                    </ul>
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-product-theaters">
+                                        <li><a href="<?=base_url().'productTheaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
+                                    </ul>
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-sessions">
+                                        <li><a href="<?=base_url().'sessions'?>"  class="hoverThemeColour">SESSIONS</a></li>
+                                    </ul>
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-home">
+                                        <li><a href="<?=base_url().'home'?>"class="hoverThemeColour">HOME</a></li>
+                                    </ul>
                                 </nav>
                             </div>
                         </div>

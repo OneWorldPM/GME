@@ -439,6 +439,11 @@ button:focus {
 .button.grey-dark {
     background-color: #404051;
 }
+
+.button.blue {
+    background-color: #0077cc;
+    border-color: rgba(8, 60, 191, 0.8);
+}
 /*Effects*/
 
 .button.effect {

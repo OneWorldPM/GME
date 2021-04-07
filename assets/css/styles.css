@@ -109,7 +109,7 @@ button {
 }
 
 a {
-  color: #f05d1f;
+  color: #0077cc;
 }
 a:hover, a:focus, a:active {
   color: #004999;
@@ -153,7 +153,7 @@ h5.over-title {
 }
 
 .ct-callout {
-  border-color: #f05d1f;
+  border-color: #0077cc;
   border-image: none;
   border-radius: 0;
   border-style: solid;
@@ -311,7 +311,7 @@ h5.over-title {
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-  background-color: #f05d1f;
+  background-color: #0077cc;
   color: #fff;
 }
 
@@ -320,8 +320,8 @@ h5.over-title {
 }
 
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
-  background-color: #f05d1f;
-  border-color: #f05d1f;
+  background-color: #0077cc;
+  border-color: #0077cc;
 }
 
 .container-fullw {

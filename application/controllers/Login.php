@@ -12,9 +12,15 @@ class Login extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('header');
-        $this->load->view('login');
-        $this->load->view('footer');
+       if($this->session->userdata('cid') != ""){
+        $this->session->sess_destroy();
+        redirect('login');
+       }else{
+           $this->load->view('header');
+           $this->load->view('login');
+           $this->load->view('footer');
+       }
+
     }
 
     public function authentication() {
@@ -41,7 +47,7 @@ class Login extends CI_Controller {
                     'userType' => 'user'
                 );
                 $this->session->set_userdata($session);
-                redirect('sessions');
+                redirect('home');
             } else {
                 $this->session->set_flashdata('msg', '<div class="col-md-12 text-red" style="padding: 0 0 10px 0;">Username or Password is Wrong.</div><br>');
                 redirect('login');
