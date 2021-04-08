@@ -390,8 +390,13 @@ else
                                                     </div>
                                                     <ul class="dropdown-menu" >
                                                         <li style="padding: 8px 8px;">
+                                                            <a href="<?= base_url() ?>register/user_profile/<?= $profile_data->cust_id ?>">
+                                                                <span class="fa fa-pencil-square-o" style="color:black"></span>  <b style="color:#0077cc;" > EDIT PROFILE</b>
+                                                            </a>
+                                                        </li>
+                                                        <li style="padding: 8px 8px;">
                                                             <a href="<?= base_url() ?>login/logout" >
-                                                                <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#0077cc;" >Log Out</b>
+                                                                <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#0077cc;" > LOG OUT</b>
                                                             </a>
                                                         </li>
                                                     </ul>

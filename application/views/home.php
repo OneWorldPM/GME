@@ -176,4 +176,11 @@
 
         $('#toolbox').hide();
     });
+
+    $(document).ready(function(){
+       var msg = "<?= $this->session->flashdata('msgsuccess')?>";
+        if(msg){
+            alertify.success(msg);
+        }
+    });
 </script>

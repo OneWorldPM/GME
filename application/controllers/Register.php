@@ -52,7 +52,8 @@ class Register extends CI_Controller {
 
     public function update_user() {
         $cust_id = $this->objregister->update_user();
-        header('location:' . base_url() . 'register/plan_pricing/' . $cust_id);
+        $this->session->set_flashdata('msgsuccess', 'Profile Successfully Updated' );
+        header('location:' . base_url() .'home');
     }
 
     public function plan_pricing($cust_id) {
