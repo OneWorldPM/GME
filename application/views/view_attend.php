@@ -41,11 +41,16 @@
     section{
         padding: 25px 0px;
     }
+    .parallax{
+        background-attachment:fixed !important;
+        background-size: 100% auto !important;
+
+    }
 </style>
-<section class="parallax" style="background-image: url(<?= base_url() ?>front_assets/images/attend_background.png); top: 0; padding-top: 0px;">
+<section class="parallax" style="background-image: url(<?= base_url() ?>front_assets/images/GME-background.png); top: 0; padding-top: 0px;background-size: cover; height: 1000px !important;">
     <div class="container container-fullscreen"> 
         <div class="text-middle">
-            <div class="row">
+            <div class="row" style="margin-top: -200px">
                 <div class="col-md-12">
                     <!-- CONTENT -->
                     <?php
