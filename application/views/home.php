@@ -135,7 +135,7 @@
                         </div>
                     </div> 
                      <div class="col-md-4 col-sm-12 " style="text-align: center">
-                        <a class="icon-home" href="<?= base_url().'productTheaters'?>"">
+                        <a class="icon-home" href="<?=base_url().'sessions/product_theaters'?>"">
                             <div class="col-lg box-home p-5 text-center col-md-offset-3">
 <!--                                <span class="fa fa-desktop"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>-->
                                 <img src="<?= base_url() ?>front_assets/images/button_product-theaters-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">

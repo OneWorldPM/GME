@@ -24,7 +24,17 @@ class Sessions extends CI_Controller {
     public function index() {
         $data["all_sessions_week"] = $this->objsessions->getSessionsWeekData();
         if (!empty($data["all_sessions_week"])) {
-            $data["all_sessions"] = $this->objsessions->getsessions_data($data["all_sessions_week"][0]->sessions_date);
+            $data["all_sessions"] = $this->objsessions->getGeneralSessions($data["all_sessions_week"][0]->sessions_date);
+        }
+        $this->load->view('header');
+        $this->load->view('sessions', $data);
+        $this->load->view('footer');
+    }
+
+    public function product_theaters(){
+        $data["all_sessions_week"] = $this->objsessions->getSessionsWeekData();
+        if (!empty($data["all_sessions_week"])) {
+            $data["all_sessions"] = $this->objsessions->getProductTheaters($data["all_sessions_week"][0]->sessions_date);
         }
         $this->load->view('header');
         $this->load->view('sessions', $data);

@@ -59,6 +59,46 @@ class M_sessions extends CI_Model {
         }
     }
 
+    function getGeneralSessions($date) {
+        $this->db->select('*');
+        $this->db->from('sessions s');
+        $this->db->where("DATE_FORMAT(s.sessions_date,'%Y-%m-%d') =", date('Y-m-d', strtotime($date)));
+        $this->db->where("s.sessions_type_id", 1);
+        $this->db->order_by("s.sessions_date", "asc");
+        $this->db->order_by("s.time_slot", "asc");
+        $sessions = $this->db->get();
+        if ($sessions->num_rows() > 0) {
+            $return_array = array();
+            foreach ($sessions->result() as $val) {
+                $val->presenter = $this->common->get_presenter($val->presenter_id, $val->sessions_id);
+                $return_array[] = $val;
+            }
+            return $return_array;
+        } else {
+            return '';
+        }
+    }
+
+    function getProductTheaters($date) {
+        $this->db->select('*');
+        $this->db->from('sessions s');
+        $this->db->where("DATE_FORMAT(s.sessions_date,'%Y-%m-%d') =", date('Y-m-d', strtotime($date)));
+        $this->db->where("s.sessions_type_id", 16);
+        $this->db->order_by("s.sessions_date", "asc");
+        $this->db->order_by("s.time_slot", "asc");
+        $sessions = $this->db->get();
+        if ($sessions->num_rows() > 0) {
+            $return_array = array();
+            foreach ($sessions->result() as $val) {
+                $val->presenter = $this->common->get_presenter($val->presenter_id, $val->sessions_id);
+                $return_array[] = $val;
+            }
+            return $return_array;
+        } else {
+            return '';
+        }
+    }
+
     function getSessionsSundayData() {
         $this->db->select('*');
         $this->db->from('sessions s');

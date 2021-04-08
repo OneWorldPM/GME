@@ -454,7 +454,7 @@ else
                                         <li><a href="<?=base_url().'claimCredit'?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
                                     </ul>
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-product-theaters">
-                                        <li><a href="<?=base_url().'productTheaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
+                                        <li><a href="<?=base_url().'sessions/product_theaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
                                     </ul>
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-sessions">
                                         <li><a href="<?=base_url().'sessions'?>"  class="hoverThemeColour">SESSIONS</a></li>
