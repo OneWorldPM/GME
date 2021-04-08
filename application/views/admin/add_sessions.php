@@ -188,7 +188,7 @@ $user_role = $this->session->userdata('role');
                                             <select class="form-control" id="subsequent_session_1" name="subsequent_session_1" <?=($user_role != 'super_admin')?"style='pointer-events:none;' readonly":''?>>
                                                 <option value="null">Unset</option>
                                                 <?php foreach ($all_sessions as $session): ?>
-                                                    <option value="<?=$session['sessions_id']?>" <?=(isset($sessions_edit->subsequent_session_1) && $sessions_edit->subsequent_session_1 == $session['sessions_id'])?'selected':''?>><?=$session['session_title']?></option>
+                                                    <option value="<?=$session['sessions_id']?>" <?=(isset($sessions_edit->subsequent_session_1) && $sessions_edit->subsequent_session_1 == $session['sessions_id'])?'selected':''?>>(<?=$session['sessions_id']?>) <?=$session['session_title']?></option>
                                                 <?php endforeach; ?>
                                             </select>
 
@@ -202,7 +202,7 @@ $user_role = $this->session->userdata('role');
                                             <select class="form-control" id="subsequent_session_2" name="subsequent_session_2" <?=($user_role != 'super_admin')?"style='pointer-events:none;' readonly":''?>>
                                                 <option value="null">Unset</option>
                                                 <?php foreach ($all_sessions as $session): ?>
-                                                    <option value="<?=$session['sessions_id']?>" <?=(isset($sessions_edit->subsequent_session_2) && $sessions_edit->subsequent_session_2 == $session['sessions_id'])?'selected':''?>><?=$session['session_title']?></option>
+                                                    <option value="<?=$session['sessions_id']?>" <?=(isset($sessions_edit->subsequent_session_2) && $sessions_edit->subsequent_session_2 == $session['sessions_id'])?'selected':''?>>(<?=$session['sessions_id']?>) <?=$session['session_title']?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                             <small style="color: darkred;">If this is <span style="color: blue;">Unset</span>, attendee will be automatically redirected to the <span style="color: #05969d;">Subsequent Session 1</span> once the <span style="color: green;">Redirect</span> button is clicked. Otherwise a window will pop-up asking the attendee where to go.</small>
