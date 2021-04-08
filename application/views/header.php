@@ -377,10 +377,10 @@ else
                                                     <div class="photo-dropdown ">
                                                     <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
                                                         <?php if ($profile_data->profile != "") { ?>
-                                                                <div class="background-dark">
+
                                                             <img src="<?= base_url() ?>uploads/customer_profile/<?= $profile_data->profile ?>"style="height: 50px; width: 60px; margin-top: -10px;border-radius: 5px">
                                                             <h7 style="padding: 5px 10px 10px 0px; color:#1F1F1F;"><?= $this->session->userdata('cname')?> <span class="fa fa-caret-down" style=""></span></h7>
-                                                                </div>
+                                                           
                                                         <?php } else { ?>
                                                         <div class="" style="margin-top: 9px">
                                                             <span style="color: #1b1e21; " class="fa fa-user-circle"></span><b style="color:#1b1e21;" > <?=$this->session->userdata('cname')?></b>
