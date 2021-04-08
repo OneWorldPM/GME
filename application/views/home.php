@@ -103,9 +103,19 @@
         background-attachment:fixed !important;
         background-size: 110% auto !important;
     }
+
+
 </style>
 
-<section class="parallax" style="background-image: url('<?= base_url() ?>front_assets/images/lobby-clearspace_kiosk.png');background-size: cover; height:200% ">
+<section class="parallax" style="background-image: url('<?= base_url() ?>front_assets/images/cco-gme-gravity_lobby-clearspace.png');background-size: cover; height:200% ">
+    <div class="row" >
+        <div class="col-md-3 col-md-offset-2" style="margin-top: -50px; position: fixed">
+            <img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-sponsors.png" alt="welcome" class="" style="height: 350px; width: 370px;">
+        </div>
+        <div class="col-md-3 col-md-offset-7" style="margin-top: -50px; position: fixed">
+            <img id="kiosk-welcome" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-welcome.png" alt="welcome" class="" style="height: 350px; width: 370px;">
+        </div>
+    </div>
     <div class="container container-fullscreen" id="home_first_section">
         <div class="text-middle">
             <div class="row">
@@ -116,7 +126,7 @@
                     <div class="col-md-4 col-sm-12 ">
                         <div style="text-align: center !important;">
                         <a class="icon-home" href="<?= base_url() ?>sessions"> 
-                            <div class="col-lg box-home p-5 text-center col-md-offset-4">
+                            <div class="col-lg box-home p-5 text-center col-md-offset-3">
                                 <img src="<?= base_url() ?>front_assets/images/button_sessions-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
                                 <br>
                                 <br>
@@ -124,7 +134,7 @@
                         </a>
                         </div>
                     </div> 
-                     <div class="col-md-4 col-sm-12" style="text-align: center">
+                     <div class="col-md-4 col-sm-12 " style="text-align: center">
                         <a class="icon-home" href="<?= base_url().'productTheaters'?>"">
                             <div class="col-lg box-home p-5 text-center col-md-offset-3">
 <!--                                <span class="fa fa-desktop"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>-->
