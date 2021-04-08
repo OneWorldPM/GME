@@ -377,17 +377,26 @@ else
                                                     <div class="photo-dropdown ">
                                                     <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
                                                         <?php if ($profile_data->profile != "") { ?>
+
                                                             <img src="<?= base_url() ?>uploads/customer_profile/<?= $profile_data->profile ?>"style="height: 50px; width: 60px; margin-top: -10px;border-radius: 5px">
-                                                            <h7 style="padding: 5px 10px 10px 0px; color:#1F1F1F;"><?= $this->session->userdata('cname')?> <span class="fa fa-caret-down"></span></h7>
+                                                            <h7 style="padding: 5px 10px 10px 0px; color:#1F1F1F;"><?= $this->session->userdata('cname')?> <span class="fa fa-caret-down" style=""></span></h7>
+                                                           
                                                         <?php } else { ?>
-                                                            <span style="color: #1b1e21" class="glyphicon glyphicon-user"></span><b style="color:#1b1e21"> <?=$this->session->userdata('cname')?></b>
+                                                        <div class="" style="margin-top: 9px">
+                                                            <span style="color: #1b1e21; " class="fa fa-user-circle"></span><b style="color:#1b1e21;" > <?=$this->session->userdata('cname')?></b>
+                                                        </div>
                                                         <?php } ?>
                                                     </a>
                                                     </div>
                                                     <ul class="dropdown-menu" >
                                                         <li style="padding: 8px 8px;">
+                                                            <a href="<?= base_url() ?>register/user_profile/<?= $profile_data->cust_id ?>">
+                                                                <span class="fa fa-pencil-square-o" style="color:black"></span>  <b style="color:#0077cc;" > EDIT PROFILE</b>
+                                                            </a>
+                                                        </li>
+                                                        <li style="padding: 8px 8px;">
                                                             <a href="<?= base_url() ?>login/logout" >
-                                                                <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#0077cc;" >Log Out</b>
+                                                                <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#0077cc;" > LOG OUT</b>
                                                             </a>
                                                         </li>
                                                     </ul>
