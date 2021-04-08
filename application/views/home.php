@@ -12,11 +12,11 @@
 
 
     .box-home {
-        background-color: #444;
+        /*background-color: tra;*/
         border-radius: 30px;
         /*background: rgba(250, 250, 250, 0.8);*/
         max-width: 270px;
-        background-color: #0077cc ;
+        /*background-color: #0077cc ;*/
         min-width: 270px;
         min-height: 270px;
         max-height: 270px;
@@ -126,7 +126,7 @@
                     <div class="col-md-4 col-sm-12 ">
                         <div style="text-align: center !important;">
                         <a class="icon-home" href="<?= base_url() ?>sessions"> 
-                            <div class="col-lg box-home p-5 text-center col-md-offset-3">
+                            <div class="col-lg box-home p-5 text-center col-md-offset-5">
                                 <img src="<?= base_url() ?>front_assets/images/button_sessions-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
                                 <br>
                                 <br>
