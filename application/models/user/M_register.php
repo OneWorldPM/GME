@@ -88,6 +88,7 @@ class M_register extends CI_Model {
             'topic' => trim($post['topic']),
             'phone' => trim($post['cell_phone']),
         );
+        $this->session->set_userdata('cname',$post['first_name']);
         $this->db->update("customer_master", $set, array('cust_id' => $cust_id));
         if ($_FILES['profile']['size'] != 0) {
             $config = array(
