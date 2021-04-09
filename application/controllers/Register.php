@@ -42,7 +42,8 @@ class Register extends CI_Controller {
         }
     }
 
-    public function user_profile($reg_id) {
+    public function user_profile() {
+        $reg_id = $this->session->userdata('cid');
         $data["myprofile"] = $this->objregister->get_user_profile_details($reg_id);
         $data["cms_details"] = $this->objregister->get_cms_details(1);
         $this->load->view('header');
@@ -51,9 +52,18 @@ class Register extends CI_Controller {
     }
 
     public function update_user() {
-        $cust_id = $this->objregister->update_user();
-        $this->session->set_flashdata('msgsuccess', 'Profile Successfully Updated' );
-        header('location:' . base_url() .'home');
+        if($this->session->userdata('cid')) {
+            $cust_id = $this->objregister->update_user();
+            if($cust_id){
+                $this->session->set_flashdata('msgsuccess', 'Profile Successfully Updated');
+                header('location:' . base_url() . 'home');
+            }else{
+                $this->session->set_flashdata('msgerr', 'Error');
+                header('location:' . base_url() . 'home');
+            }
+        }else{
+            redirect(base_url().'user/login/logout');
+        }
     }
 
     public function plan_pricing($cust_id) {

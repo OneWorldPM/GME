@@ -80,7 +80,7 @@ class M_register extends CI_Model {
 
     function update_user() {
         $post = $this->input->post();
-        $cust_id = $post['cust_id'];
+        $cust_id = $this->session->userdata('cid');
         $set = array(
             'first_name' => trim($post['first_name']),
             'last_name' => trim($post['last_name']),

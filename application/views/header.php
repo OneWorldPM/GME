@@ -390,7 +390,7 @@ else
                                                     </div>
                                                     <ul class="dropdown-menu" >
                                                         <li style="padding: 8px 8px;">
-                                                            <a href="<?= base_url() ?>register/user_profile/<?= $profile_data->cust_id ?>">
+                                                            <a href="<?= base_url() ?>register/user_profile">
                                                                 <span class="fa fa-pencil-square-o" style="color:black"></span>  <b style="color:#0077cc;" > EDIT PROFILE</b>
                                                             </a>
                                                         </li>

@@ -179,8 +179,12 @@
 
     $(document).ready(function(){
        var msg = "<?= $this->session->flashdata('msgsuccess')?>";
+       var msgerr ="<?= $this->session->flashdata('msgerr')?>";
         if(msg){
             alertify.success(msg);
+        }
+        if(msgerr){
+            alertify.error(msgerr);
         }
     });
 </script>
