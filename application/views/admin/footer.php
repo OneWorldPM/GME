@@ -1,14 +1,14 @@
 <!-- start: FOOTER -->
-<footer>
-    <div class="footer-inner">
-        <div class="pull-left">
-            &copy; <span class="current-year"></span><span class="text-bold text-uppercase"> Admin</span>. <span>All rights reserved</span>
-        </div>
-        <div class="pull-right">
-            <span class="go-top"><i class="ti-angle-up"></i></span>
-        </div>
-    </div>
-</footer>
+<!--<footer>-->
+<!--    <div class="footer-inner">-->
+<!--        <div class="pull-left">-->
+<!--            &copy; <span class="current-year"></span><span class="text-bold text-uppercase"> Admin</span>. <span>All rights reserved</span>-->
+<!--        </div>-->
+<!--        <div class="pull-right">-->
+<!--            <span class="go-top"><i class="ti-angle-up"></i></span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
 <!-- end: FOOTER -->
 
 <!-- end: OFF-SIDEBAR -->
