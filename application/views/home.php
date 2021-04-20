@@ -46,8 +46,8 @@
     .col-sm-12 {
         margin-bottom: 10px;
     }
-    
-     @media (min-width: 768px) and (max-width: 1000px)  {
+
+    @media (min-width: 768px) and (max-width: 1000px)  {
         #home_first_section{
             height: 550px;
         }
@@ -104,6 +104,10 @@
         background-size: 110% auto !important;
     }
 
+    .wrapper{
+        background-color: #b4b8c3;
+    }
+
 
 </style>
 
@@ -122,44 +126,81 @@
                 <div class="col-md-12">
                     <div class="text-center m-t-0">
                     </div>
-                <div class="row justify-content-center " style="text-align: -webkit-center;">
-                    <div class="col-md-4 col-sm-12 ">
-                        <div style="text-align: center !important;">
-                        <a class="icon-home" href="<?= base_url() ?>sessions"> 
-                            <div class="col-lg box-home p-5 text-center col-md-offset-5">
-                                <img src="<?= base_url() ?>front_assets/images/button_sessions-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
-                                <br>
-                                <br>
+                    <div class="row justify-content-center " style="text-align: -webkit-center;">
+                        <div class="col-md-4 col-sm-12 ">
+                            <div style="text-align: center !important;">
+                                <a class="icon-home" href="<?= base_url() ?>sessions">
+                                    <div class="col-lg box-home p-5 text-center col-md-offset-5">
+                                        <img src="<?= base_url() ?>front_assets/images/button_sessions-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
+                                        <br>
+                                        <br>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
                         </div>
-                    </div> 
-                     <div class="col-md-4 col-sm-12 " style="text-align: center">
-                        <a class="icon-home" href="<?=base_url().'sessions/product_theaters'?>"">
+                        <div class="col-md-4 col-sm-12 " style="text-align: center">
+                            <a class="icon-home" href="<?=base_url().'sessions/product_theaters'?>"">
                             <div class="col-lg box-home p-5 text-center col-md-offset-3">
-<!--                                <span class="fa fa-desktop"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>-->
+                                <!--                                <span class="fa fa-desktop"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>-->
                                 <img src="<?= base_url() ?>front_assets/images/button_product-theaters-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
                                 <br>
                                 <br>
                             </div>
-                        </a>
-                    </div> 
-                    <div class="col-md-4  col-sm-12">
-                        <a class="icon-home" href="<?= base_url().'claimCredit'?>">
-                            <div class="col-lg box-home ml-5 mr-5 p-5 text-center col-md-offset-0">
-<!--                                <span class="fa fa-clipboard-check"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>-->
-                                <img src="<?= base_url() ?>front_assets/images/button_claim-credit-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
-                                <br>
-                                <br>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                        <div class="col-md-4  col-sm-12">
+                            <a class="icon-home" href="<?= base_url().'claimCredit'?>">
+                                <div class="col-lg box-home ml-5 mr-5 p-5 text-center col-md-offset-0">
+                                    <!--                                <span class="fa fa-clipboard-check"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>-->
+                                    <img src="<?= base_url() ?>front_assets/images/button_claim-credit-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
+                                    <br>
+                                    <br>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
-</div>
 </section>
+
+<!-- Live Support Chat -->
+<?php if ($liveSupportChatStatus): ?>
+    <script>
+        let base_url = "<?=base_url()?>";
+        let support_app_name = "<?=getAppName("") ?>";
+        let attendee_id = "<?=$this->session->userdata('cid')?>";
+        let attendee_name = "<?=$this->session->userdata('fullname')?>";
+    </script>
+    <script src="https://athulak.com/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="<?=base_url()?>front_assets/support_chat/style.css">
+    <script src="<?= base_url() ?>front_assets/support_chat/live-support-chat.js"></script>
+    <button class="live-support-open-button" onclick="openLiveSupportChat()"><i class="far fa-life-ring"></i> Live Support Chat</button>
+    <div class="live-support-chat-popup" id="liveSupportChatForm">
+        <span class="live-support-chat-title"><i class="far fa-life-ring"></i> Live Support Chat</span>
+        <div class="live-support-chat-body">
+
+            <div id="live-support-chat-texts" class="live-support-chat-texts">
+                <!-- Will be filled by fillAllPreviousChats() function on pageReady -->
+            </div>
+
+            <div class="input-group text-center" style="width: 100%;position: absolute;bottom: 90px;">
+                <span id="adminTypingHint" style="display: none;">Admin is typing...</span>
+            </div>
+            <div class="input-group" style="position: absolute;bottom: 45px;">
+                <input id="liveSupportText" type="text" class="form-control" placeholder="Enter your message here...">
+                <span class="input-group-btn">
+                <button id="sendLiveSupportText" class="btn btn-default" type="button"><i class="far fa-paper-plane"></i> Send</button>
+            </span>
+            </div>
+
+        </div>
+        <button type="button" class="btn btn-sm end-chat-btn" onclick="endLiveSupportChat()">End Chat <i class="fas fa-times-circle"></i></button>
+    </div>
+<?php endif; ?>
+<!-- End of Live Support Chat -->
+
 <script type="text/javascript">
     $(document).ready(function () {
         var page_link = $(location).attr('href');
@@ -178,8 +219,8 @@
     });
 
     $(document).ready(function(){
-       var msg = "<?= $this->session->flashdata('msgsuccess')?>";
-       var msgerr ="<?= $this->session->flashdata('msgerr')?>";
+        var msg = "<?= $this->session->flashdata('msgsuccess')?>";
+        var msgerr ="<?= $this->session->flashdata('msgerr')?>";
         if(msg){
             alertify.success(msg);
         }
