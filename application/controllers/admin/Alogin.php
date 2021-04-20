@@ -46,10 +46,10 @@ class Alogin extends CI_Controller {
 
     function logout() {
         $session_array = array(
-            "aid" => "",
-            "aname" => "",
-            "uname" => "",
-            "role" => ""
+            "aid",
+            "aname",
+            "uname",
+            "role"
         );
         $this->session->unset_userdata($session_array);
         header('location:' . base_url() . 'admin/alogin');
