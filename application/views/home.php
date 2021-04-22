@@ -116,6 +116,9 @@
         <div class="col-md-3 col-md-offset-2" style="margin-top: -50px; position: fixed">
             <img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-sponsors.png?v=1" alt="welcome" class="" style="height: 350px; width: 350px;">
         </div>
+        <div class="col-md-3 col-md-offset-3" style="margin-top: -73px;margin-left: 35.4%; position: fixed;z-index: 5;">
+            <iframe src="https://player.vimeo.com/video/540201151" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
         <div class="col-md-3 col-md-offset-7" style="margin-top: -50px; position: fixed">
             <img id="kiosk-welcome" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-welcome.png?v=1" alt="welcome" class="" style="height: 350px; width: 350px;">
         </div>

@@ -16,7 +16,7 @@ else
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <link rel="shortcut icon" href="<?= base_url() ?>front_assets/images/favicon.png">
+        <link rel="shortcut icon" href="<?= base_url() ?>front_assets/images/cco_favicon.png">
         <title>Virtual Conference & Trade Show</title>
         <!-- Bootstrap Core CSS -->
         <link href="<?= base_url() ?>front_assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -379,7 +379,7 @@ else
                         <!--END: SHOPPING CART -->
 
                         <!--NAVIGATION-->
-                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap" id="nav-drop"style="width: 110%">
+                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap" id="nav-drop">
                             <div class="container" style="text-transform: uppercase;">
                                 <nav id="mainMenu2" class="main-menu mega-menu" style="margin-top: 10px;">
                                     <?php
