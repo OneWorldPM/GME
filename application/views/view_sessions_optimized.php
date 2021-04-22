@@ -456,11 +456,12 @@ if (isset($sessions)) {
 
     var socket_session_name = "<?=getAppName('_admin-to-attendee-chat')?>";
 
+    var this_session_type = "<?=$sessions->sessions_type_id?>";
     var subsequent_session_1 = "<?=($sessions->subsequent_session_1 && $sessions->subsequent_session_1 != null)?$sessions->subsequent_session_1:'null'?>";
     var subsequent_session_1_name = "<?=$sessions->subsequent_session_1_name?>";
     var subsequent_session_2 = "<?=($sessions->subsequent_session_2 && $sessions->subsequent_session_2 != null)?$sessions->subsequent_session_2:'null'?>";
     var subsequent_session_2_name = "<?=$sessions->subsequent_session_2_name?>";
-    var subsequent_session_popup_text = "<?=$sessions->subsequent_session_popup_text?>";
+    var subsequent_session_popup_text = `<?=$sessions->subsequent_session_popup_text?>`;
 </script>
 <?= getSocketScript()?>
 <script src="<?= base_url() ?>front_assets/js/custom-fullscreen.js"></script>
@@ -470,5 +471,5 @@ if (isset($sessions)) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
 
 <!-- Please add scripts only in this JS file, NOT directly on this HTML file -->
-<script src="<?= base_url() ?>front_assets/js/view_sessions.js?v=18"></script>
+<script src="<?= base_url() ?>front_assets/js/view_sessions.js?v=20"></script>
 <script src="<?= base_url() ?>front_assets/js/admin-to-attendee-chat.js?v=203"></script>

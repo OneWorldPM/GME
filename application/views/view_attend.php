@@ -117,6 +117,19 @@
 <!--<p class="m-t-20"><?= (isset($sessions) && !empty($sessions)) ? $sessions->bio : "" ?></p>-->
 <!--<img alt="" src="<?= base_url() ?>uploads/presenter_photo/<?= (isset($sessions) && !empty($sessions)) ? $sessions->presenter_photo : "" ?>" class="img-circle" height="100" width="100">-->
                                 </div>
+
+                                <?php if ($sessions->sessions_id == 127): ?>
+                                    <div class="col-md-12 m-t-40 text-center">
+                                        <strong style="font-size: 16px;">We’re glad you’re with us today! <br> This page will let you into the next CME/CE session after the conclusion of the Product Theater, already in progress. <br> If you would like to join the Product Theater, New Innovations in Treatment-Resistant Bipolar Depression (TRBD), please click <a style="color: blue;" href="<?=base_url()?>sessions/attend/121">here</a>.</strong>
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($sessions->sessions_id == 130): ?>
+                                    <div class="col-md-12 m-t-40 text-center">
+                                        <strong style="font-size: 16px;">We’re glad you’re with us today! <br> This page will let you into the next CME/CE session after the conclusion of the Product Theater, already in progress. <br> If you would like to join the Product Theater, SPRAVATO® and the Management of Two Subsets of Challenging to Treat Major Depressive Disorder (MDD) in Adults, please click <a style="color: blue;" href="<?=base_url()?>sessions/attend/129">here</a>.</strong>
+                                    </div>
+                                <?php endif; ?>
+
                                 <div class="col-md-12 m-t-40">
                                     <div class="col-md-4 col-md-offset-4" style="text-align: center; text-align: center; padding: 10px; background-color: #fff; border: 1px solid;">
                                         <p><i class="fa fa-info-circle" aria-hidden="true" style="font-size: 20px;"></i></p>
@@ -124,6 +137,7 @@
                                         <p>Entry will be enabled in <span id="id_day_time" ></span></p>
                                     </div>
                                 </div>
+
                                 <?php if (1 == 2){ ?>
                                     <div class="col-md-12">
                                         <a class="button black-light button-3d rounded right" style="margin: 0px 0;" href="<?= base_url() ?>sessions/view/<?= (isset($sessions) && !empty($sessions)) ? $sessions->sessions_id : "" ?>"><span>Take me there</span></a>

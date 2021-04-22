@@ -184,7 +184,7 @@ $user_role = $this->session->userdata('role');
                                     </label>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="text-large" style="color: #05969d;">Subsequent Session 1</label>
+                                            <label class="text-large" style="color: #05969d;">Subsequent CME Session</label>
                                             <select class="form-control" id="subsequent_session_1" name="subsequent_session_1" <?=($user_role != 'super_admin')?"style='pointer-events:none;' readonly":''?>>
                                                 <option value="null">Unset</option>
                                                 <?php foreach ($all_sessions as $session): ?>
@@ -192,27 +192,27 @@ $user_role = $this->session->userdata('role');
                                                 <?php endforeach; ?>
                                             </select>
 
-                                            <small style="color: darkred;">If this is <span style="color: blue;">Unset</span>, nothing will happen once the <span style="color: green;">Redirect</span> button is clicked (Even if the <span style="color: #05969d;">Subsequent Session 2</span> is set!).</small>
+                                            <small style="color: darkred;">Choose subsequent CME session regardless the order of the sessions.</small>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="text-large" style="color: #05969d;">Subsequent Session 2</label>
+                                            <label class="text-large" style="color: #05969d;">Subsequent PT Session</label>
                                             <select class="form-control" id="subsequent_session_2" name="subsequent_session_2" <?=($user_role != 'super_admin')?"style='pointer-events:none;' readonly":''?>>
                                                 <option value="null">Unset</option>
                                                 <?php foreach ($all_sessions as $session): ?>
                                                     <option value="<?=$session['sessions_id']?>" <?=(isset($sessions_edit->subsequent_session_2) && $sessions_edit->subsequent_session_2 == $session['sessions_id'])?'selected':''?>>(<?=$session['sessions_id']?>) <?=$session['session_title']?></option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <small style="color: darkred;">If this is <span style="color: blue;">Unset</span>, attendee will be automatically redirected to the <span style="color: #05969d;">Subsequent Session 1</span> once the <span style="color: green;">Redirect</span> button is clicked. Otherwise a window will pop-up asking the attendee where to go.</small>
+                                            <small style="color: darkred;">Choose subsequent PT session regardless the order of the sessions.</small>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="text-large">Text in the pop-up</label>
-                                            <textarea class="form-control" id="subsequent_session_popup_text" name="subsequent_session_popup_text" maxlength="255" style="color: black;"><?=(isset($sessions_edit->subsequent_session_popup_text))?$sessions_edit->subsequent_session_popup_text:'This session is over. Click on the following buttons to attend one of the next sessions.'?></textarea>
+                                            <textarea class="form-control" id="subsequent_session_popup_text" name="subsequent_session_popup_text" maxlength="65000" style="color: black;"><?=(isset($sessions_edit->subsequent_session_popup_text))?$sessions_edit->subsequent_session_popup_text:'This session is over. Click on the following buttons to attend one of the next sessions.'?></textarea>
                                         </div>
                                     </div>
 

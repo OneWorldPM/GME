@@ -365,13 +365,16 @@ else
                         <!--END: SHOPPING CART -->
 
                         <!--NAVIGATION-->
-                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap" id="nav-drop"style="margin-right: 10px">
+                        <div class="navbar-collapse collapse main-menu-collapse navigation-wrap" id="nav-drop"style="width: 110%">
                             <div class="container" style="text-transform: uppercase;">
                                 <nav id="mainMenu2" class="main-menu mega-menu" style="margin-top: 10px;">
                                     <?php
                                     if ($this->session->userdata('cid') != "") {
                                         $profile_data = $this->common->get_user_details($this->session->userdata('cid'));
                                         ?>
+
+                                        <button class="live-support-open-button nav navbar-nav navbar-right" onclick="openLiveSupportChat()" style="background-color: #<?=$themeColour?>; display: <?=(liveSupportChatStatus())?'':'none'?>;"><i class="far fa-life-ring"></i> Live Technical Support</button>
+
                                         <ul class="main-menu nav navbar-nav navbar-right" id="ul-drop">
                                                 <li class="dropdown" style="margin-top: 0px;margin-left: 30px">
                                                     <div class="photo-dropdown ">

@@ -165,42 +165,6 @@
     </div>
 </section>
 
-<!-- Live Support Chat -->
-<?php if ($liveSupportChatStatus): ?>
-    <script>
-        let base_url = "<?=base_url()?>";
-        let support_app_name = "<?=getAppName("") ?>";
-        let attendee_id = "<?=$this->session->userdata('cid')?>";
-        let attendee_name = "<?=$this->session->userdata('fullname')?>";
-    </script>
-    <script src="https://athulak.com/socket.io/socket.io.js"></script>
-    <link rel="stylesheet" href="<?=base_url()?>front_assets/support_chat/style.css">
-    <script src="<?= base_url() ?>front_assets/support_chat/live-support-chat.js"></script>
-    <button class="live-support-open-button" onclick="openLiveSupportChat()"><i class="far fa-life-ring"></i> Live Support Chat</button>
-    <div class="live-support-chat-popup" id="liveSupportChatForm">
-        <span class="live-support-chat-title"><i class="far fa-life-ring"></i> Live Support Chat</span>
-        <div class="live-support-chat-body">
-
-            <div id="live-support-chat-texts" class="live-support-chat-texts">
-                <!-- Will be filled by fillAllPreviousChats() function on pageReady -->
-            </div>
-
-            <div class="input-group text-center" style="width: 100%;position: absolute;bottom: 90px;">
-                <span id="adminTypingHint" style="display: none;">Admin is typing...</span>
-            </div>
-            <div class="input-group" style="position: absolute;bottom: 45px;">
-                <input id="liveSupportText" type="text" class="form-control" placeholder="Enter your message here...">
-                <span class="input-group-btn">
-                <button id="sendLiveSupportText" class="btn btn-default" type="button"><i class="far fa-paper-plane"></i> Send</button>
-            </span>
-            </div>
-
-        </div>
-        <button type="button" class="btn btn-sm end-chat-btn" onclick="endLiveSupportChat()">End Chat <i class="fas fa-times-circle"></i></button>
-    </div>
-<?php endif; ?>
-<!-- End of Live Support Chat -->
-
 <script type="text/javascript">
     $(document).ready(function () {
         var page_link = $(location).attr('href');
