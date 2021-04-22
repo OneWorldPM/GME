@@ -46,8 +46,18 @@
         background-size: 100% auto !important;
 
     }
+    #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        /* Preserve aspet ratio */
+        min-width: 100%;
+        min-height: 100%;
+    }
 </style>
-<section class="parallax" style="background-image: url(<?= base_url() ?>front_assets/images/GME-background.png); top: 0; padding-top: 0px;background-size: cover; height: 1000px !important;">
+<img src="<?= base_url() ?>front_assets/images/sessions-holding-clearspace-option2.png" id="bg" alt="">
+<section class="parallax" style="height: 1000px !important;">
     <div class="container container-fullscreen"> 
         <div class="text-middle">
             <div class="row" style="margin-top: -200px">
@@ -82,8 +92,8 @@
                                                 <img alt="" src="<?= base_url() ?>uploads/sessions/<?= (isset($sessions) && !empty($sessions)) ? $sessions->sessions_photo : "" ?>" style="width: 100%;">
                                             <?php } else { ?>
                                                 <img alt="" src="<?= base_url() ?>front_assets/images/session_avtar.jpg" style="width: 100%;">
-                                            <?php } ?>   
-                                        </div>  
+                                            <?php } ?>
+                                        </div>
                                         <div class="col-md-8">
                                             <h2 style="margin-bottom: 0px;"><?= (isset($sessions) && !empty($sessions)) ? $sessions->session_title : "" ?></h2>
                                             <small><i class="fa fa-calendar" aria-hidden="true"></i> <?= date("M-d-Y", strtotime($sessions->sessions_date)) . ' ' . date("h:i A", strtotime($sessions->time_slot)) . ' - ' . date("h:i A", strtotime($sessions->end_time)) ?></small>  ET

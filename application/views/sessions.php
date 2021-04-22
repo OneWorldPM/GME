@@ -18,7 +18,7 @@
     }
 
     .icon-home {
-        color: #0077cc;
+        color: #EF5D21;
         font-size: 1.5em;
         font-weight: 700;
         vertical-align: middle;
@@ -37,7 +37,7 @@
     }
 
     .box_home_active {
-        background-color: #0077cc;
+        background-color: #EF5D21;
         border-radius: 20px;
         max-width: 250px;
         min-width: 250px;
@@ -49,7 +49,7 @@
     }
 
     .box-home:hover {
-        background-color: #0077cc;
+        background-color: #EF5D21;
         color: #fff !important;
     }
     body{
@@ -60,15 +60,24 @@
         background-attachment:fixed !important;
         background-size: 110% auto !important;
     }
-</style>
+    #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
 
-<section class="parallax" style="background-image: url(<?= base_url() ?>front_assets/images/attend_background.png); top: 0; padding-top: 0px; background-size: cover">
+        /* Preserve aspet ratio */
+        min-width: 100%;
+        min-height: 100%;
+    }
+</style>
+<img src="<?= base_url() ?>front_assets/images/sessions-holding-clearspace-option2.png" id="bg" alt="">
+<section class="parallax">
     <div class="container container-fullscreen" style="min-height: 700px;">
         <div class="">
             <div class="row">
                 <div class="col-md-12 m-t-50" style="text-align: -webkit-center;">
                     <?php
-                    if (isset($all_sessions_week) && !empty($all_sessions_week)) {
+                    if (isset($all_sessions_week) && !empty($all_sessions_week) && count($all_sessions_week) > 1) {
                         foreach ($all_sessions_week as $val) {
                             ?>
                             <div class="col-md-4 col-sm-12" style="margin-bottom:30px;">
@@ -117,13 +126,13 @@
 
                                                 <div class="post-title">
                                                     <h6 style="font-weight: 600"><?= $val->sessions_date . ' ' . date("h:i A", strtotime($val->time_slot)) . ' - ' . date("h:i A", strtotime($val->end_time)) ?> ET</h6>
-                                                    <h3><a href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>" style="color: #0077cc; font-weight: 900;"><?= $val->session_title ?></a></h3>
+                                                    <h3><a href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>" style="color: #EF5D21; font-weight: 900;"><?= $val->session_title ?></a></h3>
                                                 </div>
                                                 <?php
                                                 if (isset($val->presenter) && !empty($val->presenter)) {
                                                     foreach ($val->presenter as $value) {
                                                         ?>
-                                                        <div class="post-info" style="color: #000 !important; font-size: larger; font-weight: 700;"><span class="post-autor"><a href="#" style="color: #000;" data-presenter_photo="<?= $value->presenter_photo ?>" data-presenter_name="<?= $value->presenter_name ?>" data-designation="<?= $value->designation ?>" data-email="<?= $value->email ?>" data-company_name="<?= $value->company_name ?>" data-twitter_link="<?= $value->twitter ?>" data-facebook_link="<?= $value->facebook ?>" data-linkedin_link="<?= $value->linkin ?>" data-bio="<?= $value->bio ?>"  class="presenter_open_modul" style="color: #337ab7;"><u><?= $value->presenter_name ?></u><?= ($value->degree != "") ? "," : "" ?> </a></span> <span class="post-category"> <?= $value->degree ?></span> </div>
+                                                        <div class="post-info" style="color: #000 !important; font-size: larger; font-weight: 700;"><span class="post-autor"><a href="#" style="color: #000;<?=($this->uri->segment(2) == 'product_theaters')?'cursor:default;':''?>" data-presenter_photo="<?= $value->presenter_photo ?>" data-presenter_name="<?= $value->presenter_name ?>" data-designation="<?= $value->designation ?>" data-email="<?= $value->email ?>" data-company_name="<?= $value->company_name ?>" data-twitter_link="<?= $value->twitter ?>" data-facebook_link="<?= $value->facebook ?>" data-linkedin_link="<?= $value->linkin ?>" data-bio="<?= $value->bio ?>"  class="presenter_open_modul" style="color: #337ab7;"><u><?= $value->presenter_name ?></u><?= ($value->degree != "") ? "," : "" ?> </a></span> <span class="post-category"> <?= $value->degree ?></span> </div>
                                                         <div class="post-info" style="color: #000 !important; font-size: larger; font-weight: 700;"><span class="post-category"> <?= $value->company_name ?></span> </div>
                                                         <?php
                                                     }
@@ -131,7 +140,7 @@
                                                 ?>
                                                 <div class="post-description">
                                                     <p style="margin-bottom: 10px;"><?= $val->sessions_description ?></p>
-                                                    <a class="button blue button-3d rounded right" style="margin: 0px 0;" href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>"><span>Attend</span></a>
+                                                    <a class="button orange button-3d rounded right" style="margin: 0px 0;" href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>"><span>Attend</span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,33 +168,34 @@
                 <div class="row" style="padding-top: 10px; padding-bottom: 20px;">
                     <div class="col-sm-12">
                         <div class="col-sm-4" id="social_link_div_show">
-                            <div id="social_link_div" style="text-align: center; background-color: #ff095c; text-align: center; background-color: #ff095c; position: absolute; padding: 0px 50px 0px 50px; margin-top: 100px; border-bottom-left-radius: 41px; border-bottom-right-radius: 41px;">
-                                <ul style="list-style: none; display: inline-flex; padding-left: 0px; padding-top: 10px;">
-                                    <li data-placement="top" data-original-title="Twitter">
-                                        <a id="twitter_link" target="_blank">
-                                            <i class="fa fa-twitter" style="color: #fff;"></i>
-                                        </a>
-                                    </li>
-                                    <li data-placement="top" data-original-title="Facebook" style="padding-left: 15px; padding-right: 20px;">
-                                        <a id="facebook_link" target="_blank">
-                                            <i class="fa fa-facebook" style="color: #fff;"></i>
-                                        </a>
-                                    </li>
-                                    <li data-placement="top" data-original-title="LinkedIn">
-                                        <a id="linkedin_link" target="_blank">
-                                            <i class="fa fa-linkedin" style="color: #fff;"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+<!--                            <div id="social_link_div" style="text-align: center; background-color: #ff095c; text-align: center; background-color: #ff095c; position: absolute; padding: 0px 50px 0px 50px; margin-top: 100px; border-bottom-left-radius: 41px; border-bottom-right-radius: 41px;">-->
+<!--                                <ul style="list-style: none; display: inline-flex; padding-left: 0px; padding-top: 10px;">-->
+<!--                                    <li data-placement="top" data-original-title="Twitter">-->
+<!--                                        <a id="twitter_link" target="_blank">-->
+<!--                                            <i class="fa fa-twitter" style="color: #fff;"></i>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                    <li data-placement="top" data-original-title="Facebook" style="padding-left: 15px; padding-right: 20px;">-->
+<!--                                        <a id="facebook_link" target="_blank">-->
+<!--                                            <i class="fa fa-facebook" style="color: #fff;"></i>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                    <li data-placement="top" data-original-title="LinkedIn">-->
+<!--                                        <a id="linkedin_link" target="_blank">-->
+<!--                                            <i class="fa fa-linkedin" style="color: #fff;"></i>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
                             <img src="" id="presenter_profile" class="img-circle" style="height: 170px; width: 170px;">
 
 
                         </div>
                         <div class="col-sm-8" style="padding-top: 15px;">
                             <h3 id="presenter_title" style="font-weight: 700"></h3>
-                            <p style="border-bottom: 1px dotted; margin-bottom: 10px; padding-bottom: 10px;"><b style="color: #000;">Email </b> <span id="email" style="padding-left: 10px;"></span></p>
-                            <p style="border-bottom: 1px dotted; margin-bottom: 10px; padding-bottom: 10px;"><b style="color: #000;">Company </b> <span id="company" style="padding-left: 10px;"></span></p>
+<!--                            <p style="border-bottom: 1px dotted; margin-bottom: 10px; padding-bottom: 10px;"><b style="color: #000;">Email </b> <span id="email" style="padding-left: 10px;"></span></p>-->
+<!--                            <p style="border-bottom: 1px dotted; margin-bottom: 10px; padding-bottom: 10px;"><b style="color: #000;">Company </b> <span id="company" style="padding-left: 10px;"></span></p>-->
+                            <p style="border-bottom: 1px dotted; margin-bottom: 10px; padding-bottom: 10px;"><b style="color: #000;">Bio </b> <span id="bio" style="padding-left: 10px;"></span></p>
                         </div>
                     </div>
                 </div>
@@ -201,7 +211,14 @@
         }, function () {
             $('#social_link_div').addClass('hidden');
         });
+
+        let pageName = "<?=$this->uri->segment(2)?>";
+
         $(".presenter_open_modul").click(function () {
+
+            if (pageName == 'product_theaters')
+                return false;
+
             var presenter_photo = $(this).attr("data-presenter_photo");
             var presenter_name = $(this).attr("data-presenter_name");
             var designation = $(this).attr("data-designation");
@@ -233,9 +250,13 @@
                 $('#presenter_title').text(presenter_name);
             }
 
-            $('#email').text(email);
+            if (bio != "" && bio != null)
+            {
+                $('#bio').text(bio);
+            }
+            //$('#email').text(email);
             if (company_name != "" && company_name != null) {
-                $('#company').text(company_name);
+                //$('#company').text(company_name);
                 $('#company_lbl').text("Company");
             } else {
                 $('#company').text("");

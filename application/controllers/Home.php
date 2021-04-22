@@ -24,7 +24,7 @@ class Home extends CI_Controller {
         $data['liveSupportChatStatus'] = $this->liveSupportChatStatus();
 
         $this->load->view('header');
-        $this->load->view('home-test', $data);
+        $this->load->view('home', $data);
         $this->load->view('footer');
     }
 

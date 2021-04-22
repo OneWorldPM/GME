@@ -21,10 +21,10 @@
     }
 
 </style>
-<section class="parallax fullscreen" style="background-image: url(<?= base_url() ?>front_assets/images/attend_background.png); top: 0; padding-top: 0px;">
+<section class="parallax fullscreen" style="background-image: url(<?= base_url() ?>front_assets/images/sessions-holding-clearspace-option2.png); top: 0; padding-top: 0px;">
 <div class="container container-fullscreen">
     <div class="jumbotron">
-        <h2>Content Managed.</h2>
+        <h2>This session is now over.</h2>
     </div>
 </div>
 </section>

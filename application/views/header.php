@@ -8,7 +8,7 @@ if (isset($_GET['testing']))
 if(isset($session_id))
     $themeColour = themeColour($session_id);
 else
-    $themeColour = '0077cc';
+    $themeColour = 'EF5D21';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +88,7 @@ else
             }
 
             .button.black-light {
-                border-color: #0077cc;
+                border-color: #EF5D21;
             }
 
             .logo2 {
@@ -145,7 +145,7 @@ else
 
             #mainMenu2 ul li a:hover {
                 background-color: transparent;
-                color: #0077cc;
+                color: #EF5D21;
                 cursor: pointer;
             }
 
@@ -311,7 +311,7 @@ else
         <div class="wrapper ">
             <!-- HEADER -->
             <header id="header" class="header-transparent header-sticky">
-                <div id="header-wrap" <?=((isset($sesions_logo_height) && !empty($sesions_logo_height)) && isset($sesions_logo) && !empty($sesions_logo))?($sesions_logo_height > 80)?'style="height:'.$sesions_logo_height.'px"':'style="height:115px"':'';?>>
+                <div id="header-wrap" <?=((isset($sesions_logo_height) && !empty($sesions_logo_height)) && isset($sesions_logo) && !empty($sesions_logo))?($sesions_logo_height > 80)?'style="height:'.$sesions_logo_height.'px"':'style="height:85px"':'';?>>
                     <div style="height: 4px;background-color: #<?=$themeColour?>;"></div>
                     <div class="container">
                         <!--LOGO-->
@@ -329,11 +329,25 @@ else
                         if ($this->session->userdata('cid') != "") {
                             $profile_data = $this->common->get_user_details($this->session->userdata('cid'));
                             ?>
-                            <div id="logo" style="margin-right: 7px;">
-                                <a href="#" class="logo" data-dark-logo="<?= base_url() ?>front_assets/images/logo_new.png" style="margin-top: 12px; cursor: auto">
-                                    <img src="<?= base_url() ?>front_assets/images/cco-gme-logo.png" alt="GME Logo">
-                                </a>
-                            </div>
+
+                            <?php if
+                            (
+                                    ($this->uri->segment(2) == 'attend' || $this->uri->segment(2) == 'view') &&
+                                    ($this->uri->segment(3) == 121 || $this->uri->segment(3) == 129) ||
+                                    ($this->uri->segment(2) == 'product_theaters')
+                            ): ?>
+                                <div id="logo" style="margin-right: 7px;">
+                                    <a href="#" class="logo" data-dark-logo="<?= base_url() ?>front_assets/images/logo_new.png" style="margin-top: 12px; cursor: auto">
+                                        <img src="<?= base_url() ?>front_assets/gme/Clinical_Care_Solutions_Logo.png" alt="CCS Logo">
+                                    </a>
+                                </div>
+                            <?php else: ?>
+                                <div id="logo" style="margin-right: 7px;">
+                                    <a href="#" class="logo" data-dark-logo="<?= base_url() ?>front_assets/images/logo_new.png" style="margin-top: 12px; cursor: auto">
+                                        <img src="<?= base_url() ?>front_assets/images/cco-gme-logo.png" alt="GME Logo">
+                                    </a>
+                                </div>
+                            <?php endif; ?>
                         <?php } else { ?>
                             <div id="logo">
                                 <a href="#" class="logo" data-dark-logo="<?= base_url() ?>front_assets/images/logo_new.png">
@@ -380,10 +394,7 @@ else
                                                     <div class="photo-dropdown ">
                                                     <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
                                                         <?php if ($profile_data->profile != "") { ?>
-
-                                                            <img src="<?= base_url() ?>uploads/customer_profile/<?= $profile_data->profile ?>"style="height: 50px; width: 60px; margin-top: -10px;border-radius: 5px">
-                                                            <h7 style="padding: 5px 10px 10px 0px; color:#1F1F1F;"><?= $this->session->userdata('cname')?> <span class="fa fa-caret-down" style=""></span></h7>
-                                                           
+                                                            <span style="color: #1b1e21; " class="fa fa-user-circle"></span><b style="color:#1b1e21;" > <?=$this->session->userdata('cname')?></b>
                                                         <?php } else { ?>
                                                         <div class="" style="margin-top: 9px">
                                                             <span style="color: #1b1e21; " class="fa fa-user-circle"></span><b style="color:#1b1e21;" > <?=$this->session->userdata('cname')?></b>
@@ -393,13 +404,8 @@ else
                                                     </div>
                                                     <ul class="dropdown-menu" >
                                                         <li style="padding: 8px 8px;">
-                                                            <a href="<?= base_url() ?>register/user_profile">
-                                                                <span class="fa fa-pencil-square-o" style="color:black"></span>  <b style="color:#0077cc;" > EDIT PROFILE</b>
-                                                            </a>
-                                                        </li>
-                                                        <li style="padding: 8px 8px;">
                                                             <a href="<?= base_url() ?>login/logout" >
-                                                                <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#0077cc;" > LOG OUT</b>
+                                                                <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#EF5D21;" > LOG OUT</b>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -451,7 +457,7 @@ else
                                     <?php } ?>
 
                                     <ul class="main-menu nav navbar-nav navbar-right">
-                                        <li><a href="https://yourconference.live/support" target="_blank" class="hoverThemeColour">HELP DESK</a></li>
+                                        <li><a href="mailto:info@gmeded.com?subject=GME Customer Service Request" target="_blank" class="hoverThemeColour">GME CUSTOMER SERVICE</a></li>
                                     </ul>
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-claim-credit">
                                         <li><a href="<?=base_url().'claimCredit'?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
@@ -460,10 +466,10 @@ else
                                         <li><a href="<?=base_url().'sessions/product_theaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
                                     </ul>
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-sessions">
-                                        <li><a href="<?=base_url().'sessions'?>"  class="hoverThemeColour">SESSIONS</a></li>
+                                        <li><a href="<?=base_url().'sessions'?>"  class="hoverThemeColour">CME SESSIONS</a></li>
                                     </ul>
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-home">
-                                        <li><a href="<?=base_url().'home'?>"class="hoverThemeColour">HOME</a></li>
+                                        <li><a href="<?=base_url().'home'?>"class="hoverThemeColour">LOBBY</a></li>
                                     </ul>
                                 </nav>
                             </div>

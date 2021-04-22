@@ -112,12 +112,12 @@
 </style>
 
 <section class="parallax" style="background-image: url('<?= base_url() ?>front_assets/images/cco-gme-gravity_lobby-clearspace.png');background-size: cover; height:200% ">
-    <div class="row" >
+    <div class="row">
         <div class="col-md-3 col-md-offset-2" style="margin-top: -50px; position: fixed">
-            <img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-sponsors.png" alt="welcome" class="" style="height: 350px; width: 350px;">
+            <img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-sponsors.png?v=1" alt="welcome" class="" style="height: 350px; width: 350px;">
         </div>
         <div class="col-md-3 col-md-offset-7" style="margin-top: -50px; position: fixed">
-            <img id="kiosk-welcome" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-welcome.png" alt="welcome" class="" style="height: 350px; width: 350px;">
+            <img id="kiosk-welcome" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-welcome.png?v=1" alt="welcome" class="" style="height: 350px; width: 350px;">
         </div>
     </div>
     <div class="container container-fullscreen" id="home_first_section">
@@ -142,7 +142,7 @@
                             <a class="icon-home" href="<?=base_url().'sessions/product_theaters'?>"">
                             <div class="col-lg box-home p-5 text-center col-md-offset-3">
                                 <!--                                <span class="fa fa-desktop"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>-->
-                                <img src="<?= base_url() ?>front_assets/images/button_product-theaters-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
+                                <img src="<?= base_url() ?>front_assets/images/button_product-theaters-175.png?v=2" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
                                 <br>
                                 <br>
                             </div>
