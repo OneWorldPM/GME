@@ -9,6 +9,8 @@
     opacity: 0.8;
     width: 205px;
     font-weight: bold;
+    margin-top: -5px;
+    border-radius: 20px;
 }
 
 .live-support-chat-popup {
