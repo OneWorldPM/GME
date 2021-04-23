@@ -73,7 +73,7 @@
                     <form class="form-login" id="frm_login" name="frm_login" method="post" action="<?= base_url() ?>presenter/login/authentication">
                         <div class="row">
                             <div  style="text-align: center;">                           
-                                <img src="<?= base_url() ?>assets/images/Header_Logos_GME.png" alt="" style="text-align: center;" >
+                                <img src="<?= base_url() ?>front_assets/images/cco-gme-logo.png" alt="" style="text-align: center;" >
                             </div>
                         </div>
                         <fieldset>
