@@ -1203,3 +1203,28 @@ function calcTime(offset) {
 
     return nd;
 }
+
+
+$(document).ready(function () {
+
+    //Ask a rep
+    $('#askARepSendBtn').on('click', function () {
+
+        let rep_type = $('input[name=askarepRadio]:checked').val();
+
+        $.post(base_url+"sessions/askARep",
+            {
+                rep_type: rep_type,
+                user_id: user_id,
+                session_id: session_id
+            })
+            .done(function( data ) {
+                data = JSON.parse(data);
+                $('.ask-a-rep').html(data.msg);
+            })
+            .fail(function() {
+                $('.ask-a-rep').html('Unable to request, please try again.');
+            });
+
+    });
+});

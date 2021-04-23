@@ -155,6 +155,11 @@ if (isset($sessions)) {
                     <li data-type="questionsSticky"><i class="fa fa-question" aria-hidden="true"></i> <span>QUESTIONS</span></li>
                     <?php
                 }
+                if(sessionRightBarControl($sessions->right_bar, "askarep")){
+                    ?>
+                    <li data-type="askarepSticky"><img src="<?=base_url('front_assets/gme/conversation_icon.png')?>" style="width: 25px;padding-bottom: 3px;"> <span>ASK A REP</span></li>
+                    <?php
+                }
                     ?>
                 <li id="adminChatStickeyIcon" data-type="adminChatSticky" class="admin-chat-stickey-icon" style="display: <?=(sessionRightBarControl($sessions->right_bar, "adminChat"))?'block':'none'?>;">
                     <span class="new-admin-chat-badge badge" style="position: absolute;margin-left: -29px;margin-top: -10px;border-radius: 9px;font-size: 10px;background-color: red;padding-right: 7px;padding-left: 4px;padding-bottom: 4px; display: none;">New</span>
@@ -440,6 +445,32 @@ if (isset($sessions)) {
                 <span id='success_questions' style='color:green;'></span>
             </div>
         </div>
+    </div>
+
+</div>
+
+<div class="rightSticykPopup askarepSticky" style="display: none">
+    <div class="header"><span></span>
+        <div class="rightTool">
+            <i id="minimizeAskARep" class="fa fa-minus" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="content">
+        <div class="contentHeader">
+            ASK A REP
+        </div>
+        <div class="ask-a-rep" style="color: white;">
+            I would like a representative to contact me.
+        </div>
+
+        <div class="input-group" style="border-radius: 5px; position: absolute; bottom: 0; width: 100%;background-color: white;">
+            <h6 style="margin: 0 0 0 10px;"><input type="radio" name="askarepRadio" value="Rep" checked> Reach a Rep</h6>
+            <h6 style="margin: 0 0 0 10px;"><input type="radio" name="askarepRadio" value="MSL"> Reach an MSL</h6>
+            <span class="input-group-btn">
+        <button id="askARepSendBtn" class="btn btn-primary" type="button">SEND</button>
+      </span>
+        </div>
+
     </div>
 
 </div>

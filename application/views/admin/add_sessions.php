@@ -266,6 +266,7 @@ $user_role = $this->session->userdata('role');
                                             <label class="checkbox-inline"><input type="checkbox" name="session_right_bar[]" <?=$right_bar?sessionRightBarControl($right_bar, "notes", "checked"):""?> value="notes">Notes</label>
                                             <label class="checkbox-inline"><input type="checkbox" name="session_right_bar[]" <?=$right_bar?sessionRightBarControl($right_bar, "questions", "checked"):""?> value="questions">Questions</label>
                                             <label class="checkbox-inline"><input type="checkbox" name="session_right_bar[]" <?=$right_bar?sessionRightBarControl($right_bar, "adminChat", "checked"):""?> value="adminChat">Admin Chat</label>
+                                            <label class="checkbox-inline"><input type="checkbox" name="session_right_bar[]" <?=$right_bar?sessionRightBarControl($right_bar, "askarep", "checked"):""?> value="askarep" >Ask A Rep</label>
                                         </div>
                                     </div>
 
