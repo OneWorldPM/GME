@@ -3,48 +3,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
 <style>
     .icon-home {
-
         font-size: 1.5em;
         font-weight: 700;
         vertical-align: middle;
         color:#FFFFFF !important;
     }
 
-
-    .box-home {
-        /*background-color: tra;*/
-        border-radius: 30px;
-        /*background: rgba(250, 250, 250, 0.8);*/
-        max-width: 270px;
-        /*background-color: #0077cc ;*/
-        min-width: 270px;
-        min-height: 270px;
-        max-height: 270px;
-        padding: 15px;
-    }
-    .box-home_2 {
-        background-color: #444;
-        border-radius: 30px;
-        background: rgba(250, 250, 250, 0.8);
-        max-width: 185px;
-        min-width: 120px;
-        min-height: 160px;
-        max-height: 185px;
-        padding: 15px;
-        padding: 0px !important;
-    }
-
     a:hover {
         background-color: #FFFFFF !important;
         color:#FFFFFF !important;
-    }
-
-    .fa {
-        font-weight: 900;
-    }
-
-    .col-sm-12 {
-        margin-bottom: 10px;
     }
 
     @media (min-width: 768px) and (max-width: 1000px)  {
@@ -104,65 +71,175 @@
         background-size: 110% auto !important;
     }
 
-    .wrapper{
-        background-color: #b4b8c3;
+    .container-fullscreen{
+        top: 70px;
     }
+
+    .sections .section img{
+        font-size: 250px;
+        width: 1em;
+        height: 1.2em;
+    }
+
+    .sections .left,.sections .right{
+        margin-top: 50px;
+    }
+
+    .sections .left{
+        float: left;
+        margin-left: 150px;
+    }
+
+    .sections .right{
+        float: right;
+        margin-right: 150px;
+    }
+
+    .middle-video{
+        position: absolute;
+        width: 540px;
+        max-width: 100%;
+        height: 250px;
+        top: 25px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+    .circle-icons .circle-icon{
+        width: 30.99%;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .circle-icons .circle-icon img{
+        font-size: 150px;
+        height: 1em;
+        width: 1.06em;
+    }
+
+    @media screen and (max-width: 1400px) {
+        .sections .left{
+            margin-left: 0;
+        }
+
+        .sections .right{
+            margin-right: 0;
+        }
+
+        .sections .middle{
+            width: 430px;
+        }
+
+    }
+
+    @media screen and (max-width: 1060px) {
+        .sections .section img{
+            font-size: 210px;
+        }
+    }
+
+    @media screen and (max-width: 991px) {
+        #header{
+            padding-bottom: 0 !important;
+        }
+    }
+
+    @media screen and (max-width: 980px) {
+        .sections .left{
+            text-align: right;
+        }
+        .sections .left,.sections .right{
+            margin-top: 250px;
+            width: 50%;
+        }
+        .sections .left{
+            text-align: left;
+            padding-left: 20px;
+        }
+        .sections .right{
+            text-align: right;
+            padding-right: 20px;
+        }
+        .container-fullscreen{
+            top: 20px;
+        }
+        .circle-icons{
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .circle-icons .circle-icon img{
+            font-size: 100px;
+            max-width: 100%;
+        }
+
+    }
+
+    @media screen and (max-width: 557px) {
+        .sections .section img{
+            font-size: 200px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .parallax{
+            padding-top: 0;
+        }
+        .sections .section img{
+            max-width: 100%;
+            height: auto;
+        }
+
+        .middle-video{
+           position: unset;
+            height: max-content;
+            margin-bottom: 10px;
+        }
+
+        .sections .left, .sections .right{
+            margin-top: 0;
+        }
+
+        #home_first_section{
+            padding: 0;
+        }
+    }
+
+
 
 
 </style>
 
-<section class="parallax" style="background-image: url('<?= base_url() ?>front_assets/images/cco-gme-gravity_lobby-clearspace.png');background-size: cover; height:200% ">
-    <div class="row">
-        <div class="col-md-3 col-md-offset-2" style="margin-top: -50px; position: fixed">
-            <img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-sponsors.png?v=1" alt="welcome" class="" style="height: 350px; width: 350px;">
+<section class="parallax" style="background-image: url('<?= base_url() ?>front_assets/images/cco-gme-gravity_lobby-clearspace.png');background-size: cover !important; height:200%">
+    <div class="middle-video">
+        <iframe src="https://player.vimeo.com/video/540201151" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="sections">
+        <div class="section left">
+            <img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/left_area.png?v=1" alt="welcome" class="">
         </div>
-        <div class="col-md-3 col-md-offset-3" style="margin-top: -73px;margin-left: 35.4%; position: fixed;z-index: 5;">
-            <iframe src="https://player.vimeo.com/video/540201151" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="col-md-3 col-md-offset-7" style="margin-top: -50px; position: fixed">
-            <img id="kiosk-welcome" src="<?= base_url() ?>front_assets/images/cco-gme-gravity_kiosk-welcome.png?v=1" alt="welcome" class="" style="height: 350px; width: 350px;">
+        <div class="section right">
+            <img id="kiosk-welcome" src="<?= base_url() ?>front_assets/images/right_area.png?v=1" alt="welcome" class="">
         </div>
     </div>
     <div class="container container-fullscreen" id="home_first_section">
-        <div class="text-middle">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center m-t-0">
-                    </div>
-                    <div class="row justify-content-center " style="text-align: -webkit-center;">
-                        <div class="col-md-4 col-sm-12 ">
-                            <div style="text-align: center !important;">
-                                <a class="icon-home" href="<?= base_url() ?>sessions">
-                                    <div class="col-lg box-home p-5 text-center col-md-offset-5">
-                                        <img src="<?= base_url() ?>front_assets/images/button_sessions-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
-                                        <br>
-                                        <br>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12 " style="text-align: center">
-                            <a class="icon-home" href="<?=base_url().'sessions/product_theaters'?>"">
-                            <div class="col-lg box-home p-5 text-center col-md-offset-3">
-                                <!--                                <span class="fa fa-desktop"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>-->
-                                <img src="<?= base_url() ?>front_assets/images/button_product-theaters-175.png?v=2" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
-                                <br>
-                                <br>
-                            </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4  col-sm-12">
-                            <a class="icon-home" href="<?= base_url().'claimCredit'?>">
-                                <div class="col-lg box-home ml-5 mr-5 p-5 text-center col-md-offset-0">
-                                    <!--                                <span class="fa fa-clipboard-check"  style="font-size: 135px !important; color: #22A5DA; margin-top:50px;"></span>-->
-                                    <img src="<?= base_url() ?>front_assets/images/button_claim-credit-175.png" alt="welcome" class="m-t-40" style="height: 150px; width: 160px;">
-                                    <br>
-                                    <br>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <div class="circle-icons">
+            <div class="circle-icon">
+                <a class="icon-home" href="<?= base_url() ?>sessions">
+                    <img src="<?= base_url() ?>front_assets/images/button_sessions-175.png" alt="welcome">
+                </a>
+            </div>
+            <div class="circle-icon">
+                <a class="icon-home" href="<?=base_url().'sessions/product_theaters'?>">
+                <img src="<?= base_url() ?>front_assets/images/button_product-theaters-175.png?v=2" alt="welcome">
+                </a>
+            </div>
+            <div class="circle-icon">
+                <a class="icon-home" href="<?= base_url().'claimCredit'?>">
+                    <img src="<?= base_url() ?>front_assets/images/button_claim-credit-175.png" alt="welcome">
+                </a>
             </div>
         </div>
     </div>
