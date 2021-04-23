@@ -119,14 +119,36 @@
                                     foreach ($all_sessions as $val) {
                                         ?>
                                         <div class="post-item">
-                                            <div class="post-image col-md-3 m-t-20"> 
-                                                <a href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>"> <?php if ($val->sessions_photo != "") { ?> <img alt="" src="<?= base_url() ?>uploads/sessions/<?= $val->sessions_photo ?>"> <?php } else { ?>  <img alt="" src="<?= base_url() ?>front_assets/images/session_avtar.jpg"> <?php } ?>  </a> 
+                                            <div class="post-image col-md-3 m-t-20">
+
+                                                <?php if (new DateTime() > new DateTime("$val->sessions_date $val->end_time")): ?>
+                                                    <?php if ($val->sessions_photo != "") { ?>
+                                                        <img alt="" src="<?= base_url() ?>uploads/sessions/<?= $val->sessions_photo ?>">
+                                                    <?php } else { ?>  <img alt="" src="<?= base_url() ?>front_assets/images/session_avtar.jpg">
+                                                    <?php } ?>
+                                                <?php else: ?>
+                                                    <a href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>">
+                                                        <?php if ($val->sessions_photo != "") { ?>
+                                                            <img alt="" src="<?= base_url() ?>uploads/sessions/<?= $val->sessions_photo ?>">
+                                                        <?php } else { ?>  <img alt="" src="<?= base_url() ?>front_assets/images/session_avtar.jpg">
+                                                        <?php } ?>
+                                                    </a>
+                                                <?php endif; ?>
+
                                             </div>
                                             <div class="post-content-details col-md-9 m-t-30">
 
                                                 <div class="post-title">
                                                     <h6 style="font-weight: 600"><?= $val->sessions_date . ' ' . date("h:i A", strtotime($val->time_slot)) . ' - ' . date("h:i A", strtotime($val->end_time)) ?> ET</h6>
-                                                    <h3><a href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>" style="color: #EF5D21; font-weight: 900;"><?= $val->session_title ?></a></h3>
+                                                    <h3>
+                                                        <?php if (new DateTime() > new DateTime("$val->sessions_date $val->end_time")): ?>
+                                                            <?= $val->session_title ?>
+                                                        <?php else: ?>
+                                                            <a href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>" style="color: #EF5D21; font-weight: 900;">
+                                                                <?= $val->session_title ?>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                    </h3>
                                                 </div>
                                                 <?php
                                                 if (isset($val->presenter) && !empty($val->presenter)) {
@@ -140,7 +162,12 @@
                                                 ?>
                                                 <div class="post-description">
                                                     <p style="margin-bottom: 10px;"><?= $val->sessions_description ?></p>
-                                                    <a class="button orange button-3d rounded right" style="margin: 0px 0;" href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>"><span>Attend</span></a>
+
+                                                    <?php if (new DateTime() > new DateTime("$val->sessions_date $val->end_time")): ?>
+                                                    <?php else: ?>
+                                                        <a class="button orange button-3d rounded right" style="margin: 0px 0;" href="<?= base_url() ?>sessions/attend/<?= $val->sessions_id ?>"><span>Attend</span></a>
+                                                    <?php endif; ?>
+
                                                 </div>
                                             </div>
                                         </div>
