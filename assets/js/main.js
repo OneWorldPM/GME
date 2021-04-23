@@ -313,11 +313,11 @@ var Main = function () {
                 case "theme-3":
                 case "theme-5":
                 case "theme-6":
-                    $(".navbar-brand img").attr("src", base_url + "front_assets/images/Header_Logos_GME.png");
+                    $(".navbar-brand img").attr("src", base_url + "front_assets/images/cco-gme-logo.png");
                     break;
 
                 default:
-                    $(".navbar-brand img").attr("src", base_url + "front_assets/images/Header_Logos_GME.png");
+                    $(".navbar-brand img").attr("src", base_url + "front_assets/images/cco-gme-logo.png");
                     break;
             }
         }
@@ -328,7 +328,7 @@ var Main = function () {
             $('#closed-sidebar').prop('checked', false);
             $('#fixed-footer').prop('checked', false);
             $('#skin_color').attr("href", base_url + "assets/css/themes/theme-1.css");
-            $(".navbar-brand img").attr("src", base_url + "front_assets/images/Header_Logos_GME.png");
+            $(".navbar-brand img").attr("src", base_url + "front_assets/images/cco-gme-logo.png");
 
         }
 

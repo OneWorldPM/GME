@@ -109,7 +109,7 @@ $presenter_details = $this->common->get_presenter_data($this->session->userdata(
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img src="https://yourconference.live/GME/front_assets/images/Header_Logos_GME.png" width="175">
+            <img src="https://yourconference.live/GME/front_assets/images/cco-gme-logo.png" width="175">
         </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
