@@ -139,6 +139,12 @@
         }
     }
 
+    @media screen and (max-width: 991px) {
+        #header{
+            padding-bottom: 0 !important;
+        }
+    }
+
     @media screen and (max-width: 980px) {
         .sections .left{
             text-align: right;
