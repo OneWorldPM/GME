@@ -340,7 +340,7 @@ switch ($msg) {
             socket.emit('reload-attendee', $(this).attr('app-name'));
         });
 
-        $('.subsequent_session_redirect').on('click', function () {
+        $('#sessions_table').on('click', '.subsequent_session_redirect', function () {
 
             Swal.fire({
                 title: 'Are you sure?',

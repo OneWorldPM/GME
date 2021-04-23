@@ -37,7 +37,7 @@
 
 <!-- Live Support Chat -->
     <script>
-        let base_url = "<?=base_url()?>";
+        var base_url = "<?=base_url()?>";
         let support_app_name = "<?=getAppName("") ?>";
         let attendee_id = "<?=$this->session->userdata('cid')?>";
         let attendee_name = "<?=$this->session->userdata('fullname')?>";
