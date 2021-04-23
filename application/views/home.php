@@ -99,11 +99,21 @@
         position: absolute;
         width: 540px;
         max-width: 100%;
-        height: 250px;
         top: 25px;
         left: 0;
         right: 0;
         margin: auto;
+    }
+
+    .middle-video >.pscy_update{
+        width: 108%;
+        position: relative;
+        left: -4%;
+    }
+
+
+    .middle-video >div img{
+        width: 100%;
     }
 
     .circle-icons .circle-icon{
@@ -146,11 +156,17 @@
     }
 
     @media screen and (max-width: 980px) {
+
+        .middle-video{
+            height: auto;
+            position: unset;
+        }
+
         .sections .left{
             text-align: right;
         }
         .sections .left,.sections .right{
-            margin-top: 250px;
+            margin-top: 15px;
             width: 50%;
         }
         .sections .left{
@@ -193,14 +209,11 @@
         }
 
         .middle-video{
-           position: unset;
             height: max-content;
             margin-bottom: 10px;
         }
 
-        .sections .left, .sections .right{
-            margin-top: 0;
-        }
+
 
         #home_first_section{
             padding: 0;
@@ -215,6 +228,7 @@
 <section class="parallax" style="background-image: url('<?= base_url() ?>front_assets/images/cco-gme-gravity_lobby-clearspace.png');background-size: cover !important; height:200%">
     <div class="middle-video">
         <iframe src="https://player.vimeo.com/video/540201151" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <div class="pscy_update"><img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/pscy_update.png?v=1" alt="welcome" class=""></div>
     </div>
     <div class="sections">
         <div class="section left">
