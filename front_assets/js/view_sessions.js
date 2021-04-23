@@ -18,7 +18,7 @@ socket.on('subsequent-session-redirect-signal', function (app_name_to_reload) {
 
 function fireSubsequentRedirection()
 {
-    if (session_id == 131)
+    if (session_id == 130)
     {
         window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar", "_self");
     }
