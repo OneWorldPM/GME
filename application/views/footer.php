@@ -78,8 +78,13 @@
         }
     }
 
-    var socketServer = "https://socket.yourconference.live:443";
-    let socket = io(socketServer);
+    if (typeof socketServer == 'undefined') {
+        let socketServer = "https://socket.yourconference.live:443";
+    }
+    if (typeof socket == 'undefined') {
+        let socket = io(socketServer);
+    }
+
     let app_name_main = "<?=getAppName("") ?>";
 
     $(function() {

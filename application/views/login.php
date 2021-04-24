@@ -67,9 +67,9 @@
     <div class="container container-fullscreen" id="home_first_section">
         <div class="text-middle">
             <div class="row">
-                <div class="col-md-6 col-xs-12 col-sm-12 center p-60 background-white" style="border-radius: 10px;">
+                <div class="col-md-4 col-xs-12 col-sm-12 center p-60 background-white" style="border-radius: 10px;">
                     <div class="row">
-                        <div class="col-md-6 col-xs-12 col-sm-12">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
                             <h4>Welcome!</h4>
                             <p>Sign in Below</p>
                             <?php
@@ -94,10 +94,10 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-6 col-xs-12 col-sm-12">
-                            <h4>-OR-</h4>
-                            <p class="text-left"><a href="<?= base_url() ?>register">Sign in as a temporary guest</a> </p>
-                        </div>
+<!--                        <div class="col-md-6 col-xs-12 col-sm-12">-->
+<!--                            <h4>-OR-</h4>-->
+<!--                            <p class="text-left"><a href="--><?//= base_url() ?><!--register">Sign in as a temporary guest</a> </p>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>

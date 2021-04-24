@@ -402,7 +402,7 @@ else
                                                         <?php } ?>
                                                     </a>
                                                     </div>
-                                                    <ul class="dropdown-menu" >
+                                                    <ul class="dropdown-menu" style="right: 180px;top: 50px;">
                                                         <li style="padding: 8px 8px;">
                                                             <a href="<?= base_url() ?>login/logout" >
                                                                 <span class="fa fa-sign-out" style="color:black"></span>  <b style="color:#EF5D21;" > LOG OUT</b>

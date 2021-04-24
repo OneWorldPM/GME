@@ -134,9 +134,9 @@
                                     </div>
                                 <?php endif; ?>
 
-                                <?php if ($sessions->sessions_id == 130): ?>
+                                <?php if ($sessions->sessions_id == 131): ?>
                                     <div class="col-md-12 m-t-40 text-center">
-                                        <strong style="font-size: 16px;">We’re glad you’re with us today! <br> This page will let you into the next CME/CE session after the conclusion of the Product Theater, already in progress. <br> If you would like to join the Product Theater, SPRAVATO® and the Management of Two Subsets of Challenging to Treat Major Depressive Disorder (MDD) in Adults, please click <a style="color: blue;" href="<?=base_url()?>sessions/attend/129">here</a>.</strong>
+                                        <strong style="font-size: 16px;">We’re glad you’re with us today! <br> This page will let you into the next CME/CE session after the conclusion of the Product Theater, already in progress. <br> If you would like to join the Product Theater, Janssen Neuroscience Product Theater: The Management of Two Subsets of Challenging to Treat Major Depressive Disorder (MDD) in Adults, please click <a style="color: blue;" href="<?=base_url()?>sessions/attend/129">here</a>.</strong>
                                     </div>
                                 <?php endif; ?>
 
