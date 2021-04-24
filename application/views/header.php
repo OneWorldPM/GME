@@ -411,7 +411,15 @@ else
                                                     </ul>
                                                 </li>
                                         </ul>
-                                        <ul class="nav navbar-nav navbar-right">
+                                        <?php
+                                        $tool_box_class="nav_off";
+                                        if (isset($right_bar) && isset($tool_box_status)){
+                                            if($tool_box_status == "1"){
+                                                $tool_box_class="";
+                                            }
+                                        }
+                                        ?>
+                                        <ul class="nav navbar-nav navbar-right <?=$tool_box_class?>">
                                             <?php
                                             if (isset($right_bar) && isset($tool_box_status)) {
                                             if ($tool_box_status == "1" && sessionRightBarControl($right_bar, "resources")) {
