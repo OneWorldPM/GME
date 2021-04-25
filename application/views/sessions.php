@@ -60,6 +60,15 @@
         background-attachment:fixed !important;
         background-size: 110% auto !important;
     }
+
+    a{
+        color: unset;
+    }
+
+    .post-item p {
+        margin-bottom: 10px !important;
+    }
+
     #bg {
         position: fixed;
         top: 0;

@@ -46,6 +46,12 @@
         background-size: 100% auto !important;
 
     }
+
+    .post-item p {
+        margin-bottom: 10px !important;
+    }
+
+
     #bg {
         position: fixed;
         top: 0;
@@ -185,11 +191,11 @@
         </div>
     </div>
 </div>
+<?= getSocketScript()?>
 <script type="text/javascript">
 
 
     var session_id = "<?=$sessions->sessions_id?>";
-
 
     $(document).ready(function () {
         if ($("#time_second").val() <= 0) {

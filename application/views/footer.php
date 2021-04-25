@@ -33,7 +33,14 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@9.17.0/dist/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+<script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>
 
+<script>
+$(function() {
+// Error Tracking
+Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/5734712").install();
+});
+</script>
 
 <!-- Live Support Chat -->
     <script>
@@ -70,19 +77,13 @@
 
 
 <script>
+
     var user_id = <?= $this->session->userdata("cid") ?>;
     var user_name = "<?= $this->session->userdata('fullname') ?>";
     function extract(variable) {
         for (var key in variable) {
             window[key] = variable[key];
         }
-    }
-
-    if (typeof socketServer == 'undefined') {
-        let socketServer = "https://socket.yourconference.live:443";
-    }
-    if (typeof socket == 'undefined') {
-        let socket = io(socketServer);
     }
 
     let app_name_main = "<?=getAppName("") ?>";
@@ -112,8 +113,14 @@
         $.get( "<?=base_url()?>socket_config.php", function( data ) {
             var config = JSON.parse(data);
             extract(config);
+
+            let socketServer = "https://socket.yourconference.live:443";
+
+            var socket = io(socketServer);
+
             socket.on('serverStatus', function (data) {
                 socket.emit('addMeToActiveListPerApp', {'user_id':user_id, 'app': socket_app_name, 'room': socket_active_user_list});
+                socket.emit("ConnectSessioViewUsers", socket_app_name);
             });
 
             $(window).on("blur focus", function(e) {
