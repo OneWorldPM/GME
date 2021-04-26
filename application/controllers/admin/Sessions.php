@@ -291,6 +291,7 @@ class Sessions extends CI_Controller {
     exit; 
 }
 
+
     function view_result($sessions_poll_question_id) {
         $data['poll_report'] = $this->msessions->view_result($sessions_poll_question_id);
         $this->load->view('admin/header');
@@ -1025,5 +1026,33 @@ public function archive_session() {
     $this->load->view('admin/footer');
 }
 
-// 
+//
+
+public function ask_rep_report($session_id) {
+    $result  = $this->msessions->getAskRepReport($session_id);
+
+    $file_name = 'Ask A Rep Report/'.date('Y-m-d').'.csv';
+    header("Content-Description: File Transfer");
+    header("Content-Disposition: attachment; filename=$file_name");
+    header("Content-Type: application/csv;");
+    // get data
+    // file creation
+    $file = fopen('php://output', 'w');
+    $header = array("Date/Time","Session", "FirstName", "LastName", "Rep Type");
+    fputcsv($file, $header);
+    if($result){
+        foreach ($result->result_array() as $value)
+        {
+            // print_r($value);
+            fputcsv($file,$value);
+        }
+    }else{
+        $content=array('','');
+        fputcsv($file, $content);
+    }
+
+    fclose($file);
+    exit;
+}
+
 }
