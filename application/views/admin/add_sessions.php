@@ -393,8 +393,8 @@ $user_role = $this->session->userdata('role');
                                     }
                                     ?>
                                     <span style="margin-left: 50px;"></span>
-                                    <span style="color: blue;">Width: </span><input type="number" class="form-control-sm" style="color: #000;" name="main_logo_width" id="main_logo_width" value="<?= (isset($sessions_edit) && !empty($sessions_edit) ) ? $sessions_edit->main_logo_width : "" ?>" <?=($user_role != 'super_admin')?'readonly':''?>><span style="color: blue;">(pixels)</span>&nbsp;&nbsp;&nbsp;
-                                    <span style="color: red;">Height: </span><input type="number" class="form-control-sm" style="color: #000;" name="main_logo_height" id="main_logo_height" value="<?= (isset($sessions_edit) && !empty($sessions_edit) ) ? $sessions_edit->main_logo_height : "" ?>" <?=($user_role != 'super_admin')?'readonly':''?>><span style="color: red;">(pixels)</span>
+                                    <span style="color: blue;">Width: </span><input type="number" class="form-control-sm" style="color: #000;" name="main_logo_width" id="main_logo_width" value="<?= (isset($sessions_edit) && !empty($sessions_edit) ) ? $sessions_edit->main_logo_width : "120" ?>" <?=($user_role != 'super_admin')?'readonly':''?>><span style="color: blue;">(pixels)</span>&nbsp;&nbsp;&nbsp;
+                                    <span style="color: red;">Height: </span><input type="number" class="form-control-sm" style="color: #000;" name="main_logo_height" id="main_logo_height" value="<?= (isset($sessions_edit) && !empty($sessions_edit) ) ? $sessions_edit->main_logo_height : "80" ?>" <?=($user_role != 'super_admin')?'readonly':''?>><span style="color: red;">(pixels)</span>
                                 </div>
 
                                         <div class="form-group">
