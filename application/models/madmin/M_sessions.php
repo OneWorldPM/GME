@@ -550,11 +550,11 @@ class M_sessions extends CI_Model {
 
             if ($_FILES['main_logo']['name'] != "") {
 
-                $this->db->select('main_logo');
-                $this->db->from('sessions');
-                $this->db->where("sessions_id", $post['sessions_id']);
-                $session = $this->db->get()->row();
-                unlink("./uploads/main_logos/".$session->main_logo);
+//                $this->db->select('main_logo');
+//                $this->db->from('sessions');
+//                $this->db->where("sessions_id", $post['sessions_id']);
+//                $session = $this->db->get()->row();
+//                unlink("./uploads/main_logos/".$session->main_logo);
 
                 $this->load->library('upload');
                 $this->upload->initialize($this->set_upload_main_logo_options());
