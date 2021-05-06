@@ -45,6 +45,10 @@ $user_role = $this->session->userdata('role');
                                         <textarea class="form-control" style="color: #000;" name="sessions_description" id="sessions_description"><?= (isset($sessions_edit) && !empty($sessions_edit) ) ? $sessions_edit->sessions_description : "" ?></textarea>
                                     </div>
                                     <div class="form-group">
+                                        <label class="text-large text-bold">Landing Page Text</label>
+                                        <textarea class="form-control" style="color: #000;" name="landing_page_text" id="landing_page_text"><?= (isset($sessions_edit->landing_page_text) && ($sessions_edit->landing_page_text != NULL) ) ? $sessions_edit->landing_page_text : "" ?></textarea>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="text-large text-bold">Session Notes</label>
                                         <textarea class="form-control" style="color: #000;" name="session_notes" id="sessions_description"><?= (isset($sessions_edit) && !empty($sessions_edit) ) ? $sessions_edit->session_notes : "" ?></textarea>
                                     </div>
@@ -353,6 +357,7 @@ $user_role = $this->session->userdata('role');
                                         </div>
 
                                 <div class="form-group" style="position: unset !important; <?=($user_role != 'super_admin')?'display:none':''?>" >
+
                                     <hr style="border: 2px solid;">
                                     <label class="col-md-12 text-large text-bold">Additional Logo &nbsp;(uploaded logo is displayed on LEFT side of client logo in attendee view)</label>
                                     <input type="file" class="form-control" name="sessions_addnl_logo" id="sessions_addnl_logo" <?=($user_role != 'super_admin')?'disabled':''?>>
@@ -371,6 +376,25 @@ $user_role = $this->session->userdata('role');
                                     }
                                     ?>
                                     <div class="clearfix" style="height: 5px;"></div><br>
+                                </div>
+
+                                <div class="form-group" style="position: unset !important; <?=($user_role != 'super_admin')?'display:none':''?>" >
+
+                                    <hr style="border: 2px solid;">
+                                    <label class="col-md-12 text-large text-bold">Main Logo</label>
+                                    <input type="file" class="form-control" name="main_logo" id="main_logo" <?=($user_role != 'super_admin')?'disabled':''?>>
+                                    <?php
+                                    if (isset($sessions_edit->main_logo)) {
+                                        if ($sessions_edit->main_logo != "") {
+                                            ?>
+                                            <img src="<?= base_url() ?>uploads/main_logos/<?= $sessions_edit->main_logo ?>" style="object-fit: contain;height: 100px; width: 100px;">
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                    <span style="margin-left: 50px;"></span>
+                                    <span style="color: blue;">Width: </span><input type="number" class="form-control-sm" style="color: #000;" name="main_logo_width" id="main_logo_width" value="<?= (isset($sessions_edit) && !empty($sessions_edit) ) ? $sessions_edit->main_logo_width : "" ?>" <?=($user_role != 'super_admin')?'readonly':''?>><span style="color: blue;">(pixels)</span>&nbsp;&nbsp;&nbsp;
+                                    <span style="color: red;">Height: </span><input type="number" class="form-control-sm" style="color: #000;" name="main_logo_height" id="main_logo_height" value="<?= (isset($sessions_edit) && !empty($sessions_edit) ) ? $sessions_edit->main_logo_height : "" ?>" <?=($user_role != 'super_admin')?'readonly':''?>><span style="color: red;">(pixels)</span>
                                 </div>
 
                                         <div class="form-group">
@@ -506,7 +530,7 @@ $user_role = $this->session->userdata('role');
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('#sessions_description').summernote({
+        $('#sessions_description, #landing_page_text').summernote({
             height: 200,
             toolbar:
                 [

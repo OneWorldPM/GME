@@ -299,6 +299,7 @@ class M_sessions extends CI_Model {
 			'moderator_id' => $moderator_id,
             'session_title' => trim($post['session_title']),
             'sessions_description' => trim($post['sessions_description']),
+            'landing_page_text' => trim($post['landing_page_text']),
             'cco_envent_id' => trim($post['cco_envent_id']),
             'sessions_date' => date("Y-m-d", strtotime($post['sessions_date'])),
             'time_slot' => date("H:i", strtotime($post['time_slot'])),
@@ -317,6 +318,8 @@ class M_sessions extends CI_Model {
             "reg_date" => date("Y-m-d h:i"),
             'right_bar' => $session_right_bar,
             'sponsor_type' => $post['sponsor_type'],
+            'main_logo_width' => $post['main_logo_width'],
+            'main_logo_height' => $post['main_logo_width'],
             'sessions_logo_width' => $post['sessions_logo_width'],
             'sessions_logo_height' => $post['sessions_logo_height'],
             'theme_color' => $post['theme_color'],
@@ -333,6 +336,14 @@ class M_sessions extends CI_Model {
         if ($sessions_id > 0) {
 
 
+            if ($_FILES['main_logo']['name'] != "") {
+
+                $this->load->library('upload');
+                $this->upload->initialize($this->set_upload_main_logo_options());
+                $this->upload->do_upload('main_logo');
+                $file_upload_name = $this->upload->data();
+                $this->db->update('sessions', array('main_logo' => $file_upload_name['file_name']), array('sessions_id' => $sessions_id));
+            }
 
             if ($_FILES['sessions_logo']['name'] != "") {
 
@@ -437,6 +448,17 @@ class M_sessions extends CI_Model {
         return $config;
     }
 
+    function set_upload_main_logo_options() {
+        $this->load->helper('string');
+        $randname = random_string('numeric', '8');
+        $config = array();
+        $config['upload_path'] = './uploads/main_logos/';
+        $config['allowed_types'] = 'jpg|png';
+        $config['overwrite'] = FALSE;
+        $config['file_name'] = "logo_" . $randname;
+        return $config;
+    }
+
     function generateRandomString($length = 8) {
         $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
@@ -491,6 +513,7 @@ class M_sessions extends CI_Model {
             'session_title' => trim($post['session_title']),
             'cco_envent_id' => trim($post['cco_envent_id']),
             'sessions_description' => trim($post['sessions_description']),
+            'landing_page_text' => trim($post['landing_page_text']),
             'sessions_date' => date("Y-m-d", strtotime($post['sessions_date'])),
              'zoom_link' => trim($post['zoom_link']),
              'zoom_number' => trim($post['zoom_number']),
@@ -507,6 +530,8 @@ class M_sessions extends CI_Model {
             'url_link' => trim($post['url_link']),
             'link_text' => trim($post['link_text']),
             'sponsor_type' => $post['sponsor_type'],
+            'main_logo_width' => $post['main_logo_width'],
+            'main_logo_height' => $post['main_logo_width'],
             'sessions_logo_width' => $post['sessions_logo_width'],
             'sessions_logo_height' => $post['sessions_logo_height'],
             'right_bar' => $session_right_bar,
@@ -522,6 +547,21 @@ class M_sessions extends CI_Model {
         $this->db->update("sessions", $set, array("sessions_id" => $post['sessions_id']));
         $sessions_id = $post['sessions_id'];
         if ($sessions_id > 0) {
+
+            if ($_FILES['main_logo']['name'] != "") {
+
+                $this->db->select('main_logo');
+                $this->db->from('sessions');
+                $this->db->where("sessions_id", $post['sessions_id']);
+                $session = $this->db->get()->row();
+                unlink("./uploads/main_logos/".$session->main_logo);
+
+                $this->load->library('upload');
+                $this->upload->initialize($this->set_upload_main_logo_options());
+                $this->upload->do_upload('main_logo');
+                $file_upload_name = $this->upload->data();
+                $this->db->update('sessions', array('main_logo' => $file_upload_name['file_name']), array('sessions_id' => $sessions_id));
+            }
 
 
             if ($_FILES['sessions_logo']['name'] != "") {

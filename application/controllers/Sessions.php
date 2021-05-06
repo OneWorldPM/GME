@@ -76,6 +76,10 @@ class Sessions extends CI_Controller {
             die();
         }
 
+        $header_data["main_logo"] = $sesions->main_logo;
+        $header_data["main_logo_width"] = $sesions->main_logo_width;
+        $header_data["main_logo_height"] = $sesions->main_logo_height;
+
         $header_data["sesions_logo"] = $sesions->sessions_logo;
         $header_data["sesions_logo_width"] = $sesions->sessions_logo_width;
         $header_data["sesions_logo_height"] = $sesions->sessions_logo_height;

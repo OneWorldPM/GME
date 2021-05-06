@@ -330,21 +330,16 @@ else
                             $profile_data = $this->common->get_user_details($this->session->userdata('cid'));
                             ?>
 
-                            <?php if
-                            (
-                                    ($this->uri->segment(2) == 'attend' || $this->uri->segment(2) == 'view') &&
-                                    ($this->uri->segment(3) == 121 || $this->uri->segment(3) == 129) ||
-                                    ($this->uri->segment(2) == 'product_theaters')
-                            ): ?>
+                            <?php if(isset($main_logo) && $main_logo != ''): ?>
                                 <div id="logo" style="margin-right: 7px;">
-                                    <a href="#" class="logo" data-dark-logo="<?= base_url() ?>front_assets/images/logo_new.png" style="margin-top: 12px; cursor: auto">
-                                        <img src="<?= base_url() ?>front_assets/gme/Clinical_Care_Solutions_Logo.png" alt="CCS Logo">
+                                    <a href="#" class="logo" style="margin-top: 12px; cursor: auto">
+                                        <img src="<?= base_url() ?>uploads/main_logos/<?=$main_logo?>" alt="Main Logo" width="<?=$main_logo_width?>px" height="<?=$main_logo_height?>px">
                                     </a>
                                 </div>
                             <?php else: ?>
                                 <div id="logo" style="margin-right: 7px;">
-                                    <a href="#" class="logo" data-dark-logo="<?= base_url() ?>front_assets/images/logo_new.png" style="margin-top: 12px; cursor: auto">
-                                        <img src="<?= base_url() ?>front_assets/images/cco-gme-logo.png" alt="GME Logo">
+                                    <a href="#" class="logo" style="margin-top: 12px; cursor: auto">
+                                        <img src="<?= base_url() ?>front_assets/images/cco-gme-logo.png" alt="Main Logo">
                                     </a>
                                 </div>
                             <?php endif; ?>
@@ -470,14 +465,17 @@ else
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-claim-credit">
                                         <li><a href="<?=base_url().'claimCredit'?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
                                     </ul>
-                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-product-theaters">
-                                        <li><a href="<?=base_url().'sessions/product_theaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
+
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-home">
+                                        <li><a href="<?=base_url().'home'?>"class="hoverThemeColour">LOBBY</a></li>
                                     </ul>
+
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-sessions">
                                         <li><a href="<?=base_url().'sessions'?>"  class="hoverThemeColour">CME SESSIONS</a></li>
                                     </ul>
-                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-home">
-                                        <li><a href="<?=base_url().'home'?>"class="hoverThemeColour">LOBBY</a></li>
+
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-product-theaters">
+                                        <li><a href="<?=base_url().'sessions/product_theaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
                                     </ul>
                                 </nav>
                             </div>

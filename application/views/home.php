@@ -240,21 +240,25 @@
     </div>
     <div class="container container-fullscreen" id="home_first_section">
         <div class="circle-icons">
+
+            <div class="circle-icon">
+                <a class="icon-home" href="<?=base_url().'sessions/product_theaters'?>">
+                    <img src="<?= base_url() ?>front_assets/images/button_product-theaters-175.png?v=2" alt="welcome">
+                </a>
+            </div>
+
             <div class="circle-icon">
                 <a class="icon-home" href="<?= base_url() ?>sessions">
                     <img src="<?= base_url() ?>front_assets/images/button_sessions-175.png" alt="welcome">
                 </a>
             </div>
-            <div class="circle-icon">
-                <a class="icon-home" href="<?=base_url().'sessions/product_theaters'?>">
-                <img src="<?= base_url() ?>front_assets/images/button_product-theaters-175.png?v=2" alt="welcome">
-                </a>
-            </div>
+
             <div class="circle-icon">
                 <a class="icon-home" href="<?= base_url().'claimCredit'?>">
                     <img src="<?= base_url() ?>front_assets/images/button_claim-credit-175.png" alt="welcome">
                 </a>
             </div>
+
         </div>
     </div>
 </section>

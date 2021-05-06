@@ -146,6 +146,12 @@
                                     </div>
                                 <?php endif; ?>
 
+                                <?php if ($sessions->landing_page_text != NULL): ?>
+                                    <div class="col-md-12 m-t-40 text-center">
+                                        <?=$sessions->landing_page_text?>
+                                    </div>
+                                <?php endif; ?>
+
                                 <div class="col-md-12 m-t-40">
                                     <div class="col-md-4 col-md-offset-4" style="text-align: center; text-align: center; padding: 10px; background-color: #fff; border: 1px solid;">
                                         <p><i class="fa fa-info-circle" aria-hidden="true" style="font-size: 20px;"></i></p>
