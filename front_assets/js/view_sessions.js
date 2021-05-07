@@ -29,13 +29,18 @@ function fireSubsequentRedirection()
         {
             Swal.fire({
                 title: '',
-                text: subsequent_session_popup_text,
+                html: subsequent_session_popup_text,
                 icon: 'info',
                 showCancelButton: false,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#0fbd5b',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Join Product Theater',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: 'JOIN NOW',
+                cancelButtonText: 'Cancel',
+                customClass: {
+                    content: 'join-subsequent-text',
+                    actions: 'join-subsequent-btn',
+                    popup: 'join-subsequent-popup'
+                }
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire('Redirecting you to '+subsequent_session_2_name, '', 'success');
@@ -47,7 +52,7 @@ function fireSubsequentRedirection()
 
             setTimeout(()=>{
                 window.open(base_url+'sessions/attend/'+subsequent_session_1, "_self");
-            }, 60000 );
+            }, (30*60000) );
 
         }else{
             console.log("Subsequent sessions are not set.");
@@ -80,7 +85,7 @@ function fireSubsequentRedirection()
 
             setTimeout(()=>{
                 window.open(base_url+'home', "_self");
-            }, 60000 );
+            }, (30*60000) );
         }else{
             console.log("You won't be redirected to the next GME session automatically.");
         }
@@ -91,13 +96,17 @@ function fireSubsequentRedirection()
         {
             Swal.fire({
                 title: '',
-                text: subsequent_session_popup_text,
+                html: subsequent_session_popup_text,
                 icon: 'info',
                 showCancelButton: false,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#0fbd5b',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Join CME/CE Session',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: 'JOIN NOW',
+                cancelButtonText: 'Cancel',
+                customClass: {
+                    content: 'join-subsequent-text',
+                    actions: 'join-subsequent-btn',
+                }
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire('Redirecting you to '+subsequent_session_1_name, '', 'success');
@@ -113,7 +122,7 @@ function fireSubsequentRedirection()
 
         setTimeout(()=>{
             window.open(base_url+'home/', "_self");
-        } , 60000 );
+        } , (30*60000) );
     }
 
     return true;

@@ -492,7 +492,7 @@ if (isset($sessions)) {
     var subsequent_session_1_name = "<?=$sessions->subsequent_session_1_name?>";
     var subsequent_session_2 = "<?=($sessions->subsequent_session_2 && $sessions->subsequent_session_2 != null)?$sessions->subsequent_session_2:'null'?>";
     var subsequent_session_2_name = "<?=$sessions->subsequent_session_2_name?>";
-    var subsequent_session_popup_text = `<?=$sessions->subsequent_session_popup_text?>`;
+    var subsequent_session_popup_text = `<?=str_replace("`", "'", $sessions->subsequent_session_popup_text)?>`;
 </script>
 <?= getSocketScript()?>
 <script src="<?= base_url() ?>front_assets/js/custom-fullscreen.js"></script>

@@ -387,3 +387,20 @@ body{
     font-size: 15px !important;
 }
 
+.join-subsequent-btn{
+    order: 1;
+    margin-bottom: 25px;
+}
+
+.join-subsequent-text{
+    order: 2;
+    margin-bottom: 20px;
+}
+
+.join-subsequent-text p{
+    margin: unset;
+}
+
+.join-subsequent-popup{
+    width: 650px !important;
+}

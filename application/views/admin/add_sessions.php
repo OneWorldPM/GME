@@ -530,7 +530,7 @@ $user_role = $this->session->userdata('role');
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('#sessions_description, #landing_page_text').summernote({
+        $('#sessions_description, #landing_page_text, #subsequent_session_popup_text').summernote({
             height: 200,
             toolbar:
                 [
@@ -615,7 +615,7 @@ $user_role = $this->session->userdata('role');
             } else if (sum > 15) {
                 alertify.error("Maximum add 15 Presenter");
                 return false;
-            } else if ($('#attendee_view_links').is(':checked')) {
+            }else if ($('#attendee_view_links').is(':checked')) {
                 if ($('#link_text').val() == '') {
                     alertify.error("Claim Credit Link Empty");
                     return false;
@@ -704,11 +704,12 @@ $user_role = $this->session->userdata('role');
         });
 
 
-        $('#subsequent_session_popup_text').on('keypress', function (e) {
-            var ingnore_key_codes = [34, 39];
+        $('.note-editable').on('keypress', function (e) {
+            var ingnore_key_codes = [34];
+            //var ingnore_key_codes = [34, 39];
             if ($.inArray(e.which, ingnore_key_codes) >= 0) {
                 e.preventDefault();
-                alertify.error('No single quotes or double quotes allowed!');
+                alertify.error('No double quotes allowed!');
             }
         });
 
