@@ -76,9 +76,7 @@
     }
 
     .sections .section img{
-        font-size: 250px;
-        width: 1em;
-        height: 1.2em;
+        width: 180px;
     }
 
     .sections .left,.sections .right{
@@ -181,14 +179,17 @@
             top: 20px;
         }
         .circle-icons{
-            width: max-content;
+            width: 100%;
             margin-left: auto;
             margin-right: auto;
+            display: flex;
+            justify-content: center;
         }
 
         .circle-icons .circle-icon img{
             font-size: 100px;
             max-width: 100%;
+            height: 100%;
         }
 
     }
