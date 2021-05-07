@@ -470,13 +470,14 @@ else
                                         <li><a href="<?=base_url().'home'?>"class="hoverThemeColour">LOBBY</a></li>
                                     </ul>
 
+                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-product-theaters">
+                                        <li><a href="<?=base_url().'sessions/product_theaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
+                                    </ul>
+
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-sessions">
                                         <li><a href="<?=base_url().'sessions'?>"  class="hoverThemeColour">CME SESSIONS</a></li>
                                     </ul>
 
-                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-product-theaters">
-                                        <li><a href="<?=base_url().'sessions/product_theaters'?>"  class="hoverThemeColour">PRODUCT THEATERS</a></li>
-                                    </ul>
                                 </nav>
                             </div>
                         </div>

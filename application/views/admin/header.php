@@ -431,16 +431,7 @@ $user_name = ucfirst($this->session->userdata('uname'));
                         var config = JSON.parse(data);
                         extract(config);
 
-                        socket.emit("getSessionViewUsers", socket_app_name, function (resp) {
-                            if (resp) {
-                                var totalUsers = resp.users ? resp.users.length : 0;
-                                var sessionId = resp.sessionId;
-                                //$(".totalAttende" + sessionId + " b").html(totalUsers);
-                                $('#online-users-count').html(totalUsers);
-                            }
-                        });
-
-                        socket.on('activeUserListPerApp', function(data) {
+                        socket.on('OnlineListPerApp', function(data) {
                             if (data == null)
                                 return;
 
@@ -452,23 +443,10 @@ $user_name = ucfirst($this->session->userdata('uname'));
                             const mySet = new Set(result);
                             const uniqValuesArray = [...mySet];
 
-                            //$('#online-users-count').html(uniqValuesArray.length);
+                            $('#online-users-count').html(uniqValuesArray.length);
                         });
 
-                        socket.emit('getActiveUserListPerApp', socket_app_name);
-
-                        socket.on('userActiveChangeInApp', function() {
-                            socket.emit('getActiveUserListPerApp', socket_app_name);
-
-                            socket.emit("getSessionViewUsers", socket_app_name, function (resp) {
-                                if (resp) {
-                                    var totalUsers = resp.users ? resp.users.length : 0;
-                                    var sessionId = resp.sessionId;
-                                    //$(".totalAttende" + sessionId + " b").html(totalUsers);
-                                    $('#online-users-count').html(totalUsers);
-                                }
-                            });
-                        });
+                        socket.emit('getOnlineListPerApp', socket_app_name+"_online_users");
 
                     });
                 </script>

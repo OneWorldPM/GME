@@ -120,7 +120,9 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
 
             socket.on('serverStatus', function (data) {
                 socket.emit('addMeToActiveListPerApp', {'user_id':user_id, 'app': socket_app_name, 'room': socket_active_user_list});
-                socket.emit("ConnectSessioViewUsers", socket_app_name);
+
+                let onlineListAppName = socket_app_name+"_online_users";
+                socket.emit('addMeOnlineListPerApp', {'user_id':user_id, 'app': onlineListAppName});
             });
 
             $(window).on("blur focus", function(e) {
