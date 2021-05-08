@@ -23,6 +23,11 @@ function fireSubsequentRedirection()
         window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar", "_self");
     }
 
+    if (session_id == 138)
+    {
+        window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar", "_self");
+    }
+
     if (this_session_type == 1) // CME Session
     {
         if (subsequent_session_1 != 'null' && subsequent_session_2 != 'null') // Subsequent PT session is set
@@ -51,7 +56,7 @@ function fireSubsequentRedirection()
             })
 
             setTimeout(()=>{
-                window.open(base_url+'sessions/attend/'+subsequent_session_1, "_self");
+                window.open(base_url+'sessions/attend/'+subsequent_session_2, "_self");
             }, (30*60000) );
 
         }else{
@@ -61,33 +66,6 @@ function fireSubsequentRedirection()
                 console.log("Redirecting to "+subsequent_session_1);
                 window.open(base_url+'sessions/attend/'+subsequent_session_1, "_self");
             }
-        }
-
-        if (subsequent_session_1 != 'null' && subsequent_session_2 == 'null')
-        {
-            // Swal.fire({
-            //     title: '',
-            //     text: subsequent_session_popup_text,
-            //     icon: 'info',
-            //     showCancelButton: false,
-            //     confirmButtonColor: '#3085d6',
-            //     cancelButtonColor: '#d33',
-            //     confirmButtonText: 'Join CME/CE Session',
-            //     cancelButtonText: 'Cancel'
-            // }).then((result) => {
-            //     if (result.isConfirmed) {
-            //         Swal.fire('Redirecting you to '+subsequent_session_1_name, '', 'success');
-            //         window.open(base_url+'sessions/attend/'+subsequent_session_1, "_self");
-            //     }else{
-            //         window.open(base_url+'home/', "_self");
-            //     }
-            // })
-
-            setTimeout(()=>{
-                window.open(base_url+'home', "_self");
-            }, (30*60000) );
-        }else{
-            console.log("You won't be redirected to the next GME session automatically.");
         }
 
     }else // PT Session
@@ -122,7 +100,7 @@ function fireSubsequentRedirection()
 
         setTimeout(()=>{
             window.open(base_url+'home/', "_self");
-        } , (30*60000) );
+        } , (1*60000) );
     }
 
     return true;

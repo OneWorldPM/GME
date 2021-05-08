@@ -463,7 +463,7 @@ else
                                         <li><a href="mailto:info@gmeded.com?subject=GME Customer Service Request" target="_blank" class="hoverThemeColour">GME CUSTOMER SERVICE</a></li>
                                     </ul>
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-claim-credit">
-                                        <li><a href="<?=base_url().'claimCredit'?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
+                                        <li><a target="_blank" href="<?=base_url().'claimCredit'?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
                                     </ul>
 
                                     <ul class="main-menu nav navbar-nav navbar-right" id="nav-home">
