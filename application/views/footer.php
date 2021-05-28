@@ -6,6 +6,7 @@
                 <div class="row" style="padding-top: 10px; padding-bottom: 20px;">
                     <div class="col-sm-12">
                         <div style="color:#000000; font-size: 16px; font-weight: 800; " id="push_notification_message"></div>
+                        <div class="btn btn-success btn-sm form-control shadow-none"><a class="no-hover" href="" style="font-size: 16px; font-weight: 800; pointer-events: none; color: white" id="push_notification_redirect"></a></div>
                     </div>
                 </div>
             </div>
@@ -51,7 +52,7 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
     </script>
     <script src="https://athulak.com/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="<?=base_url()?>front_assets/support_chat/style.css?v=2">
-    <script src="<?= base_url() ?>front_assets/support_chat/live-support-chat.js?v=1"></script>
+    <script src="<?= base_url() ?>front_assets/support_chat/live-support-chat.js?v=2"></script>
     <div class="live-support-chat-popup" id="liveSupportChatForm">
         <span class="live-support-chat-title"><i class="far fa-life-ring"></i> Live Technical Support</span>
         <div class="live-support-chat-body">
@@ -173,6 +174,7 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
             dataType: "json",
             success: function (data) {
                 if (data.status == "success") {
+                    // console.log(data.result);
                     if (push_notification_id == "0") {
                         $("#push_notification_id").val(data.result.push_notification_id);
                     }
@@ -181,6 +183,7 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
                             $("#push_notification_id").val(data.result.push_notification_id);
                             $('#push_notification').modal('show');
                             $("#push_notification_message").text(data.result.message);
+                            (data.result.session_redirect == null)?$('#push_notification_redirect').hide():(data.result.redirect_name !== null )? $('#push_notification_redirect').show().text(data.result.redirect_name).attr('href', "<?=base_url().'sessions/view/'?>"+data.result.session_redirect):$('#push_notification_redirect').text('Session '+data.result.session_redirect);
                         }
                     }
 
@@ -192,6 +195,7 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
                                 $("#push_notification_id").val(data.result.push_notification_id);
                                 $('#push_notification').modal('show');
                                 $("#push_notification_message").text(data.result.message);
+                                (data.result.session_redirect == null)?$('#push_notification_redirect').hide():(data.result.redirect_name !== null )? $('#push_notification_redirect').show().text(data.result.redirect_name).attr('href', "<?=base_url().'sessions/view/'?>"+data.result.session_redirect):$('#push_notification_redirect').text('Session '+data.result.session_redirect);
                             }}
                     }
                 } else {

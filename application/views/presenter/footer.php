@@ -8,6 +8,7 @@
                 <div class="row" style="padding-top: 10px; padding-bottom: 20px;">
                     <div class="col-sm-12">
                         <div style="color:#000000; font-size: 16px; font-weight: 800; " id="push_notification_message"></div>
+                        <a href="" style="color:#2B72D5; font-size: 16px; font-weight: 800; " id="push_notification_link"></a>
                     </div>
                 </div>
             </div>
@@ -179,6 +180,7 @@
                             $("#push_notification_id").val(data.result.push_notification_id);
                             $('#push_notification').modal('show');
                             $("#push_notification_message").text(data.result.message);
+                            (data.result.session_redirect == null)?$('#push_notification_redirect').text(''):(data.result.redirect_name !== null )? $('#push_notification_redirect').text(data.result.redirect_name).attr('href', "<?=base_url().'sessions/view/'?>"+data.result.session_redirect):$('#push_notification_redirect').text('Session '+data.result.session_redirect);
                             }
                         }
 
@@ -190,6 +192,7 @@
                                 $("#push_notification_id").val(data.result.push_notification_id);
                                 $('#push_notification').modal('show');
                                 $("#push_notification_message").text(data.result.message);
+                                (data.result.session_redirect == null)?$('#push_notification_redirect').text(''):(data.result.redirect_name !== null )? $('#push_notification_redirect').text(data.result.redirect_name).attr('href', "<?=base_url().'sessions/view/'?>"+data.result.session_redirect):$('#push_notification_redirect').text('Session '+data.result.session_redirect);
                             }
                         }
                         }

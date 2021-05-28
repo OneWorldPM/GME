@@ -33,11 +33,14 @@ class M_push_notifications extends CI_Model {
 
         $visibility = $post['visibility'];
         $visibility = ($visibility == 'null')?null:$visibility;
+        $session_redirect = ($post['session_redirect'] == 'null')?null : $post['session_redirect'];
         $data = array(
             'message' => $post['message'],
             'session_id' => $visibility,
             'notification_date' => date("Y-m-d h:i:s"),
             'receiver'=>$receiver,
+            'redirect_name'=>($post['redirect_name'])?$post['redirect_name']:null,
+            'session_redirect' => $session_redirect
         );
         $this->db->insert('push_notification_admin', $data);
         $pid = $this->db->insert_id();

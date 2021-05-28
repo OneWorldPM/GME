@@ -45,11 +45,29 @@ if (isset($_GET['testing']))
                                             <label class="text-large">Message :</label>
                                             <textarea name="message" id="message" rows="3" class="form-control" placeholder="Enter Message..." style="color: #5b5b60"></textarea>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="text-large">Redirect Name: <i class="badge badge-success">new</i><small class="text-danger"> If this is unset Session Number will be visible in notification</small></label>
+                                            <input type="text" name="redirect_name" id="redirect_name" class="form-control" placeholder="TESTING SESSION ..." style="color: #5b5b60">
+                                        </div>
+
+                                        <label for="session_redirect" class="text-large">Session Redirect :</label>
+                                        <select class="form-control" id="visibility" name="session_redirect">
+                                            <option value="null"> Session </option>
+                                            <?php
+                                            foreach ($sessions as $session)
+                                            { ?>
+                                                <option value="<?= $session['sessions_id']?>">Session <?=$session['sessions_id']?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+
                                         <h5 class="over-title margin-bottom-15">
                                             <button type="button" id="save_btn" name="save_btn" class="btn btn-green add-row">
                                                 Save
                                             </button>
                                         </h5>
+
                                     </div>
                                 </div>
                             </div>
@@ -72,6 +90,8 @@ if (isset($_GET['testing']))
                                                 <th>Date</th>
                                                 <th>Visibility</th>
                                                 <th>Message</th>
+                                                <th>Redirect Name</th>
+                                                <th>Redirect Session</th>
                                                 <th>Viewer</th>
                                                 <th>Action</th>                          
                                             </tr>
@@ -85,6 +105,8 @@ if (isset($_GET['testing']))
                                                         <td><?= date("Y-m-d", strtotime($val->notification_date)) ?></td>
                                                         <td><?= ($val->session_id == null)?'Whole Site':'Session '.$val->session_id ?></td>
                                                         <td><?= $val->message ?></td>
+                                                        <td><?= $val->redirect_name ?></td>
+                                                        <td><?= $val->session_redirect ?></td>
 <!--                                                        <td>
                                                             <?php if ($val->status == 1) { ?>
                                                                 <label class="label label-primary">Sent</label>
