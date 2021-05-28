@@ -3,10 +3,11 @@
 <link href="<?= base_url() ?>front_assets/presenter/view_session.css?v=15" rel="stylesheet">
 
 <?php
+
 if (isset($_GET['testing']) && $_GET['testing'] == 1) {
     echo date('yy-m-d h:m:i');
     echo "<pre>";
-    print_r($sessions);
+
     exit("</pre>");
 }
 
@@ -29,7 +30,7 @@ if(isset($sessions->moderator) && !empty($sessions->moderator)){
 else{
     $c_name="";
 }
-
+$sessions_type_id = (isset($sessions->sessions_type_id) && !empty($sessions->sessions_type_id))?$sessions->sessions_type_id: '';
 ?>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@9.17.0/dist/sweetalert2.all.min.js"></script>
 
@@ -215,6 +216,8 @@ else{
     var session_start_datetime = "<?= date('M d, Y', strtotime($sessions->sessions_date)) . ' ' . $sessions->time_slot . ' UTC-4' ?>";
     var session_end_datetime = "<?=date('M d, Y', strtotime($sessions->sessions_date)) . ' ' . $sessions->end_time . ' UTC-4' ?>";
     var cp_id = "<?= $this->session->userdata('pid')?>";
+    var session_type_id = "<?= $sessions_type_id ?>";
+
 </script>
 <script>
 
@@ -228,7 +231,7 @@ else{
     });
 </script>
 <!-- Please add scripts only in this JS file, NOT directly on this HTML file -->
-<script src="<?= base_url() ?>front_assets/presenter/view_session.js?v=18"></script>
+<script src="<?= base_url() ?>front_assets/presenter/view_session.js?v=19"></script>
 
 <script>
     window.onscroll = function() {myFunction()};

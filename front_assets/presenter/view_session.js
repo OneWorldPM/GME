@@ -8,6 +8,13 @@ socket.emit("getSessionViewUsers", app_name, function(resp) {
     }
 })
 
+$(function(){
+    console.log(session_type_id);
+    if(session_type_id == '16'){
+        $(".viewUser").hide();
+    }
+});
+
 $(document).ready(function() {
     var $iframe = $("#embed_html_code_section iframe");
 
