@@ -104,7 +104,8 @@ if (isset($_GET['testing']))
                                                     ?>
                                                     <tr>
                                                         <td><?= date("Y-m-d", strtotime($val->notification_date)) ?></td>
-                                                        <td><?= ($val->session_id == null)?'Whole Site':'Session '.$val->session_id ?></td>
+                                                        <td><?= ($val->session_id == null)?'Whole Site':(($val->session_id == 'home')? 'Lobby Only' : 'Session'.$val->session_id)?>
+                                                        </td>
                                                         <td><?= $val->message ?></td>
                                                         <td><?= $val->redirect_name ?></td>
                                                         <td><?= $val->session_redirect ?></td>
