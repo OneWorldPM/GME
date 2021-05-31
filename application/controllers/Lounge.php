@@ -12,7 +12,7 @@ class Lounge extends CI_Controller
         if ($login_type != 'user') {
             redirect('login');
         }
-		 if ($this->session->userdata('cid') != "100028") {
+		 if ($this->session->userdata('cid') != "100028"  && ($this->session->userdata('cid') != "100029")) {
         $get_user_token_details = $this->common->get_user_details($this->session->userdata('cid'));
         if($this->session->userdata('token') != $get_user_token_details->token){
             redirect('login');
