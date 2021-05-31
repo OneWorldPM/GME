@@ -175,6 +175,7 @@
                         if (push_notification_id == "0") {
                             $("#push_notification_id").val(data.result.push_notification_id);
                         }
+
                         if (push_notification_id != data.result.push_notification_id && data.result.session_id == null) {
                             if (data.result.receiver=="presenter" || data.result.receiver=="both" || data.result.receiver==null){
                             $("#push_notification_id").val(data.result.push_notification_id);

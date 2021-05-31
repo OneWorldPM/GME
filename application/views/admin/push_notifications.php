@@ -24,6 +24,7 @@ if (isset($_GET['testing']))
                                             <label for="visibility">Visibility :</label>
                                             <select class="form-control" id="visibility" name="visibility">
                                                 <option value="null">Whole Site</option>
+                                                <option value="home">Lobby Only</option>
                                                 <?php
                                                 foreach ($sessions as $session)
                                                 { ?>

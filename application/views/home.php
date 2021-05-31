@@ -9,11 +9,6 @@
         color:#FFFFFF !important;
     }
 
-    a:hover {
-        background-color: #FFFFFF !important;
-        color:#FFFFFF !important;
-    }
-
     @media (min-width: 768px) and (max-width: 1000px)  {
         #home_first_section{
             height: 550px;
@@ -266,6 +261,8 @@
 </section>
 
 <script type="text/javascript">
+    var lobby = true;
+
     $(document).ready(function () {
         var page_link = $(location).attr('href');
         var user_id = <?= $this->session->userdata("cid") ?>;
@@ -291,5 +288,7 @@
         if(msgerr){
             alertify.error(msgerr);
         }
+
     });
 </script>
+

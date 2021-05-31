@@ -5,8 +5,8 @@
             <div class="modal-body">
                 <div class="row" style="padding-top: 10px; padding-bottom: 20px;">
                     <div class="col-sm-12">
-                        <div style="color:#000000; font-size: 16px; font-weight: 800; " id="push_notification_message"></div>
-                        <div class="btn btn-success btn-sm form-control shadow-none"><a class="no-hover" href="" style="font-size: 16px; font-weight: 800; pointer-events: none; color: white" id="push_notification_redirect"></a></div>
+                        <div style="color:#000000; font-size: 16px; font-weight: 800; " id="push_notification_message"></div><br>
+                        <a class="btn btn-success btn-sm form-control shadow-none" href="" style="font-size: 16px; font-weight: 800;  color: white" id="push_notification_redirect"></a>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@9.17.0/dist/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
-<script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raven.js/raven-js@3.26.4/raven.min.js" crossorigin="anonymous"></script>
 
 <script>
 $(function() {
@@ -166,18 +166,31 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
 
     function push_notification_admin()
     {
+        var lobby_url= "<?= base_url().'home'?>";
         var push_notification_id = $("#push_notification_id").val();
-
+        console.log(window.location.href);
+        console.log(lobby_url);
         $.ajax({
             url: "<?= base_url() ?>push_notification/get_push_notification_admin",
             type: "post",
             dataType: "json",
             success: function (data) {
                 if (data.status == "success") {
-                    // console.log(data.result);
+                    console.log(data.result);
+
                     if (push_notification_id == "0") {
                         $("#push_notification_id").val(data.result.push_notification_id);
                     }
+
+                    if(data.result.session_id== 'home' && window.location.href == lobby_url){
+                            if (data.result.receiver=="attendee" || data.result.receiver=="both" || data.result.receiver==null){
+                                $("#push_notification_id").val(data.result.push_notification_id);
+                                $('#push_notification').modal('show');
+                                $("#push_notification_message").text(data.result.message);
+                                (data.result.session_redirect == null)?$('#push_notification_redirect').hide():(data.result.redirect_name !== null )? $('#push_notification_redirect').show().text(data.result.redirect_name).attr('href', "<?=base_url().'sessions/view/'?>"+data.result.session_redirect):$('#push_notification_redirect').text('Session '+data.result.session_redirect);
+                            }
+                    }
+
                     if (push_notification_id != data.result.push_notification_id && data.result.session_id == null) {
                         if (data.result.receiver=="attendee" || data.result.receiver=="both" || data.result.receiver==null){
                             $("#push_notification_id").val(data.result.push_notification_id);
@@ -196,7 +209,8 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
                                 $('#push_notification').modal('show');
                                 $("#push_notification_message").text(data.result.message);
                                 (data.result.session_redirect == null)?$('#push_notification_redirect').hide():(data.result.redirect_name !== null )? $('#push_notification_redirect').show().text(data.result.redirect_name).attr('href', "<?=base_url().'sessions/view/'?>"+data.result.session_redirect):$('#push_notification_redirect').text('Session '+data.result.session_redirect);
-                            }}
+                            }
+                        }
                     }
                 } else {
                     $('#push_notification').modal('hide');
