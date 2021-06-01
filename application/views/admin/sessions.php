@@ -1,5 +1,7 @@
 <?php
 $user_role = $this->session->userdata('role');
+//echo '<pre>';
+//print_r($sessions);exit;
 ?>
 
 <div class="main-content">
@@ -47,8 +49,10 @@ $user_role = $this->session->userdata('role');
                                         <select name="session_type" id="session_type" class="form-control">
                                             <option value="">Select</option>
                                             <?php
+
                                             if (!empty($session_types)) {
                                                 foreach ($session_types as $type) {
+
                                                     if ($type->sessions_type != '') {
                                                         ?>
                                                         <option value="<?= $type->sessions_type_id ?>"><?= $type->sessions_type ?></option>
@@ -246,15 +250,15 @@ $user_role = $this->session->userdata('role');
                                                                 foreach ($val->check_send_json_exist as $status) {
                                                                     if ($status->send_json_status==1) {
                                                                         ?>
-                                                                        <a data-session-id="<?= $val->sessions_id ?>"  data-cco_event_id="<?=$val->cco_envent_id?>"  class="btn btn-purple btn-sm send-json" style="margin-bottom: 5px;">JSON Sent</a>
+                                                                        <a data-session-id="<?= $val->sessions_id ?>"  data-cco_event_id="<?=$val->cco_envent_id?>" data-sessions_type_id = "<?=$val->sessions_type_id?>" class="btn btn-purple btn-sm send-json" style="margin-bottom: 5px;">JSON Sent</a>
                                                                         <?php
                                                                     } else {
                                                                         ?>
-                                                                    <a data-session-id="<?= $val->sessions_id ?>" data-cco_event_id="<?=$val->cco_envent_id?>" id="btn-send-json" href="<?= base_url() ?>admin/sessions/send_json/<?= $val->sessions_id ?>" class="btn btn-success btn-sm" style="margin-bottom: 5px;">Send JSON</a><?php
+                                                                    <a data-session-id="<?= $val->sessions_id ?>" data-cco_event_id="<?=$val->cco_envent_id?>" data-sessions_type_id = "<?=$val->sessions_type_id?>" id="btn-send-json"  class="btn btn-success btn-sm" style="margin-bottom: 5px;">Send JSON</a><?php
                                                                     }
                                                                 }
                                                          }?>
-                                                         <a href="<?= base_url() ?>admin/sessions/view_json/<?= $val->sessions_id ?>" class="btn btn-purple btn-sm" style="margin-bottom: 5px;">View JSON</a>
+                                                         <a href="<?= base_url() ?>admin/sessions/view_json/<?= $val->sessions_id.'/'.$val->sessions_type_id ?>" class="btn btn-purple btn-sm" style="margin-bottom: 5px;">View JSON</a>
                                                         <?php if ($user_role == 'super_admin') { ?>
                                                             <button href-url="<?= base_url() ?>admin/sessions/reset_sessions/<?= $val->sessions_id ?>" session-name="<?= $val->session_title ?>" style="margin-bottom: 5px;"  class="clear-json-btn btn btn-danger btn-sm">Clear JSON</button>
                                                         <?php } ?>
@@ -398,43 +402,48 @@ switch ($msg) {
     });
 
     // This will confirm to send JSON if already sent
-$('#sessions_table').on('click','.send-json', function () {
+    $('#sessions_table').on('click','.send-json', function () {
 
-    let sesionId = $(this).data("session-id");
-    let href = $(this).attr('href-url');
-    var cco_event_id = $(this).attr('data-cco_event_id');
+        let sesionId = $(this).data("session-id");
+        let href = $(this).attr('href-url');
+        var cco_event_id = $(this).attr('data-cco_event_id');
+        var sessions_type_id = $(this).attr('data-sessions_type_id');
 
-    if(cco_event_id=='' ){
-        alertify.error('JSON cannot be sent until Event ID is added. ');
-        return  false;
-    }
+        if(cco_event_id=='' ){
+            alertify.error('JSON cannot be sent until Event ID is added. ');
+            return  false;
+        }
 
-Swal.fire({
-    title: 'Are you sure?',
-    text: "This will resend the Json in this session!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, Resend it!'
-}).then((result) => {
-    if (result.isConfirmed) {
-        window.location.href = "<?=base_url()?>admin/sessions/send_json/"+sesionId;
-    }
-})
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This will resend the Json in this session!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Resend it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "<?=base_url()?>admin/sessions/send_json/"+sesionId+'/'+sessions_type_id;
+        }
+    })
 
-});
+    });
 
 //
-    $('#sessions_table').on('click','#btn-send-json',function(e){
-        e.preventDefault();
+    $('#sessions_table').on('click','#btn-send-json',function(){
+
+        let sesionId = $(this).data("session-id");
         var cco_event_id = $(this).attr('data-cco_event_id');
+        var sessions_type_id = $(this).attr('data-sessions_type_id');
+
+        console.log(sessions_type_id);
 
         if(cco_event_id=='' ){
             alertify.error('JSON cannot be sent until Event ID is added.');
             return  false;
         }else{
-            window.location = $(this).attr('href');
+            window.location.href = "<?=base_url()?>admin/sessions/send_json/"+sesionId+'/'+sessions_type_id;
         }
     });
 

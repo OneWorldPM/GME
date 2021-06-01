@@ -509,13 +509,17 @@ class Sessions extends CI_Controller {
         }
     }
 
-    function send_json($sessions_id) {
-        if ($sessions_id != "") {
+    function send_json($sessions_id, $sessions_type_id='') {
+        if($sessions_type_id == "16"){
+            $result = $this->msessions->send_json_ccs($sessions_id);
+        }else{
             $result = $this->msessions->send_json($sessions_id);
+        }
+
+        if ($sessions_id != "") {
             if ($result) {
                 $this->msessions->update_json_status($sessions_id);
                 header('location:' . base_url() . 'admin/sessions?msg=JS');
-                
             } else {
                 header('location:' . base_url() . 'admin/sessions?msg=JE');
             }
@@ -524,9 +528,14 @@ class Sessions extends CI_Controller {
         }
     }
     
-     function view_json($sessions_id) {
+     function view_json($sessions_id, $sessions_type_id = '') {
+
         if ($sessions_id != "") {
-            $result = $this->msessions->view_json($sessions_id);
+            if($sessions_type_id == '16'){
+                $result = $this->msessions->view_json_ccs($sessions_id);
+            }else{
+                $result = $this->msessions->view_json($sessions_id);
+            }
         } else {
             header('location:' . base_url() . 'admin/sessions?msg=E');
         }

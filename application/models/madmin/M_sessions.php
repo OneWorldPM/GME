@@ -1543,6 +1543,516 @@ class M_sessions extends CI_Model {
         }
     }
 
+    function send_json_ccs($sessions_id) {
+        $this->db->select('*');
+        $this->db->from('sessions');
+        $this->db->where("sessions_id", $sessions_id);
+        $sessions = $this->db->get();
+        if ($sessions->num_rows() > 0) {
+            $result_sessions = $sessions->row();
+            $this->db->select('*');
+            $this->db->from('login_sessions_history v');
+            $this->db->join('customer_master c', 'c.cust_id=v.cust_id');
+            $this->db->where("v.sessions_id", $sessions_id);
+            $sessions_history = $this->db->get();
+            $sessions_history_login = array();
+            if ($sessions_history->num_rows() > 0) {
+                foreach ($sessions_history->result() as $val) {
+                    $start_date_time = strtotime($val->start_date_time);
+                    $end_date_time = strtotime($val->end_date_time);
+                    if ($end_date_time != "") {
+                        if ($end_date_time >= $start_date_time) {
+                            $total_time = $end_date_time - $start_date_time;
+                        } else {
+                            $total_time = $start_date_time - $end_date_time;
+                        }
+                    } else {
+                        $end_date_time = 0;
+                        $total_time = 0;
+                    }
+                    $private_notes = array();
+                    $this->db->select('note');
+                    $this->db->from('sessions_cust_briefcase');
+                    $this->db->where(array("cust_id" => $val->cust_id, "sessions_id"=>$sessions_id));
+                    $sessions_cust_briefcase = $this->db->get();
+                    if ($sessions_cust_briefcase->num_rows() > 0) {
+                        foreach ($sessions_cust_briefcase->result() as $notes_row)
+                            $private_notes[] = $notes_row->note;
+                        //$private_notes = $sessions_cust_briefcase->row()->note;
+                    }
+                    $sessions_history_login[] = array(
+                        'uuid' => $val->cust_id,
+                        'access' => 50,
+                        'created_time' => $start_date_time,
+                        'last_connected' => $end_date_time,
+                        'total_time' => $total_time,
+                        //'total_time' => $this->getTimeSpentOnSession($sessions_id, $val->cust_id),
+                        'meta' => array("notes" => $private_notes, "personal_slide_notes" => array()),
+                        'alertness' => array("checks_returned" => "", "understood" => ""),
+                        'browser_sessions' => array("0" => array("uuid" => $val->cust_id, "launched_time" => $start_date_time, "last_connected" => $end_date_time, "user_agent" => $val->operating_system . ' - ' . $val->computer_type)),
+                        'identity' => array("uuid" => $val->cust_id, 'identifier' => $val->identifier_id, 'name' => $val->first_name . ' ' . $val->last_name, 'email' => $val->email, 'profile_org_name' => $val->company_name, 'profile_org_title' => $val->company_name, 'profile_org_website' => "", 'profile_bio' => $val->topic, 'profile_twitter' => $val->twitter_id, 'profile_linkedin' => "", 'profile_country' => $val->country, 'profile_picture_url' => "", 'profile_last_updated' => ""),
+                        'state_changes' => array("0" => array("timestamp" => 1592865240, "state" => 0))
+                    );
+                }
+            }
+
+            $this->db->select('*');
+            $this->db->from('sessions_poll_question s');
+            $this->db->join('poll_type p', 's.poll_type_id=p.poll_type_id');
+            $this->db->where("s.sessions_id", $sessions_id);
+            $sessions_poll_question = $this->db->get();
+            $polls = array();
+
+            if ($sessions_poll_question->num_rows() > 0) {
+                $presurvey = 0;
+                $poll = 0;
+                $assessment = 0;
+                foreach ($sessions_poll_question->result() as $sessions_poll_question) {
+                    $options = array();
+                    $this->db->select('*');
+                    $this->db->from('poll_question_option');
+                    $this->db->where("sessions_poll_question_id", $sessions_poll_question->sessions_poll_question_id);
+                    $poll_question_option = $this->db->get();
+                    if ($poll_question_option->num_rows() > 0) {
+                        foreach ($poll_question_option->result() as $val) {
+                            $votes = array();
+                            $this->db->select('*');
+                            $this->db->from('tbl_poll_voting');
+                            $this->db->where("poll_question_option_id", $val->poll_question_option_id);
+                            $tbl_poll_voting = $this->db->get();
+                            if ($tbl_poll_voting->num_rows() > 0) {
+                                foreach ($tbl_poll_voting->result() as $tbl_poll_voting) {
+                                    $votes[] = (int) $tbl_poll_voting->cust_id;
+                                }
+                            }
+                            $options[] = array(
+                                'option_id' => (int) $val->poll_question_option_id,
+                                'text' => $val->option,
+                                'total_votes' => $val->total_vot,
+                                'votes' => $votes
+                            );
+
+                            $total_votes = 0;
+                            $this->db->select('*');
+                            $this->db->from('tbl_poll_voting');
+                            $this->db->where("sessions_poll_question_id", $val->sessions_poll_question_id);
+                            $tbl_poll_voting_2 = $this->db->get();
+                            if ($tbl_poll_voting_2->num_rows() > 0) {
+                                $total_votes = $tbl_poll_voting_2->num_rows();
+                            }
+                        }
+                    }
+                    if ($sessions_poll_question->poll_type_id == 1) {
+                        $presurvey = $presurvey + 1;
+                        $polls[] = array(
+                            'uuid' => '',
+                            'status' => 4000,
+                            'external_reference' => "",
+                            'poll_id' => (int) $sessions_poll_question->sessions_poll_question_id,
+                            'text' => $sessions_poll_question->question,
+                            'options' => $options,
+                            'total_votes' => $total_votes,
+                            'response_type' => 0,
+                            'text_responses' => array()
+                        );
+                    } else if ($sessions_poll_question->poll_type_id == 2) {
+                        $poll = $poll + 1;
+                        $polls[] = array(
+                            'uuid' => '',
+                            'text' => $sessions_poll_question->question,
+                            'status' => 4000,
+                            'external_reference' => "",
+                            'poll_id' => (int) $sessions_poll_question->sessions_poll_question_id,
+                            'options' => $options,
+                            'total_votes' => $total_votes,
+                            'response_type' => 0,
+                            'text_responses' => array()
+                        );
+                    } else if ($sessions_poll_question->poll_type_id == 3) {
+                        $assessment = $assessment + 1;
+                        $polls[] = array(
+                            'uuid' => '',
+                            'status' => 4000,
+                            'external_reference' => "",
+                            'poll_id' => (int) $sessions_poll_question->sessions_poll_question_id,
+                            'text' => $sessions_poll_question->question,
+                            'options' => $options,
+                            'total_votes' => $total_votes,
+                            'response_type' => 0,
+                            'text_responses' => array()
+                        );
+                    }
+                }
+            }
+
+
+            $this->db->select('*');
+            $this->db->from('sessions_cust_question');
+            $this->db->where("sessions_id", $sessions_id);
+            $sessions_cust_question = $this->db->get();
+            $questions = array();
+            if ($sessions_cust_question->num_rows() > 0) {
+                foreach ($sessions_cust_question->result() as $key => $val) {
+                    $questions[] = array(
+                        'uuid'=>$val->cust_id,
+                        'index' => (int) $key,
+                        'login' => (int) $val->cust_id,
+                        'body' => $val->question,
+                        'timestamp' => strtotime($val->reg_question_date),
+                        'upvotes'=>array()
+//                        'question' => $val->question,
+//                        'reply_login_id' => ($val->answer_by_id != "") ? $val->answer_by_id : "",
+//                        'reply' => ($val->answer != "") ? $val->answer : ""
+                    );
+                }
+            }
+            $charting[] = array(
+                'online' => 0,
+                'timestamp' => 0,
+                'total_logins' => 0
+            );
+
+            $this->db->select('*');
+            $this->db->from('sessions_group_chat_msg');
+            $this->db->where("sessions_id", $sessions_id);
+            $sessions_group_chat_msg = $this->db->get();
+            $messages = array();
+            if ($sessions_group_chat_msg->num_rows() > 0) {
+                foreach ($sessions_group_chat_msg->result() as $key => $val) {
+                    $messages[] = array(
+                        'uuid' => $val->user_id,
+                        'login' => $val->user_id,
+                        'timestamp' => strtotime($val->message_date),
+                        'message' => $val->message,
+                        'status' => 0,
+                        'is_positive' => FALSE,
+                        'deleted_reason' => 0
+                    );
+                }
+            }
+
+            $this->db->select('*');
+            $this->db->from('session_resource');
+            $this->db->where("sessions_id", $sessions_id);
+            $session_resource = $this->db->get();
+            $files = array();
+            $hyperlinks = array();
+            if ($session_resource->num_rows() > 0) {
+                foreach ($session_resource->result() as $key => $val) {
+                    $files[] = array(
+                        'uuid' => "",
+                        'name' => $val->upload_published_name,
+                        'about' => "",
+                        'size' => 1000,
+                        'clicks' =>array(array('login'=>"",'player_timestamp'=>"",'eos_timestamp'=>""))
+                    );
+                    $hyperlinks[] = array(
+                        'uuid' => "",
+                        'name' => $val->link_published_name,
+                        'url' => $val->resource_link,
+                        'clicks' =>array(array('login'=>"",'player_timestamp'=>"",'eos_timestamp'=>""))
+                    );
+                }
+            }
+
+            $create_array = array(
+                'actual_end_time' => strtotime($result_sessions->sessions_date . ' ' . $result_sessions->end_time),
+                'cssid' => $result_sessions->cco_envent_id,
+                'end_time' => strtotime($result_sessions->sessions_date . ' ' . $result_sessions->end_time),
+                'name' => $result_sessions->session_title,
+                'reference' => $result_sessions->sessions_id,
+                'session_id' => (int) $result_sessions->sessions_id,
+                'start_time' => strtotime($result_sessions->sessions_date . ' ' . $result_sessions->time_slot),
+                'logins' => $sessions_history_login,
+                'alertness' => array('count' => 0, 'checks' => array(), 'template' => array('alertness_template_id' => 1, 'name' => "", 'feature_name' => "", 'briefing_preface' => "", 'briefing_text' => "", 'briefing_accept_button' => "", 'briefing_optout_enabled' => "", 'prompt_title' => "", 'prompt_text' => "", 'prompt_audio_file' => "", 'prompt_duration' => "", 'show_failure_notifications' => "", 'aai_variance' => "", 'aai_starting_boundary' => "", 'aai_ending_boundary' => "", 'aai_setup_delay' => "")),
+                'chat' => array('enabled' => true,'messages' => $messages),
+                'hostschat' => array('messages' => $messages),
+                'jpc' => array('conversations' => array()),
+                'presentation' => array('decks' => array(array("uuid"=>"","name"=>"","thumbnail_url"=>'',"slides"=>array("image_url"=>"","index"=>"","notes"=>'','title'=>"","thumbnail_url"=>"","uuid"=>""))), 'slide_events' => array(array("slide_uuid"=>"","timestamp"=>""))),
+                'polling' => array("enabled" => true, "polls" => $polls),
+                'questions' => array("enabled"=>true,'submitted'=>$questions),
+                'resources'=>array("files"=>$files,'hyperlinks'=>$hyperlinks),
+                'charting' => $charting
+            );
+
+            $json_array = array("data" => json_encode($create_array), "session_reference" => (int) $result_sessions->sessions_id, "session_id" => (int) $result_sessions->sessions_id, "source" => "gravity");
+
+            $data_to_post = "data=" . json_encode($create_array) . "&session_reference=" . (int) $result_sessions->sessions_id . "&session_id=" . (int) $result_sessions->sessions_id . "&source=gravity"; //if http_build_query causes any problem with JSON data, send this parameter directly in post.
+
+            $url = "https://events.clinical-care.org/digitell/digitell-session-data-v2.php";
+            $headers = array(
+                'Content-Type:application/json',
+                'Accept: application/json'
+            );
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+            //curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($json_array));
+            $result = curl_exec($ch);
+            curl_close($ch);
+            $result = json_decode($result);
+            echo "<pre>";
+            print_r($result);
+            // die;
+            if ($result == 1) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } else {
+            return FALSE;
+        }
+    }
+
+    function view_json_ccs($sessions_id) {
+        $this->db->select('*');
+        $this->db->from('sessions');
+        $this->db->where("sessions_id", $sessions_id);
+        $sessions = $this->db->get();
+        if ($sessions->num_rows() > 0) {
+            $result_sessions = $sessions->row();
+            $this->db->select('*');
+            $this->db->from('login_sessions_history v');
+            $this->db->join('customer_master c', 'c.cust_id=v.cust_id');
+            $this->db->where("v.sessions_id", $sessions_id);
+            $sessions_history = $this->db->get();
+            $sessions_history_login = array();
+            if ($sessions_history->num_rows() > 0) {
+                foreach ($sessions_history->result() as $val) {
+                    $start_date_time = strtotime($val->start_date_time);
+                    $end_date_time = strtotime($val->end_date_time);
+                    if ($end_date_time != "") {
+                        if ($end_date_time >= $start_date_time) {
+                            $total_time = $end_date_time - $start_date_time;
+                        } else {
+                            $total_time = $start_date_time - $end_date_time;
+                        }
+                    } else {
+                        $end_date_time = 0;
+                        $total_time = 0;
+                    }
+
+                    $private_notes = array();
+                    $this->db->select('*');
+                    $this->db->from('sessions_cust_briefcase');
+                    $this->db->where(array("cust_id" => $val->cust_id, "sessions_id"=>$sessions_id));
+                    $sessions_cust_briefcase = $this->db->get();
+                    if ($sessions_cust_briefcase->num_rows() > 0) {
+                        foreach ($sessions_cust_briefcase->result() as $note_row)
+                            $private_notes[] = $note_row->note;
+                        //$private_notes = $sessions_cust_briefcase->row()->note;
+                    }
+
+                    $sessions_history_login[] = array(
+                        'uuid' => $val->cust_id,
+                        'access' => 50,
+                        'created_time' => $start_date_time,
+                        'last_connected' => $end_date_time,
+                        'total_time' => $total_time,
+                        //'total_time' => $this->getTimeSpentOnSession($sessions_id, $val->cust_id),
+                        'meta' => array("notes" => $private_notes, "personal_slide_notes" => array()),
+                        'alertness' => array("checks_returned" => "", "understood" => ""),
+                        'browser_sessions' => array("0" => array("uuid" => $val->cust_id, "launched_time" => $start_date_time, "last_connected" => $end_date_time, "user_agent" => $val->operating_system . ' - ' . $val->computer_type)),
+                        'identity' => array("uuid" => $val->cust_id, 'identifier' => $val->identifier_id, 'name' => $val->first_name . ' ' . $val->last_name, 'email' => $val->email, 'profile_org_name' => $val->company_name, 'profile_org_title' => $val->company_name, 'profile_org_website' => "", 'profile_bio' => $val->topic, 'profile_twitter' => $val->twitter_id, 'profile_linkedin' => "", 'profile_country' => $val->country, 'profile_picture_url' => "", 'profile_last_updated' => ""),
+                        'state_changes' => array("0" => array("timestamp" => 1592865240, "state" => 0))
+                    );
+                }
+            }
+
+            $this->db->select('*');
+            $this->db->from('sessions_poll_question s');
+            $this->db->join('poll_type p', 's.poll_type_id=p.poll_type_id');
+            $this->db->where("s.sessions_id", $sessions_id);
+            $sessions_poll_question = $this->db->get();
+            $polls = array();
+
+            if ($sessions_poll_question->num_rows() > 0) {
+                $presurvey = 0;
+                $poll = 0;
+                $assessment = 0;
+                foreach ($sessions_poll_question->result() as $sessions_poll_question) {
+                    $options = array();
+                    $this->db->select('*');
+                    $this->db->from('poll_question_option');
+                    $this->db->where("sessions_poll_question_id", $sessions_poll_question->sessions_poll_question_id);
+                    $poll_question_option = $this->db->get();
+                    if ($poll_question_option->num_rows() > 0) {
+                        foreach ($poll_question_option->result() as $val) {
+                            $votes = array();
+                            $this->db->select('*');
+                            $this->db->from('tbl_poll_voting');
+                            $this->db->where("poll_question_option_id", $val->poll_question_option_id);
+                            $tbl_poll_voting = $this->db->get();
+                            if ($tbl_poll_voting->num_rows() > 0) {
+                                foreach ($tbl_poll_voting->result() as $tbl_poll_voting) {
+                                    $votes[] = (int) $tbl_poll_voting->cust_id;
+                                }
+                            }
+                            $options[] = array(
+                                'option_id' => (int) $val->poll_question_option_id,
+                                'text' => $val->option,
+                                'total_votes' => $val->total_vot,
+                                'votes' => $votes
+                            );
+
+                            $total_votes = 0;
+                            $this->db->select('*');
+                            $this->db->from('tbl_poll_voting');
+                            $this->db->where("sessions_poll_question_id", $val->sessions_poll_question_id);
+                            $tbl_poll_voting_2 = $this->db->get();
+                            if ($tbl_poll_voting_2->num_rows() > 0) {
+                                $total_votes = $tbl_poll_voting_2->num_rows();
+                            }
+                        }
+                    }
+                    if ($sessions_poll_question->poll_type_id == 1) {
+                        $presurvey = $presurvey + 1;
+                        $polls[] = array(
+                            'uuid' => '',
+                            'status' => 4000,
+                            'external_reference' => "",
+                            'poll_id' => (int) $sessions_poll_question->sessions_poll_question_id,
+                            'text' => $sessions_poll_question->question,
+                            'options' => $options,
+                            'total_votes' => $total_votes,
+                            'response_type' => 0,
+                            'text_responses' => array()
+                        );
+                    } else if ($sessions_poll_question->poll_type_id == 2) {
+                        $poll = $poll + 1;
+                        $polls[] = array(
+                            'uuid' => '',
+                            'text' => $sessions_poll_question->question,
+                            'status' => 4000,
+                            'external_reference' => "",
+                            'poll_id' => (int) $sessions_poll_question->sessions_poll_question_id,
+                            'options' => $options,
+                            'total_votes' => $total_votes,
+                            'response_type' => 0,
+                            'text_responses' => array()
+                        );
+                    } else if ($sessions_poll_question->poll_type_id == 3) {
+                        $assessment = $assessment + 1;
+                        $polls[] = array(
+                            'uuid' => '',
+                            'status' => 4000,
+                            'external_reference' => "",
+                            'poll_id' => (int) $sessions_poll_question->sessions_poll_question_id,
+                            'text' => $sessions_poll_question->question,
+                            'options' => $options,
+                            'total_votes' => $total_votes,
+                            'response_type' => 0,
+                            'text_responses' => array()
+                        );
+                    }
+                }
+            }
+
+
+            $this->db->select('*');
+            $this->db->from('sessions_cust_question');
+            $this->db->where("sessions_id", $sessions_id);
+            $sessions_cust_question = $this->db->get();
+            $questions = array();
+            if ($sessions_cust_question->num_rows() > 0) {
+                foreach ($sessions_cust_question->result() as $key => $val) {
+                    $questions[] = array(
+                        'uuid'=>$val->cust_id,
+                        'index' => (int) $key,
+                        'login' => (int) $val->cust_id,
+                        'body' => $val->question,
+                        'timestamp' => strtotime($val->reg_question_date),
+                        'upvotes'=>array()
+//                        'question' => $val->question,
+//                        'reply_login_id' => ($val->answer_by_id != "") ? $val->answer_by_id : "",
+//                        'reply' => ($val->answer != "") ? $val->answer : ""
+                    );
+                }
+            }
+            $charting[] = array(
+                'online' => 0,
+                'timestamp' => 0,
+                'total_logins' => 0
+            );
+
+            $this->db->select('*');
+            $this->db->from('sessions_group_chat_msg');
+            $this->db->where("sessions_id", $sessions_id);
+            $sessions_group_chat_msg = $this->db->get();
+            $messages = array();
+            if ($sessions_group_chat_msg->num_rows() > 0) {
+                foreach ($sessions_group_chat_msg->result() as $key => $val) {
+                    $messages[] = array(
+                        'uuid' => $val->user_id,
+                        'login' => $val->user_id,
+                        'timestamp' => strtotime($val->message_date),
+                        'message' => $val->message,
+                        'status' => 0,
+                        'is_positive' => FALSE,
+                        'deleted_reason' => 0
+                    );
+                }
+            }
+
+            $this->db->select('*');
+            $this->db->from('session_resource');
+            $this->db->where("sessions_id", $sessions_id);
+            $session_resource = $this->db->get();
+            $files = array();
+            $hyperlinks = array();
+            if ($session_resource->num_rows() > 0) {
+                foreach ($session_resource->result() as $key => $val) {
+                    $files[] = array(
+                        'uuid' => "",
+                        'name' => $val->upload_published_name,
+                        'about' => "",
+                        'size' => 1000,
+                        'clicks' =>array(array('login'=>"",'player_timestamp'=>"",'eos_timestamp'=>""))
+                    );
+                    $hyperlinks[] = array(
+                        'uuid' => "",
+                        'name' => $val->link_published_name,
+                        'url' => $val->resource_link,
+                        'clicks' =>array(array('login'=>"",'player_timestamp'=>"",'eos_timestamp'=>""))
+                    );
+                }
+            }
+
+
+
+            $create_array = array(
+                'actual_end_time' => strtotime($result_sessions->sessions_date . ' ' . $result_sessions->end_time),
+                'cssid' => $result_sessions->cco_envent_id,
+                'end_time' => strtotime($result_sessions->sessions_date . ' ' . $result_sessions->end_time),
+                'name' => $result_sessions->session_title,
+                'reference' => $result_sessions->sessions_id,
+                'session_id' => (int) $result_sessions->sessions_id,
+                'start_time' => strtotime($result_sessions->sessions_date . ' ' . $result_sessions->time_slot),
+                'logins' => $sessions_history_login,
+                'alertness' => array('count' => 0, 'checks' => array(), 'template' => array('alertness_template_id' => 1, 'name' => "", 'feature_name' => "", 'briefing_preface' => "", 'briefing_text' => "", 'briefing_accept_button' => "", 'briefing_optout_enabled' => "", 'prompt_title' => "", 'prompt_text' => "", 'prompt_audio_file' => "", 'prompt_duration' => "", 'show_failure_notifications' => "", 'aai_variance' => "", 'aai_starting_boundary' => "", 'aai_ending_boundary' => "", 'aai_setup_delay' => "")),
+                'chat' => array('enabled' => true,'messages' => $messages),
+                'hostschat' => array('messages' => $messages),
+                'jpc' => array('conversations' => array()),
+                'presentation' => array('decks' => array(array("uuid"=>"","name"=>"","thumbnail_url"=>'',"slides"=>array("image_url"=>"","index"=>"","notes"=>"",'title'=>"","thumbnail_url"=>"","uuid"=>""))), 'slide_events' => array(array("slide_uuid"=>"","timestamp"=>""))),
+                'polling' => array("enabled" => true, "polls" => $polls),
+                'questions' => array("enabled"=>true,'submitted'=>$questions),
+                'resources'=>array("files"=>$files,'hyperlinks'=>$hyperlinks),
+                'charting' => $charting
+            );
+
+            $json_array = array("data" => json_encode($create_array), "session_reference" => (int) $result_sessions->sessions_id, "session_id" => (int) $result_sessions->sessions_id, "source" => "gravity");
+
+            $data_to_post = "data=" . json_encode($create_array) . "&session_reference=" . (int) $result_sessions->sessions_id . "&session_id=" . (int) $result_sessions->sessions_id . "&source=gravity"; //if http_build_query causes any problem with JSON data, send this parameter directly in post.
+
+            echo json_encode($create_array);
+            return true;
+        } else {
+            return FALSE;
+        }
+    }
+
     function view_json($sessions_id) {
         $this->db->select('*');
         $this->db->from('sessions');
