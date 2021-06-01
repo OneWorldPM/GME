@@ -32,10 +32,9 @@
     $(function(){
         var current_user = "<?=$this->session->userdata('cid')?>"
         // console.log(current_user);
-        $('#claim_credit_link').on('click', function(e){
+        $('#claim_credit_link').on('click', function(){
             toastr.success('Please wait...');
-            e.preventDefault();
-            $.post('<?=base_url()?>claimcredit/save_claimCredit_visit',
+            $.post('<?=base_url()?>ClaimCredit/save_claimCredit_visit',
                 {
                     'user_id':current_user
                 },
