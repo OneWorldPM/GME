@@ -40,7 +40,8 @@
                     'user_id':current_user
                 },
                 function(response){
-                    if(response == true){
+                // console.log(response);
+                    if(response == 'true'){
                         window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar","_blank");
                     }else{
                         window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar","_blank");

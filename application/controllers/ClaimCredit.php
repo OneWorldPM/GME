@@ -32,6 +32,6 @@ class ClaimCredit extends CI_Controller
 
     function save_claimCredit_visit(){
         $this->db->insert('claim_credit_visit',array('user_id'=>$this->input->post('user_id'),'date_time'=>date('Y-m-d H:i:s')));
-        return ($this->db->affected_rows() != 1) ? false : true;
+        echo ($this->db->affected_rows() != 1) ? 'false' : 'true';
     }
 }
