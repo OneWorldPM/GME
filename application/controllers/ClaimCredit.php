@@ -25,7 +25,10 @@ class ClaimCredit extends CI_Controller
     }
 
     public function index(){
-        $this->load->view('header');
+
+        $header_data['page_title'] = "Claim Credit Page";
+
+        $this->load->view('header', $header_data);
         $this->load->view('claimCredit');
         $this->load->view('footer');
     }

@@ -23,7 +23,9 @@ class Home extends CI_Controller {
     public function index() {
         $data['liveSupportChatStatus'] = $this->liveSupportChatStatus();
 
-        $this->load->view('header');
+        $header_data['page_title'] = "Lobby";
+
+        $this->load->view('header', $header_data);
         $this->load->view('home', $data);
         $this->load->view('footer');
     }

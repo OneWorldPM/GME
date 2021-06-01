@@ -22,11 +22,14 @@ class Sessions extends CI_Controller {
     }
 
     public function index() {
+
+        $header_data['page_title'] = "CME Sessions Listing";
+
         $data["all_sessions_week"] = $this->objsessions->getSessionsWeekData();
         if (!empty($data["all_sessions_week"])) {
             $data["all_sessions"] = $this->objsessions->getGeneralSessions($data["all_sessions_week"][0]->sessions_date);
         }
-        $this->load->view('header');
+        $this->load->view('header', $header_data);
         $this->load->view('sessions', $data);
         $this->load->view('footer');
     }
@@ -36,7 +39,10 @@ class Sessions extends CI_Controller {
         if (!empty($data["all_sessions_week"])) {
             $data["all_sessions"] = $this->objsessions->getProductTheaters($data["all_sessions_week"][0]->sessions_date);
         }
-        $this->load->view('header');
+
+        $header_data['page_title'] = "Product Theaters Listing";
+
+        $this->load->view('header', $header_data);
         $this->load->view('sessions', $data);
         $this->load->view('footer');
     }
@@ -100,6 +106,7 @@ class Sessions extends CI_Controller {
         $header_data["url_link"] = $sesions->url_link;
         $header_data["link_text"] = $sesions->link_text;
         $header_data['session_id'] = $sessions_id;
+        $header_data['page_title'] = "Session View - ".$sessions_id;
 
         $data['isMobile'] = $this->MobileDetect->isMobile();
 
@@ -336,6 +343,7 @@ class Sessions extends CI_Controller {
     public function attend($sessions_id) {
 
         $headerData['session_id'] = $sessions_id;
+        $headerData['page_title'] = "Sessions Holding - ".$sessions_id;
 
         $data["sessions"] = $this->objsessions->viewSessionsData($sessions_id);
 

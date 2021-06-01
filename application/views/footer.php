@@ -34,12 +34,12 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@9.17.0/dist/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raven.js/raven-js@3.26.4/raven.min.js" crossorigin="anonymous"></script>
+<!--<script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>-->
 
 <script>
 $(function() {
 // Error Tracking
-Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/5734712").install();
+// Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/5734712").install();
 });
 </script>
 
@@ -52,7 +52,7 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
     </script>
     <script src="https://athulak.com/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="<?=base_url()?>front_assets/support_chat/style.css?v=2">
-    <script src="<?= base_url() ?>front_assets/support_chat/live-support-chat.js?v=2"></script>
+    <script src="<?= base_url() ?>front_assets/support_chat/live-support-chat.js?v=1"></script>
     <div class="live-support-chat-popup" id="liveSupportChatForm">
         <span class="live-support-chat-title"><i class="far fa-life-ring"></i> Live Technical Support</span>
         <div class="live-support-chat-body">
@@ -120,10 +120,10 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
             var socket = io(socketServer);
 
             socket.on('serverStatus', function (data) {
-                socket.emit('addMeToActiveListPerApp', {'user_id':user_id, 'app': socket_app_name, 'room': socket_active_user_list});
+                // socket.emit('addMeToActiveListPerApp', {'user_id':user_id, 'app': socket_app_name, 'room': socket_active_user_list});
 
                 let onlineListAppName = socket_app_name+"_online_users";
-                socket.emit('addMeOnlineListPerApp', {'user_id':user_id, 'app': onlineListAppName});
+                // socket.emit('addMeOnlineListPerApp', {'user_id':user_id, 'app': onlineListAppName});
             });
 
             $(window).on("blur focus", function(e) {
@@ -145,11 +145,11 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
 
             // Active again
             function resetActive(){
-                socket.emit('userActiveChangeInApp', {"app":socket_app_name, "room":socket_active_user_list, "name":user_name, "userId":user_id, "status":true});
+                // socket.emit('userActiveChangeInApp', {"app":socket_app_name, "room":socket_active_user_list, "name":user_name, "userId":user_id, "status":true});
             }
             // No activity let everyone know
             function inActive(){
-                socket.emit('userActiveChangeInApp', {"app":socket_app_name, "room":socket_active_user_list, "name":user_name, "userId":user_id, "status":false});
+                // socket.emit('userActiveChangeInApp', {"app":socket_app_name, "room":socket_active_user_list, "name":user_name, "userId":user_id, "status":false});
             }
 
             push_notification_admin();
@@ -166,37 +166,22 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
 
     function push_notification_admin()
     {
-        var lobby_url= "<?= base_url().'home'?>";
         var push_notification_id = $("#push_notification_id").val();
-        console.log(window.location.href);
-        console.log(lobby_url);
+
         $.ajax({
             url: "<?= base_url() ?>push_notification/get_push_notification_admin",
             type: "post",
             dataType: "json",
             success: function (data) {
                 if (data.status == "success") {
-                    console.log(data.result);
-
                     if (push_notification_id == "0") {
                         $("#push_notification_id").val(data.result.push_notification_id);
                     }
-
-                    if(data.result.session_id== 'home' && window.location.href == lobby_url){
-                            if (data.result.receiver=="attendee" || data.result.receiver=="both" || data.result.receiver==null){
-                                $("#push_notification_id").val(data.result.push_notification_id);
-                                $('#push_notification').modal('show');
-                                $("#push_notification_message").text(data.result.message);
-                                (data.result.session_redirect == null)?$('#push_notification_redirect').hide():(data.result.redirect_name !== null )? $('#push_notification_redirect').show().text(data.result.redirect_name).attr('href', "<?=base_url().'sessions/view/'?>"+data.result.session_redirect):$('#push_notification_redirect').text('Session '+data.result.session_redirect);
-                            }
-                    }
-
                     if (push_notification_id != data.result.push_notification_id && data.result.session_id == null) {
                         if (data.result.receiver=="attendee" || data.result.receiver=="both" || data.result.receiver==null){
                             $("#push_notification_id").val(data.result.push_notification_id);
                             $('#push_notification').modal('show');
                             $("#push_notification_message").text(data.result.message);
-                            (data.result.session_redirect == null)?$('#push_notification_redirect').hide():(data.result.redirect_name !== null )? $('#push_notification_redirect').show().text(data.result.redirect_name).attr('href', "<?=base_url().'sessions/view/'?>"+data.result.session_redirect):$('#push_notification_redirect').text('Session '+data.result.session_redirect);
                         }
                     }
 
@@ -208,9 +193,7 @@ Raven.config("https://5510c61c4983470bbe7e294e5973692e@o578409.ingest.sentry.io/
                                 $("#push_notification_id").val(data.result.push_notification_id);
                                 $('#push_notification').modal('show');
                                 $("#push_notification_message").text(data.result.message);
-                                (data.result.session_redirect == null)?$('#push_notification_redirect').hide():(data.result.redirect_name !== null )? $('#push_notification_redirect').show().text(data.result.redirect_name).attr('href', "<?=base_url().'sessions/view/'?>"+data.result.session_redirect):$('#push_notification_redirect').text('Session '+data.result.session_redirect);
-                            }
-                        }
+                            }}
                     }
                 } else {
                     $('#push_notification').modal('hide');

@@ -220,7 +220,8 @@ function update_viewsessions_history_open()
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
 
-        socket.emit("ConnectSessioViewUsers",app_name)
+        socket.emit("ConnectSessioViewUsers",app_name);
+        console.log(app_name);
 
         $('#sendGroupChat').keypress(function (e) {
             var $questions = $("#sendGroupChat");

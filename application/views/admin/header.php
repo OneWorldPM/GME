@@ -73,14 +73,7 @@ $user_name = ucfirst($this->session->userdata('uname'));
         
         // let socket = io("https://socket.yourconference.live:443");
         //let socket = io("<?//=getSocketUrl()?>//");
-        
-        socket.on("newViewUsers",function(resp){
-            if(resp){
-            var totalUsers=resp.users?resp.users.length:0;
-            var sessionId=resp.sessionId;
-            $(".totalAttende"+sessionId+" b").html(totalUsers);
-         }
-        })
+
         </script>
         <style type="text/css">
             .action-row{

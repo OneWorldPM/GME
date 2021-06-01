@@ -498,8 +498,8 @@ var loader_url = "https://yourconference.live/GME/";
 
     INSPIRO.stickyHeader = function () {
         $window.on('scroll', function () {
-            INSPIRO.logoStatus();
-            INSPIRO.stickyHeaderStatus();
+            // INSPIRO.logoStatus();
+            // INSPIRO.stickyHeaderStatus();
 
         });
     };

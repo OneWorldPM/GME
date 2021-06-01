@@ -854,7 +854,15 @@
             var sessionId = resp.sessionId;
             $(".totalAttende" + sessionId + " b").html(totalUsers);
         }
-    })
+    });
+
+    socket.on("newViewUsers",function(resp){
+        if(resp){
+            var totalUsers=resp.users?resp.users.length:0;
+            var sessionId=resp.sessionId;
+            $(".totalAttende"+sessionId+" b").html(totalUsers);
+        }
+    });
 
     function addMessageGroupChat(data, type = "") {
         var messageType = '';

@@ -17,7 +17,7 @@ else
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <link rel="shortcut icon" href="<?= base_url() ?>front_assets/images/cco_favicon.png">
-        <title>Virtual Conference & Trade Show</title>
+        <title><?=(isset($page_title))?$page_title:'Virtual Conference & Trade Show'?></title>
         <!-- Bootstrap Core CSS -->
         <link href="<?= base_url() ?>front_assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?= base_url() ?>front_assets/vendor/fontawesome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
@@ -54,6 +54,19 @@ else
 
         <link href="<?= base_url() ?>assets/alertify/alertify.core.css" rel="stylesheet" type="text/css" />
         <link href="<?= base_url() ?>assets/alertify/alertify.default.css" rel="stylesheet" type="text/css" />
+
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z58SQ4MG5Z"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-Z58SQ4MG5Z');
+        </script>
+
+
         <style>
             @media (min-width: 1200px){
                 .container {
