@@ -35,7 +35,7 @@ function fireSubsequentRedirection()
             Swal.fire({
                 title: '',
                 html: subsequent_session_popup_text,
-                icon: 'info',
+                icon: '',
                 showCancelButton: false,
                 confirmButtonColor: '#0fbd5b',
                 cancelButtonColor: '#d33',
@@ -75,7 +75,7 @@ function fireSubsequentRedirection()
             Swal.fire({
                 title: '',
                 html: subsequent_session_popup_text,
-                icon: 'info',
+                icon: '',
                 showCancelButton: false,
                 confirmButtonColor: '#0fbd5b',
                 cancelButtonColor: '#d33',
