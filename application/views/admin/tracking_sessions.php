@@ -1,10 +1,13 @@
+
 <div class="main-content">
     <div class="wrap-content container" id="container">
         <!-- start: PAGE TITLE -->
         <section id="page-title">
             <div class="row">
                 <div class="col-sm-8">
-                    <h1 class="mainTitle">List Of Tracking Sessions</h1>
+                    <h1 class="mainTitle">List Of Tracking</h1><br>
+                    <a class="btn btn-info " id="btn-sessions"> Session Tracking</a>
+                    <a class="btn btn-success " id="btn-cc"> Claim Credit Tracking</a>
                 </div>
             </div>
             
@@ -17,7 +20,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title text-white">Sessions Tracking</h4>
                     </div>
-                    <div class="panel-body bg-white" style="border: 1px solid #b2b7bb!important;">
+                    <div class="panel-body bg-white panel-sessions" id="panel-sessions" style="border: 1px solid #b2b7bb!important;">
                         <div class="row">
                             <div class="col-md-12 table-responsive">
                                 <div> <a href="<?=base_url().'admin/tracking/export_all_tracking_csv'?>" class="btn btn-success btn-m">Export All CSV</a></div><br>
@@ -82,6 +85,45 @@
                             </div>
                         </div>
                     </div>
+
+                </div>
+                <div class="panel panel-primary" id="panel6">
+                    <div class="panel-heading">
+                        <h4 class="panel-title text-white">Claim Credit Tracking</h4>
+                    </div>
+                    <div class="panel-body bg-white panel-claim-credit" style="border: 1px solid #b2b7bb!important;">
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <div> <a id="export-claim-credit" class="btn btn-success btn-m">Export All CSV</a></div><br>
+                                <table class="table table-bordered table-striped text-center " id="claim-credit-table">
+                                    <thead class="th_center">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Attendee Name</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $a=0;
+                                    if(isset($claim_credit) && !empty($claim_credit)){
+                                        foreach ($claim_credit as $cc){
+                                            $a++;
+                                            ?>
+                                            <tr>
+                                                <td><?=$a?></td>
+                                                <td><?=$cc->full_name?></td>
+                                                <td><?=$cc->date_time?></td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,8 +132,31 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#panel6').hide();
+
+       $('#btn-cc').on('click', function(){
+           $('#panel5').hide();
+           $('#panel6').show();
+       });
+        $('#btn-sessions').on('click', function(){
+            $('#panel6').hide();
+            $('#panel5').show();
+        });
+
         $("#sessions_table").dataTable({
             "ordering": false,
+        });
+
+
+        $("#claim-credit-table").dataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                 'csv'
+            ]
+        });
+
+        $('#export-claim-credit').click(function(){
+            alertify.error('Under Development');
         });
     });
 </script>

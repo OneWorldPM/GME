@@ -17,6 +17,7 @@ class Tracking extends CI_Controller {
 
     public function index() {
         $data['sessions'] = $this->mtracking->getSessionsAll();
+        $data['claim_credit'] = $this->mtracking->get_claim_credit_visits();
         $this->load->view('admin/header');
         $this->load->view('admin/tracking_sessions', $data);
         $this->load->view('admin/footer');

@@ -173,4 +173,18 @@ class M_tracking extends CI_Model {
     }
 
 
+    function get_claim_credit_visits(){
+        $this->db->select('*, CONCAT (cm.first_name," ",cm.last_name) as full_name, cc.date_time as date_time')
+            ->from('claim_credit_visit cc')
+            ->join('customer_master cm', 'cc.user_id = cm.cust_id')
+            ->group_by('cm.cust_id')
+            ->order_by('cc.date_time', 'asc')
+        ;
+            $result=  $this->db->get();
+            if($result->num_rows() >0 ){
+                return $result->result();
+            }else{
+                return '';
+            }
+    }
 }
