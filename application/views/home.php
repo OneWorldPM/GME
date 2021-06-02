@@ -227,10 +227,17 @@
         <div class="pscy_update"><img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/pscy_update.png?v=1" alt="welcome" class=""></div>
     </div>
     <div class="sections">
-        <div class="section left">
+        <div class="section left text-center">
+
+            <span style="position: absolute; margin-left: 35px; margin-top: 50px; font-weight: bold">Explore the <br><a href="<?=base_url().'ProductTheaters'?>">product theater</a><br> and<a href="<?=base_url().'Sessions'?>" > claim credit</a><br>pages</span>
+            <span style="position: absolute; margin-left: 30px; margin-top: 160px; font-weight: 1000; color: #EF5D21; line-height: 15px;">THANK YOU <br> FOR JOINING US!</span>
             <img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/left_area.png?v=1" alt="welcome" class="">
+
         </div>
-        <div class="section right">
+        <div class="section right text-center">
+            <span style="position: absolute; margin-left: 25px; margin-top: 50px; font-weight: bold; line-height: 18px">This activity <br>is supported<br>by independent<br>educational grants<br>from:</span>
+            <span style="position: absolute; margin-left: 25px; margin-top: 150px; font-weight: 1000; line-height: 12px;letter-spacing: 0; font-size: 11px; color: #EF5D21">AbbVie<br>Intra Cellular Therapies<br>Neurocrine Biosciences<br>Sunovion</span>
+
             <img id="kiosk-welcome" src="<?= base_url() ?>front_assets/images/right_area.png?v=1" alt="welcome" class="">
         </div>
     </div>
