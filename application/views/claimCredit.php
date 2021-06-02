@@ -1,5 +1,4 @@
 <?php
-
 ?>
 <style>
  #bg {
@@ -16,7 +15,7 @@
 <img src="<?= base_url() ?>front_assets/images/sessions-holding-clearspace-option2.png" id="bg" alt="">
 <div class="row" style="margin-top: 2%;">
     <div class="col-md-12 text-center" style="margin-top: 30px;">
-        <span id="claim_credit_link" style="cursor: pointer;"><span style="font-size: 30px;color: #EF5D21;font-weight: 600;">Click here to Claim Credits</span></span>
+        <a href="https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar?emailmemberguid=<?=$memberId?>&origin=47" target="_blank" id="claim_credit_link" style="cursor: pointer;"><span style="font-size: 30px;color: #EF5D21;font-weight: 600;">Click here to Claim Credits</span></a>
     </div>
     <div class="col-md-12 text-center" style="margin-top: 20px;">
         <div style="padding:35% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/540201057?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="CCO_PRAKASH_CME_CREDIT_V2.mp4"></iframe></div>
@@ -41,9 +40,9 @@
                 function(response){
                 // console.log(response);
                     if(response == 'true'){
-                        window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar","_blank");
+                        //window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar","_blank");
                     }else{
-                        window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar","_blank");
+                        //window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar","_blank");
                     }
                 });
         });
