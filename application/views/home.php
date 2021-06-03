@@ -229,7 +229,7 @@
     <div class="sections">
         <div class="section left text-center">
 
-            <span style="position: absolute; margin-left: 35px; margin-top: 50px; font-weight: bold">Explore the <br><a href="<?=base_url().'sessions/product_theaters'?>">product theater</a><br> and<a href="<?=base_url().'claimCredit'?>" > claim credit</a><br>pages</span>
+            <span style="position: absolute; margin-left: 35px; margin-top: 50px; font-weight: bold">Explore the <br><a href="<?=base_url().'sessions/product_theaters'?>" style="color:#EF5D21; "><u>product theater</u></a><br> and<a href="<?=base_url().'claimCredit'?>" style="color:#EF5D21; "> <u>claim credit</u></a><br>pages</span>
             <span style="position: absolute; margin-left: 30px; margin-top: 160px; font-weight: 1000; color: #EF5D21; line-height: 15px;">THANK YOU <br> FOR JOINING US!</span>
             <img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/left_area.png?v=2" alt="welcome" class="">
 
