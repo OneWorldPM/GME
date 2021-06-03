@@ -38,7 +38,15 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title text-white">Guest User</h4>
                             </div>
+
                             <div class="panel-body bg-white" style="border: 1px solid #b2b7bb;">
+                                <div class="text-dark">
+                                    <h4>GME has a single guest user account that allows as multiple attendees to use a single sign on.</h4>
+                                    <fieldset><legend> Account Details: </legend>
+                                        USER : <strong>GMEGuest2021</strong> <br>
+                                        PASSWORD : <strong>GME2021</strong>
+                                    </fieldset>
+                                </div>
                                 <span id="errortxtsendemail" style="color:red;"></span>
                                 <h5 class="over-title margin-bottom-15 margin-top-5">Guest User Login : <span class="text-bold"><a href="<?= base_url() ?>"><?= base_url() ?></a> </h5>
                                 <div class="table-responsive">
