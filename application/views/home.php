@@ -236,7 +236,7 @@
         </div>
         <div class="section right text-center">
             <span style="position: absolute; margin-left: 25px; margin-top: 50px; font-weight: bold; line-height: 18px">This activity <br>is supported<br>by independent<br>educational grants<br>from:</span>
-            <span style="position: absolute; margin-left: 25px; margin-top: 150px; font-weight: 1000; line-height: 12px;letter-spacing: 0; font-size: 11px; color: #EF5D21">AbbVie<br>Intra Cellular Therapies<br>Neurocrine Biosciences<br>Sunovion</span>
+            <span style="position: absolute; margin-left: 25px; margin-top: 150px; font-weight: 1000; line-height: 12px;letter-spacing: 0; font-size: 11px; color: #EF5D21">AbbVie<br>Intra-Cellular Therapies<br>Neurocrine Biosciences<br>Sunovion</span>
 
             <img id="kiosk-welcome" src="<?= base_url() ?>front_assets/images/right_area.png?v=2" alt="welcome" class="">
         </div>
