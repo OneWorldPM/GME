@@ -6,7 +6,7 @@
                 <div class="row" style="padding-top: 10px; padding-bottom: 20px;">
                     <div class="col-sm-12">
                         <div style="color:#000000; font-size: 16px; font-weight: 800; " id="push_notification_message"></div><br>
-                        <a class="btn btn-success btn-sm form-control shadow-none" href="" style="font-size: 16px; font-weight: 800;  color: white" id="push_notification_redirect"></a>
+                            <a class="btn btn-success btn-sm form-control shadow-none rounded" href="" style="font-size: 16px; font-weight: 800;  color: white; white-space: normal; word-wrap: break-word" id="push_notification_redirect"></a>
                     </div>
                 </div>
             </div>
