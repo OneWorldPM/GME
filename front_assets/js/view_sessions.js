@@ -25,12 +25,12 @@ function fireSubsequentRedirection()
 
     if (session_id == 138)
     {
-        window.open("https://yourconference.live/GME/claimCredit", "_self");
+        window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar", "_self");
     }
 
     if (session_id == 145)
     {
-        window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar", "_self");
+        window.open("https://yourconference.live/GME/claimCredit", "_self");
     }
 
     if (this_session_type == 1) // CME Session
