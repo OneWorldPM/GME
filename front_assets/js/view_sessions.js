@@ -25,6 +25,11 @@ function fireSubsequentRedirection()
 
     if (session_id == 138)
     {
+        window.open("https://yourconference.live/GME/claimCredit", "_self");
+    }
+
+    if (session_id == 145)
+    {
         window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar", "_self");
     }
 
