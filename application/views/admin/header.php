@@ -70,11 +70,15 @@ $user_name = ucfirst($this->session->userdata('uname'));
         <script src="<?= base_url() ?>front_assets/js/custom.js?v=4"></script>
         <?= getSocketScript()?>
         <script>
-        
         // let socket = io("https://socket.yourconference.live:443");
         //let socket = io("<?//=getSocketUrl()?>//");
-
         </script>
+
+        <!--****** PubNub Stuff *****-->
+        <!-- DO NOT use production keys on the localhost-->
+        <?=pubnub_keys()?>
+        <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.14.0.min.js"></script>
+
         <style type="text/css">
             .action-row{
                 margin: 10px 0;

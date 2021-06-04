@@ -160,11 +160,11 @@ var Main = function () {
     };
     // tooltips handler
     var tooltipHandler = function () {
-        $('[data-toggle="tooltip"]').tooltip();
+        //$('[data-toggle="tooltip"]').tooltip();
     };
     // popovers handler
     var popoverHandler = function () {
-        $('[data-toggle="popover"]').popover();
+        //$('[data-toggle="popover"]').popover();
     };
     // perfect scrollbar
     var perfectScrollbarHandler = function () {

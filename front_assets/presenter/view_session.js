@@ -1,12 +1,12 @@
 let admin_chat_presenter_ids=[];
 
-socket.emit("getSessionViewUsers", app_name, function(resp) {
-    if (resp) {
-        var totalUsers = resp.users ? resp.users.length : 0;
-        var sessionId = resp.sessionId;
-        $(".userCount" + sessionId).html(totalUsers);
-    }
-})
+// socket.emit("getSessionViewUsers", app_name, function(resp) {
+//     if (resp) {
+//         var totalUsers = resp.users ? resp.users.length : 0;
+//         var sessionId = resp.sessionId;
+//         $(".userCount" + sessionId).html(totalUsers);
+//     }
+// })
 
 $(function(){
     console.log(session_type_id);

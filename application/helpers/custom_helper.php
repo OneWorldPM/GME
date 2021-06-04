@@ -40,6 +40,19 @@ function getSocketScript(){
     }
 }
 
+function pubnub_keys()
+{
+    $pubnub_keys = array(
+        'publishKey' => 'pub-c-localhost',
+        'subscribeKey' => 'sub-c-localhost'
+    );
+    include_once FCPATH.'/pubnub_keys.php';
+    echo '<script>  ';
+    echo 'let pubnub_publishKey = "'.$pubnub_keys['publishKey'].'"; ';
+    echo 'let pubnub_subscribeKey = "'.$pubnub_keys['subscribeKey'].'"; ';
+    echo '</script> ';
+}
+
 
 function sessionRightBarControl($right_bar, $control, $text="success")
 {

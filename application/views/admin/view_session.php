@@ -429,7 +429,7 @@
                 </div>
             </div>
             <span style="margin-right: 25px;"
-                  class="pull-right text-red totalAttende totalAttende<?= getAppName($sessions->sessions_id) ?>">Total attendees: <b>0</b></span>
+                  class="pull-right text-red totalAttende totalAttende<?= getAppName($sessions->sessions_id) ?>">Total attendees: <b id="totalAttendeeOnThisSession">0</b></span>
 
         </div>
         <!-- end: DYNAMIC TABLE -->
@@ -848,21 +848,21 @@
 
 <script>
     var app_name = "<?=getAppName($sessions->sessions_id) ?>";
-    socket.emit("getSessionViewUsers", "<?=getAppName($sessions->sessions_id) ?>", function (resp) {
-        if (resp) {
-            var totalUsers = resp.users ? resp.users.length : 0;
-            var sessionId = resp.sessionId;
-            $(".totalAttende" + sessionId + " b").html(totalUsers);
-        }
-    });
+    //socket.emit("getSessionViewUsers", "<?//=getAppName($sessions->sessions_id) ?>//", function (resp) {
+    //    if (resp) {
+    //        var totalUsers = resp.users ? resp.users.length : 0;
+    //        var sessionId = resp.sessionId;
+    //        $(".totalAttende" + sessionId + " b").html(totalUsers);
+    //    }
+    //});
 
-    socket.on("newViewUsers",function(resp){
-        if(resp){
-            var totalUsers=resp.users?resp.users.length:0;
-            var sessionId=resp.sessionId;
-            $(".totalAttende"+sessionId+" b").html(totalUsers);
-        }
-    });
+    // socket.on("newViewUsers",function(resp){
+    //     if(resp){
+    //         var totalUsers=resp.users?resp.users.length:0;
+    //         var sessionId=resp.sessionId;
+    //         $(".totalAttende"+sessionId+" b").html(totalUsers);
+    //     }
+    // });
 
     function addMessageGroupChat(data, type = "") {
         var messageType = '';
@@ -1775,4 +1775,11 @@
             get_group_chat_section_status();
     });
     /********* End of socket IO codes by Athul **********/
+
+
+
 </script>
+<!--****** PubNub Stuff *****-->
+<!-- DO NOT use production keys on the localhost-->
+<script>let pubnub_channel = "GME_Session_<?=$sessions->sessions_id?>";</script>
+<script src="<?= base_url() ?>front_assets/js/pubnub_live_users_admin.js?v=2"></script>
