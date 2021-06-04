@@ -28,11 +28,6 @@ function fireSubsequentRedirection()
         window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar", "_self");
     }
 
-    if (session_id == 145)
-    {
-        window.open("https://yourconference.live/GME/claimCredit", "_self");
-    }
-
     if (this_session_type == 1) // CME Session
     {
         if (subsequent_session_1 != 'null' && subsequent_session_2 != 'null') // Subsequent PT session is set
