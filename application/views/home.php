@@ -229,7 +229,7 @@
     <div class="sections">
         <div class="section left text-center">
 
-            <span style="position: absolute; margin-left: 35px; margin-top: 50px; font-weight: bold">Explore the <br><a href="<?=base_url().'sessions/product_theaters'?>" style="color:#EF5D21; "><u>product theater</u></a><br> and<a href="https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar?origin=47" style="color:#EF5D21; "> <u>claim credit</u></a><br>pages</span>
+            <span style="position: absolute; margin-left: 35px; margin-top: 50px; font-weight: bold">Explore the <br><a href="<?=base_url().'sessions/product_theaters'?>" style="color:#EF5D21; "><u>product theater</u></a><br> and<a href="https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar?origin=47" target="_blank" style="color:#EF5D21; "> <u>claim credit</u></a><br>pages</span>
             <span style="position: absolute; margin-left: 30px; margin-top: 160px; font-weight: 1000; color: #EF5D21; line-height: 15px;">THANK YOU <br> FOR JOINING US!</span>
             <img id="kiosk-sponsor" src="<?= base_url() ?>front_assets/images/left_area.png?v=2" alt="welcome" class="">
 
@@ -258,7 +258,7 @@
 
 
             <div class="circle-icon">
-                <a class="icon-home" href="https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar?origin=47">
+                <a class="icon-home" href="https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar?origin=47" target="_blank">
                     <img src="<?= base_url() ?>front_assets/images/button_claim-credit-175.png" alt="welcome">
                 </a>
             </div>
