@@ -57,4 +57,18 @@ class Push_notifications extends CI_Controller {
         echo json_encode($result_array);
     }
 
+    public function get_push_notification_byId(){
+       echo $this->mpushnotifications->get_push_notification_byId();
+
+    }
+
+    public function update_push_notifications($id){
+       $result = $this->mpushnotifications->update_push_notifications($id);
+        if ($result) {
+            header('Location: ' . base_url() . 'admin/push_notifications?msg=U');
+        } else {
+            header('Location: ' . base_url() . 'admin/push_notifications?msg=E');
+        }
+
+    }
 }
