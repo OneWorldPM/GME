@@ -737,7 +737,7 @@ function get_poll_vot_section() {
 
                                 if(!window.isComparisonpoll)
                                 {
-                                    $('.progress_bar_new').css('background', '#035a76');
+                                    $('.progress_bar_new').css('background', '#45c0ea');
                                     $("#result_section").append("<label>"+pollIteration+". " + val.option + "</label>");
 
                                 }
@@ -746,7 +746,7 @@ function get_poll_vot_section() {
                             } else {
                                 if(!window.isComparisonpoll)
                                 {
-                                    $('.progress_bar_new').css('background', '#035a76');
+                                    $('.progress_bar_new').css('background', '#45c0ea');
                                     $("#result_section").append("<label>"+pollIteration+". " + val.option + "</label>");
                                 }
 
@@ -759,7 +759,7 @@ function get_poll_vot_section() {
                         if (window.isComparisonpoll) {
                             $("#result_section").append('' +
                                 '<div class="col-md-12 text-center">\n' +
-                                '  <span style="margin-right: 20px;"><i class="fa fa-square" aria-hidden="true" style="color: #035a76;"></i> Presurvey</span>\n' +
+                                '  <span style="margin-right: 20px;"><i class="fa fa-square" aria-hidden="true" style="color: #45c0ea;"></i> Presurvey</span>\n' +
                                 '<span><i class="fa fa-square" aria-hidden="true" style="color: #45c0ea;"></i> Assesment</span>\n' +
                                 '</div>');
                         }
