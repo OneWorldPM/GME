@@ -135,6 +135,16 @@ if (isset($_GET['testing']))
                                                                 <a class="btn btn-success btn-sm send_notification" data-id="<?= $val->push_notification_id ?>" href="#">
                                                                     <i class="fa fa-send"></i> Send Notification
                                                                 </a>
+                                                                <a class="btn btn-warning btn-sm stop_notification" data-id="<?= $val->push_notification_id ?>" href="#" style="display: none;">
+                                                                    <i class="fa fa-stop"></i> Stop Notification
+                                                                </a>
+                                                            <?php }else{ ?>
+                                                                <a class="btn btn-success btn-sm send_notification" data-id="<?= $val->push_notification_id ?>" href="#" style="display: none;">
+                                                                    <i class="fa fa-send"></i> Send Notification
+                                                                </a>
+                                                                <a class="btn btn-warning btn-sm stop_notification" data-id="<?= $val->push_notification_id ?>" href="#">
+                                                                    <i class="fa fa-stop"></i> Stop Notification
+                                                                </a>
                                                             <?php } ?>
                                                             <a class="btn btn-primary btn-sm edit-notification" href="" data-notification_id="<?=$val->push_notification_id?>" style="margin-top: 4px">
                                                                 <i class="fa fa-pencil-square-o"></i> Edit
@@ -228,13 +238,15 @@ switch ($msg) {
                         console.log(cr_data);
                         if (cr_data.status == "success")
                         {
+                            $this.next('.stop_notification').show();
+
                             if (socket){
                                 socket.emit('send_push_notification', app_name_main);
                             }else{
                                 alertify.error('Socket config not found, notification might not have been sent!');
                             }
 
-                            var delayInMilliseconds = 5000; //1 second
+                            var delayInMilliseconds = 300000; //1 second
                             setTimeout(function () {
                                 socket.emit('close_push_notification', app_name_main);
                                 $.ajax({
@@ -248,11 +260,22 @@ switch ($msg) {
                                         {
                                             $this.show();
                                             $(".send_notification").prop('disabled', false);
+                                            $this.next('.stop_notification').hide();
                                         }
                                         $(".send_notification").prop('disabled', false);
                                     }
                                 });
                             }, delayInMilliseconds);
+
+                            let notification_delay_in_sec = delayInMilliseconds/1000;
+                            alertify.success('').delay(notification_delay_in_sec).setContent('Push notification will automatically stop in <span id="pushnotification_timer">'+notification_delay_in_sec+'</span> seconds unless you reload this page.<br>(You can always stop it by clicking Stop Notification button)');
+                            let notification_counter = setInterval(()=>{
+                                $('#pushnotification_timer').text(notification_delay_in_sec);
+                                if(notification_delay_in_sec < 2)
+                                    clearInterval(notification_counter);
+                                notification_delay_in_sec--;
+
+                            }, 1000);
                         }
                     }
                 });
@@ -308,7 +331,30 @@ switch ($msg) {
             $('#frm_credit').submit();
         });
 
+        $(document).on("click", ".stop_notification", function ()
+        {
+            let send_notification_id = $(this).attr('data-id');
+            $(this).hide();
+            $this = $(this);
+            $.ajax({
+                url: "<?= base_url() ?>admin/push_notifications/close_notification/" + send_notification_id,
+                type: "post",
+                dataType: "json",
+                success: function (response) {
+                    cr_data = response;
+                    if (cr_data.status == "success")
+                    {
+                        socket.emit('close_push_notification', app_name_main);
+                        $(".send_notification").prop('disabled', false);
+                        $this.prev('.send_notification').show();
+                    }
+                }
+            });
+        });
+
     });
+
+
 </script>
 
 
