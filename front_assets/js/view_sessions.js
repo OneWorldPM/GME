@@ -84,7 +84,7 @@ function fireSubsequentRedirection()
                 showCancelButton: false,
                 confirmButtonColor: '#0fbd5b',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'JOIN NOW',
+                confirmButtonText: 'Join CME/CE Session Now',
                 cancelButtonText: 'Cancel',
                 customClass: {
                     content: 'join-subsequent-text',

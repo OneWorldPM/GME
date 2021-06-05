@@ -234,7 +234,7 @@ switch ($msg) {
                                 alertify.error('Socket config not found, notification might not have been sent!');
                             }
 
-                            var delayInMilliseconds = 30000; //1 second
+                            var delayInMilliseconds = 5000; //1 second
                             setTimeout(function () {
                                 socket.emit('close_push_notification', app_name_main);
                                 $.ajax({
