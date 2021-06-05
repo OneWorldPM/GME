@@ -12,15 +12,21 @@ pubnub_total.subscribe({
     withPresence: true,
 });
 
+let channels = '';
+
 listener_total = {
     status(response) {
-        if (response.category === "PNConnectedCategory") {
+        if (response.category === "PNConnectedCategory" || 1==1) {
             hereNowTotal(response.affectedChannels);
+            channels = response.affectedChannels;
         }
     },
     message(response) {
     },
     presence(response) {
+        console.log("presence response:");
+        console.log(response);
+        $('#online-users-count').text(response.occupancy);
         if (response.action === "join") {
             for(i=0; i < response.occupancy; i++){
                 if(response.uuid !== undefined){
@@ -73,7 +79,7 @@ listener_total = {
         if (playerList_Total.length > 1)
             totalAttendees = ((playerList_Total.length)-1) // -1 to remove admin from the list
 
-        $('#online-users-count').text(totalAttendees);
+        //$('#online-users-count').text(totalAttendees);
     },
 }
 pubnub_total.addListener(listener_total);
@@ -93,12 +99,15 @@ function hereNowTotal(channels) {
             function (status, response) {
                 if(response !== undefined)
                 {
-                    //console.log("hereNow Response: ", response);
-                    for(i=0; i < response.totalOccupancy; i++){
-                        playerList_Total[i] = response.channels.pubnub_channel_total.occupants[i].uuid;
-                    }
-                    //console.log("hereNow UUIDs: ", playerList_Total);
+                    console.log("hereNow Response: ", response);
+                    // for(i=0; i < response.channels.GME_Total.occupancy; i++){
+                    //     playerList_Total[i] = response.channels.GME_Total.occupants[i].uuid;
+                    // }
+                    // //console.log("hereNow UUIDs: ", playerList_Total);
+                    // $('#online-users-count').text(response.channels.GME_Total.occupancy);
                 }
             });
     }
 }
+
+setInterval(hereNowTotal(channels),1000);

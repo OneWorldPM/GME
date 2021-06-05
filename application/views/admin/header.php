@@ -418,32 +418,32 @@ $user_name = ucfirst($this->session->userdata('uname'));
                 </header>
                 <!-- end: TOP NAVBAR -->
                 <script>
-                    function extract(variable) {
-                        for (var key in variable) {
-                            window[key] = variable[key];
-                        }
-                    }
-
-                    $.get("<?=base_url()?>socket_config.php", function (data) {
-                        var config = JSON.parse(data);
-                        extract(config);
-
-                        socket.on('OnlineListPerApp', function(data) {
-                            if (data == null)
-                                return;
-
-                            var result = [];
-                            var keys = Object.keys(data);
-                            keys.forEach(function(key){
-                                result.push(data[key]);
-                            });
-                            const mySet = new Set(result);
-                            const uniqValuesArray = [...mySet];
-
-                            $('#online-users-count').html(uniqValuesArray.length);
-                        });
-
-                        socket.emit('getOnlineListPerApp', socket_app_name+"_online_users");
-
-                    });
+                    //function extract(variable) {
+                    //    for (var key in variable) {
+                    //        window[key] = variable[key];
+                    //    }
+                    //}
+                    //
+                    //$.get("<?//=base_url()?>//socket_config.php", function (data) {
+                    //    var config = JSON.parse(data);
+                    //    extract(config);
+                    //
+                    //    socket.on('OnlineListPerApp', function(data) {
+                    //        if (data == null)
+                    //            return;
+                    //
+                    //        var result = [];
+                    //        var keys = Object.keys(data);
+                    //        keys.forEach(function(key){
+                    //            result.push(data[key]);
+                    //        });
+                    //        const mySet = new Set(result);
+                    //        const uniqValuesArray = [...mySet];
+                    //
+                    //        $('#online-users-count').html(uniqValuesArray.length);
+                    //    });
+                    //
+                    //    socket.emit('getOnlineListPerApp', socket_app_name+"_online_users");
+                    //
+                    //});
                 </script>

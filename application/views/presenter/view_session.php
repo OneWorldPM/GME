@@ -256,4 +256,4 @@ $sessions_type_id = (isset($sessions->sessions_type_id) && !empty($sessions->ses
 <?=pubnub_keys()?>
 <script>let pubnub_channel = "GME_Session_<?=$sessions->sessions_id?>";</script>
 <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.14.0.min.js"></script>
-<script src="<?= base_url() ?>front_assets/js/pubnub_live_users_presenter.js?v=2"></script>
+<script src="<?= base_url() ?>front_assets/js/pubnub_live_users_presenter.js?v=3"></script>

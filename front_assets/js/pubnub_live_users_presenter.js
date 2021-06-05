@@ -21,6 +21,7 @@ listener = {
     message(response) {
     },
     presence(response) {
+        $('#userCount').text(response.occupancy);
         if (response.action === "join") {
             for(i=0; i < response.occupancy; i++){
                 if(response.uuid !== undefined){
@@ -73,7 +74,7 @@ listener = {
         if (playerList.length > 1)
             totalAttendees = ((playerList.length)-1) // -1 to remove admin from the list
 
-        $('#userCount').text(totalAttendees);
+        //$('#userCount').text(totalAttendees);
     },
 }
 pubnub.addListener(listener);
@@ -94,9 +95,9 @@ function hereNow(channels) {
                 if(response !== undefined)
                 {
                     //console.log("hereNow Response: ", response);
-                    for(i=0; i < response.totalOccupancy; i++){
-                        playerList[i] = response.channels.pubnub_channel.occupants[i].uuid;
-                    }
+                    // for(i=0; i < response.totalOccupancy; i++){
+                    //     playerList[i] = response.channels.pubnub_channel.occupants[i].uuid;
+                    // }
                     //console.log("hereNow UUIDs: ", playerList);
                 }
             });
