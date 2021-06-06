@@ -47,8 +47,8 @@ function pubnub_keys()
         'subscribeKey' => 'sub-c-localhost'
     );
 
-    if(file_exists(FCPATH.'/pubnub_keys.php'))
-        include_once FCPATH.'/pubnub_keys.php';
+    if(file_exists(FCPATH.'pubnub_keys.php'))
+        include_once FCPATH.'pubnub_keys.php';
 
     echo '<script>  ';
     echo 'let pubnub_publishKey = "'.$pubnub_keys['publishKey'].'"; ';
