@@ -69,7 +69,7 @@ listener_total = {
                 var uuidMatchLeave = playerList_Total.indexOf(response.uuid);
                 if(uuidMatchLeave > -1){
                     //console.log("REMOVE PLAYER FROM ARRAY", uuidMatchLeave, "with UUID: ", response.uuid);
-                    playerList.splice(uuidMatchLeave, 1);
+                    playerList_Total.splice(uuidMatchLeave, 1);
                 }
             }
         }
@@ -100,6 +100,7 @@ function hereNowTotal(channels) {
                 if(response !== undefined)
                 {
                     console.log("hereNow Response: ", response);
+                    $('#online-users-count').text(response.channels[pubnub_channel_total].occupancy);
                     // for(i=0; i < response.channels.GME_Total.occupancy; i++){
                     //     playerList_Total[i] = response.channels.GME_Total.occupants[i].uuid;
                     // }
