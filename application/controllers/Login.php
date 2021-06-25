@@ -145,10 +145,10 @@ class Login extends CI_Controller {
                     $sessions = $this->db->get_where('sessions', array('sessions_id' => $response_array->session));
                     if ($sessions->num_rows() > 0) {
                         // Don't have to redirect to a particular session
-                        //redirect('sessions/attend/' . $response_array->session);
+                        redirect('sessions/attend/' . $response_array->session);
 
                         // Always will be redirected to the lobby aka home page
-                        redirect('home');
+                        //redirect('home');
 
                     } else {
                         redirect('home');
@@ -201,10 +201,10 @@ class Login extends CI_Controller {
                         $sessions = $this->db->get_where('sessions', array('sessions_id' => $response_array->session));
                         if ($sessions->num_rows() > 0) {
                             // Don't have to redirect to a particular session
-                            //redirect('sessions/attend/' . $response_array->session);
+                            redirect('sessions/attend/' . $response_array->session);
 
                             // Always will be redirected to the lobby aka home page
-                            redirect('home');
+                            //redirect('home');
 
                         } else {
                             redirect('home');
