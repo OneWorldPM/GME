@@ -47,7 +47,7 @@ class Login extends CI_Controller {
                     'userType' => 'user'
                 );
                 $this->session->set_userdata($session);
-                redirect('home');
+                redirect('sessions/attend/148');
             } else {
                 $this->session->set_flashdata('msg', '<div class="col-md-12 text-red" style="padding: 0 0 10px 0;">Username or Password is Wrong.</div><br>');
                 redirect('login');
