@@ -19,6 +19,7 @@ class Sessions extends CI_Controller {
         }
 		 }
         $this->load->model('user/m_sessions', 'objsessions');
+        $this->load->model('user/M_myprofile', 'objuser');
     }
 
     public function index() {
@@ -81,6 +82,8 @@ class Sessions extends CI_Controller {
             header("location:" . base_url() . "sessions/session_end/$sessions_id");
             die();
         }
+
+        $header_data['userObject'] = $this->objuser->getUserDetail();
 
         $header_data["main_logo"] = $sesions->main_logo;
         $header_data["main_logo_width"] = $sesions->main_logo_width;
