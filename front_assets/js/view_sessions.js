@@ -35,7 +35,7 @@ function fireSubsequentRedirection()
 
     if (session_id == 148)
     {
-        window.open("https://www.clinicaloptions.com/event/PsychUpdateNEU2021Webinar?origin=47", "_self");
+        window.open("https://www.clinicaloptions.com/login?returnUrl=/event/TardiveDyskinesiaWebcast2021Eval", "_self");
     }
 
 
