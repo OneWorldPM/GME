@@ -479,7 +479,7 @@ else
 
                                     <?php if ($this->router->fetch_class() == 'sessions' && $this->router->fetch_method() == 'view'): ?>
                                         <ul class="main-menu nav navbar-nav navbar-right">
-                                            <li><a href="mailto:info@gmeded.com?subject=GME Customer Service Request" target="_blank" class="hoverThemeColour">CUSTOMER SERVICE</a></li>
+                                            <li><a href="mailto:meetings@clinicaloptions.com?subject=GME Customer Service Request" target="_blank" class="hoverThemeColour">CUSTOMER SERVICE</a></li>
                                         </ul>
                                         <ul class="main-menu nav navbar-nav navbar-right" id="nav-claim-credit">
                                             <li><a target="_blank" href="https://www.clinicaloptions.com/event/TardiveDyskinesiaWebcast2021Eval?emailmemberguid=<?=(isset($userObject->identifier_id))?$userObject->identifier_id:''?>&origin=47"  class="hoverThemeColour">CLAIM CREDIT</a></li>
