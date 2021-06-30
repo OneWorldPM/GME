@@ -68,7 +68,7 @@
                                                         <?=(isset($val->poll_instruction))?'Update Instruction':'Add Instruction'?>
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            
+
                                                         <form action="<?=base_url().'admin/sessions/update_poll_instruction/'.$val->sessions_poll_question_id?>" method="POST">
                                                      <textarea name="poll_instruction"></textarea>
                                                       <input type="text" name="session_id" value="<?=$val->sessions_id?>" hidden >
@@ -80,8 +80,9 @@
                                                     </td>
 
                                                     <td style="width: 80px">
-                                                        Answer 1: <strong style="font-size: 18px; color: red"><?=($val->correct_answer1 !=='0')?$val->correct_answer1:''?></strong><br>
-                                                        Answer 2: <strong style="font-size: 18px; color: orangered"><?=($val->correct_answer2 !=='0')?$val->correct_answer2:''?></strong>
+                                                        <?=((!isset($val->correct_answer1) || ($val->correct_answer1 =='0') && (!isset($val->correct_answer1) || $val->correct_answer2 =='0')))?'None Set':''?>
+                                                        <span ><?=(isset($val->correct_answer1) && ($val->correct_answer1 !=='0'))?'Answer 1: <strong style="font-size: 18px; color: red">'.$val->correct_answer1.'</strong>':''?></span><br>
+                                                        <span ><?=(isset($val->correct_answer1) && ($val->correct_answer2 !=='0'))?'Answer 2: <strong style="font-size: 18px; color: red">'.$val->correct_answer2.'</strong>':''?></span>
                                                     </td>
 
                                                     <td>
@@ -104,12 +105,12 @@
                                                             <a href="<?= base_url() ?>admin/sessions/show_result/<?= $val->sessions_poll_question_id ?>" class="btn btn-primary btn-sm">Show Results</a>
                                                         <?php } else if ($val->status == 2) { ?>
                                                             <a href="<?= base_url() ?>admin/sessions/close_result/<?= $val->sessions_poll_question_id ?>" class="btn btn-warning btn-sm">Close Results</a>
-                                                        <?php } else if ($val->status == 4) { ?>    
+                                                        <?php } else if ($val->status == 4) { ?>
                                                             <a href="<?= base_url() ?>admin/sessions/show_result/<?= $val->sessions_poll_question_id ?>" class="btn btn-primary btn-sm">Show Results</a>
                                                         <?php } else { ?>
                                                             <a href="<?= base_url() ?>admin/sessions/show_result/<?= $val->sessions_poll_question_id ?>" class="btn btn-info btn-sm">Show Results Again</a>
                                                             <a href="<?= base_url() ?>admin/sessions/view_result/<?= $val->sessions_poll_question_id ?>" class="btn btn-beige btn-sm">View</a>
-                                                        <?php } ?>    
+                                                        <?php } ?>
                                                     </td>
                                                 </tr>
                                                 <?php
