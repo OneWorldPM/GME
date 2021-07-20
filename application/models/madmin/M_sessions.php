@@ -47,6 +47,7 @@ class M_sessions extends CI_Model {
                 $val->groupchatPresenter= $this->getGroupChatDetailsPresenter($val->sessions_id);
                 $val->getChatAll= $this->getChatAll($val->sessions_id);
                 $val->check_send_json_exist= $this->check_send_json_exist($val->sessions_id);
+                $val->get_stream_name =  $this->get_stream_name($val->embed_html_code);
 
                 $return_array[] = $val;
             }
@@ -101,6 +102,7 @@ class M_sessions extends CI_Model {
                 $val->groupchatPresenter= $this->getGroupChatDetailsPresenter($val->sessions_id);
                 $val->getChatAll= $this->getChatAll($val->sessions_id);
                 $val->check_send_json_exist= $this->check_send_json_exist($val->sessions_id);
+                $val->get_stream_name =  $this->get_stream_name($val->embed_html_code);
 
                 $return_array[] = $val;
             }
@@ -301,6 +303,7 @@ class M_sessions extends CI_Model {
         }else{
             $embed_html_code=(trim($post['embed_html_code']));
         }
+
 
         $set = array(
             'presenter_id' => $presenter_id,
@@ -2649,8 +2652,8 @@ class M_sessions extends CI_Model {
         }
     }
 
-    //        this will get the stream names from database
-    function get_millicast_stream(){
+//        this will get the stream names from database
+    function getMillicast_Stream_Name(){
 
         $this->db->select('*');
         $this->db->from('tbl_millicast_stream_names');
