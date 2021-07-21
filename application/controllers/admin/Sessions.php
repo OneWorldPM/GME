@@ -58,7 +58,7 @@ class Sessions extends CI_Controller {
         $data['unique_identifier_id'] = $this->msessions->getSession_Unique_Identifier_ID();
 
         $data['all_sessions'] = $this->msessions->getAllSessions();
-        $data['millicast_stream_names']=$this->msessions->get_millicast_stream();
+        $data['millicast_stream_names']=$this->msessions->getMillicast_Stream_Name();
 
         $this->load->view('admin/header');
         $this->load->view('admin/add_sessions', $data);
