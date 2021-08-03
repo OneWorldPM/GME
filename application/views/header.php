@@ -218,6 +218,10 @@ else
                     padding: 16px 10px;
                 }
 
+                .logo{
+                    margin-top: -4% !important;
+                }
+
                 #header .container {
                     width: 100% !important;
                 }
@@ -231,6 +235,13 @@ else
                 }
             }
 
+            @media screen and (max-width: 1100px){
+                .logo{
+                    margin-top: 0 !important;
+                    margin-bottom: 0 !important;
+                }
+            }
+
             @media screen and (max-width: 992px) {
                 .parallax {
                     margin-top: 0;
@@ -239,7 +250,6 @@ else
                 .dropdown-backdrop {
                     z-index:0;
                 }
-
 
                 #mainMenu2 .nav {
                     background-color: white;
@@ -329,7 +339,9 @@ else
         <div class="wrapper ">
             <!-- HEADER -->
             <header id="header" class="header-transparent header-sticky">
-                <div id="header-wrap" <?=((isset($sesions_logo_height) && !empty($sesions_logo_height)) && isset($sesions_logo) && !empty($sesions_logo))?($sesions_logo_height > 80)?'style="height:'.$sesions_logo_height.'px"':'style="height:85px"':'';?>>
+                <div id="header-wrap" <?=((isset($sesions_logo_height) && !empty($sesions_logo_height)) && isset($sesions_logo) && !empty($sesions_logo))?($sesions_logo_height > 115)?'style="height:'.$sesions_logo_height.'px"':'style="height:115px"':'';?>
+                    <?=((isset($main_logo) && !empty($main_logo)) && isset($main_logo) && !empty($main_logo))?($main_logo_height > 115)?'style="height:'.$main_logo_height.'px !important"':'style="height:115px"':'';?>
+                >
                     <div style="height: 4px;background-color: #<?=$themeColour?>;"></div>
                     <div class="container">
                         <!--LOGO-->
@@ -350,7 +362,7 @@ else
 
                             <?php if(isset($main_logo) && $main_logo != ''): ?>
                                 <div id="logo" style="margin-right: 7px;">
-                                    <a href="#" class="logo" style="margin-top: 12px; cursor: auto">
+                                    <a href="#" class="logo" style="margin-top: 4%; cursor: auto">
                                         <img src="<?= base_url() ?>uploads/main_logos/<?=$main_logo?>" alt="Main Logo" width="<?=$main_logo_width?>px" height="<?=$main_logo_height?>px" style="width:<?=$main_logo_width?>px !important; height:<?=$main_logo_height?>px !important;">
                                     </a>
                                 </div>
