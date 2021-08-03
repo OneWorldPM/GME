@@ -340,7 +340,7 @@ else
             <!-- HEADER -->
             <header id="header" class="header-transparent header-sticky">
                 <div id="header-wrap" <?=((isset($sesions_logo_height) && !empty($sesions_logo_height)) && isset($sesions_logo) && !empty($sesions_logo))?($sesions_logo_height > 115)?'style="height:'.$sesions_logo_height.'px"':'style="height:115px"':'';?>
-                    <?=((isset($main_logo) && !empty($main_logo)) && isset($main_logo) && !empty($main_logo))?($main_logo_height > 115)?'style="height:'.$main_logo_height.'px !important"':'style="height:115px"':'';?>
+                    <?=((isset($main_logo) && !empty($main_logo)) && isset($main_logo) && !empty($main_logo))?($main_logo_height > 115)?'style="height:'.$main_logo_height.'px !important"':'style="height:100px"':'style="height:100px';?>
                 >
                     <div style="height: 4px;background-color: #<?=$themeColour?>;"></div>
                     <div class="container">
@@ -362,7 +362,7 @@ else
 
                             <?php if(isset($main_logo) && $main_logo != ''): ?>
                                 <div id="logo" style="margin-right: 7px;">
-                                    <a href="#" class="logo" style="margin-top: 4%; cursor: auto">
+                                    <a href="#" class="logo" style="margin-top: 2%; cursor: auto">
                                         <img src="<?= base_url() ?>uploads/main_logos/<?=$main_logo?>" alt="Main Logo" width="<?=$main_logo_width?>px" height="<?=$main_logo_height?>px" style="width:<?=$main_logo_width?>px !important; height:<?=$main_logo_height?>px !important;">
                                     </a>
                                 </div>
