@@ -351,7 +351,7 @@ else
                             <?php if(isset($main_logo) && $main_logo != ''): ?>
                                 <div id="logo" style="margin-right: 7px;">
                                     <a href="#" class="logo" style="margin-top: 12px; cursor: auto">
-                                        <img src="<?= base_url() ?>uploads/main_logos/<?=$main_logo?>" alt="Main Logo" width="<?=$main_logo_width?>px" height="<?=$main_logo_height?>px">
+                                        <img src="<?= base_url() ?>uploads/main_logos/<?=$main_logo?>" alt="Main Logo" width="<?=$main_logo_width?>px" height="<?=$main_logo_height?>px" style="width:<?=$main_logo_width?>px !important; height:<?=$main_logo_height?>px !important;">
                                     </a>
                                 </div>
                             <?php else: ?>
