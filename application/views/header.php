@@ -218,10 +218,6 @@ else
                     padding: 16px 10px;
                 }
 
-                .logo{
-                    margin-top: -4% !important;
-                }
-
                 #header .container {
                     width: 100% !important;
                 }
@@ -235,13 +231,6 @@ else
                 }
             }
 
-            @media screen and (max-width: 1100px){
-                .logo{
-                    margin-top: 0 !important;
-                    margin-bottom: 0 !important;
-                }
-            }
-
             @media screen and (max-width: 992px) {
                 .parallax {
                     margin-top: 0;
@@ -250,6 +239,7 @@ else
                 .dropdown-backdrop {
                     z-index:0;
                 }
+
 
                 #mainMenu2 .nav {
                     background-color: white;
@@ -339,9 +329,7 @@ else
         <div class="wrapper ">
             <!-- HEADER -->
             <header id="header" class="header-transparent header-sticky">
-                <div id="header-wrap" <?=((isset($sesions_logo_height) && !empty($sesions_logo_height)) && isset($sesions_logo) && !empty($sesions_logo))?($sesions_logo_height > 115)?'style="height:'.$sesions_logo_height.'px"':'style="height:115px"':'';?>
-                    <?=((isset($main_logo) && !empty($main_logo)) && isset($main_logo) && !empty($main_logo))?($main_logo_height > 115)?'style="height:'.$main_logo_height.'px !important"':'style="height:100px"':'style="height:100px';?>
-                >
+                <div id="header-wrap" <?=((isset($sesions_logo_height) && !empty($sesions_logo_height)) && isset($sesions_logo) && !empty($sesions_logo))?($sesions_logo_height > 115)?'style="height:'.$sesions_logo_height.'px"':'style="height:115px"':'';?>>
                     <div style="height: 4px;background-color: #<?=$themeColour?>;"></div>
                     <div class="container">
                         <!--LOGO-->
