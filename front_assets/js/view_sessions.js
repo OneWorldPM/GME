@@ -7,23 +7,23 @@ socket.on('reload-attendee-signal', function (app_name_to_relaod) {
 });
 
 
-// SESSION 149 end session redirect
-console.log(calcTime('-5'));
-auto_redirect();
-function auto_redirect(){
-    if (session_id === '149'){
-        onSessiontimer = setInterval(function(){
-            var datetime_now_newyork = calcTime('-5');
-            if(datetime_now_newyork > session_end_datetime)
-            {
-                window.open("https://www.clinicaloptions.com/login?returnUrl=/event/BipolarDepressionWebcast2021Eval", "_self");
-            }
-        },1000);
-        console.log('test');
-        console.log(onSessiontimer);
-        console.log(session_end_datetime);
-    }
-}
+// // SESSION 149 end session redirect
+// console.log(calcTime('-5'));
+// auto_redirect();
+// function auto_redirect(){
+//     if (session_id === '149'){
+//         onSessiontimer = setInterval(function(){
+//             var datetime_now_newyork = calcTime('-5');
+//             if(datetime_now_newyork > session_end_datetime)
+//             {
+//                 window.open("https://www.clinicaloptions.com/login?returnUrl=/event/BipolarDepressionWebcast2021Eval", "_self");
+//             }
+//         },1000);
+//         console.log('test');
+//         console.log(onSessiontimer);
+//         console.log(session_end_datetime);
+//     }
+// }
 
 /*** Subsequent redirection feature ***/
 socket.on('subsequent-session-redirect-signal', function (app_name_to_reload) {
