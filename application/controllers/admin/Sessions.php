@@ -59,6 +59,7 @@ class Sessions extends CI_Controller {
 
         $data['all_sessions'] = $this->msessions->getAllSessions();
         $data['millicast_stream_names']=$this->msessions->getMillicast_Stream_Name();
+        $data['default_moderators']=$this->msessions->moderatorCheckedList();
 
         $this->load->view('admin/header');
         $this->load->view('admin/add_sessions', $data);
@@ -1138,5 +1139,23 @@ public function ask_rep_report($session_id) {
         return;
     }
 
+    public function moderatorCheckedList(){
+        $this->load->view('admin/header');
+        $this->load->view('admin/moderatorCheckedList');
+        $this->load->view('admin/footer');
+    }
+
+    public function getPresentersJson(){
+        echo json_encode($this->msessions->getPresenters());
+//        echo json_encode($this->msessions->getSelectedModerators());
+    }
+
+    public function getSelectedModerators(){
+        echo json_encode($this->msessions->getSelectedModerators());
+    }
+
+    public function addSelectedModerator(){
+        echo json_encode($this->msessions->addSelectedModerator());
+    }
 
 }
