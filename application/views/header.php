@@ -478,9 +478,9 @@ else
                                     <?php } ?>
 
                                     <?php if ($this->router->fetch_class() == 'sessions' && $this->router->fetch_method() == 'view'): ?>
-                                        <ul class="main-menu nav navbar-nav navbar-right">
+                                      <!--  <ul class="main-menu nav navbar-nav navbar-right">
                                             <li><a href="mailto:meetings@clinicaloptions.com?subject=Customer Service Request" target="_blank" class="hoverThemeColour">CUSTOMER SERVICE</a></li>
-                                        </ul>
+                                        </ul>-->
                                     <?php if(isset($claim_credit_visibility) && ($claim_credit_visibility=='1')):?>
                                         <ul class="main-menu nav navbar-nav navbar-right" id="nav-claim-credit">
                                             <li><a target="_blank" href="<?=(isset($url_link) && !empty($url_link))?$url_link:''?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
