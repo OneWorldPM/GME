@@ -481,10 +481,12 @@ else
                                         <ul class="main-menu nav navbar-nav navbar-right">
                                             <li><a href="mailto:meetings@clinicaloptions.com?subject=Customer Service Request" target="_blank" class="hoverThemeColour">CUSTOMER SERVICE</a></li>
                                         </ul>
+                                    <?php if(isset($claim_credit_visibility) && ($claim_credit_visibility=='1')):?>
                                         <ul class="main-menu nav navbar-nav navbar-right" id="nav-claim-credit">
                                             <li><a target="_blank" href="<?=(isset($url_link) && !empty($url_link))?$url_link:''?>"  class="hoverThemeColour">CLAIM CREDIT</a></li>
                                             <!--<li><a target="_blank" href="https://www.clinicaloptions.com/event/TardiveDyskinesiaWebcast2021Eval?emailmemberguid=<?/*=(isset($userObject->identifier_id))?str_replace("cco\\", "", $userObject->identifier_id):''*/?>&origin=47"  class="hoverThemeColour">CLAIM CREDIT</a></li>-->
                                         </ul>
+                                    <?php endif;?>
                                     <?php endif; ?>
 
 <!--                                    <ul class="main-menu nav navbar-nav navbar-right" id="nav-home">-->

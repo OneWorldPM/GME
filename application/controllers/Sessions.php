@@ -103,7 +103,7 @@ class Sessions extends CI_Controller {
         $data["sessions"] = $sesions;
         $data["session_resource"] = $this->objsessions->get_session_resource($sessions_id);
         $data['music_setting'] = $this->objsessions->get_music_setting();
-
+        $header_data["claim_credit_visibility"] = $sesions->attendee_view_links_status;
 
         $header_data["attendee_view_links_status"] = $sesions->attendee_view_links_status;
         $header_data["url_link"] = $sesions->url_link;
